@@ -1,0 +1,30 @@
+import React from 'react';
+
+const Hero = () => {
+  return (
+    <div className="container mx-auto py-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Text Column */}
+        <div className="p-5">
+          <h1 className="text-3xl lg:text-5xl font-bold text-gray-800 mb-4">Organic Veggies & Fruits Foods</h1>
+          <p className="text-lg text-gray-600 mb-8">100% Organic Foods. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin accumsan sodales eleifend. Sed consectetur vitae lacus eget facilisis.</p>
+          <form className="flex items-center">
+            <input className="flex-1 bg-gray-200 rounded-l-lg py-2 px-4" type="text" placeholder="Search" />
+            <button className="bg-blue-500 text-white rounded-r-lg px-4 py-2" type="submit">Submit Now</button>
+          </form>
+        </div>
+        {/* Image Gallery Column */}
+        <div>
+          <div className="flex justify-center">
+            <img className="rounded-lg" src="/Images/hero-img-1.png" alt="Hero Image 1" />
+          </div>
+          <div className="flex justify-center mt-4">
+            <img className="rounded-lg" src="/Images/hero-img-2.jpg" alt="Hero Image 2" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Hero;

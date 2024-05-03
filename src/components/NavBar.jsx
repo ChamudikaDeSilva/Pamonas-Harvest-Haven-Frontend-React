@@ -13,7 +13,7 @@ const NavBar = () => {
     <nav className="bg-lime-500 p-4 fixed top-0 left-0 w-full z-10">
       <div className="container mx-auto flex items-center justify-between">
         <div> {/* Logo container */}
-          <a href="/" className="text-white font-semibold">Pomona's Fruit Hub</a>
+          <a href="/" className="text-white font-semibold">Pomona's Harvest Haven</a>
         </div>
         <div className="flex items-center justify-center flex-grow"> {/* Centered nav items */}
           <a href="/" className="text-white text-base py-2 px-4">Home</a>
