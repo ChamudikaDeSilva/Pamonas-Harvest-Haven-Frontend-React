@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -13,12 +15,12 @@ const NavBar = () => {
         <div> {/* Logo container */}
           <a href="/" className="text-white font-semibold">Pomona's Fruit Hub</a>
         </div>
-        <div className="flex items-center space-x-4"> {/* Centered nav items */}
-          <a href="/" className="text-white text-base">Home</a>
-          <a href="/" className="text-white text-base">Shop</a>
-          <a href="/" className="text-white text-base">Shop Details</a>
+        <div className="flex items-center justify-center flex-grow"> {/* Centered nav items */}
+          <a href="/" className="text-white text-base py-2 px-4">Home</a>
+          <a href="/" className="text-white text-base py-2 px-4">Shop</a>
+          <a href="/" className="text-white text-base py-2 px-4">Shop Details</a>
           <div className="relative">
-            <button className="text-white text-base focus:outline-none" onClick={toggleDropdown}>Pages</button>
+            <button className="text-white text-base focus:outline-none py-3 px-4" onClick={toggleDropdown}>Pages</button>
             {isDropdownOpen && (
               <ul className="absolute text-gray-700 pt-1 bg-gray-200 rounded-lg">
                 <li className="group">
@@ -33,8 +35,14 @@ const NavBar = () => {
               </ul>
             )}
           </div>
-          <a href="/" className="text-white text-base">Contact</a>
-        </div>
+          <a href="/" className="text-white text-base py-2 px-4 ">Contact</a>
+          </div>
+          <div className="ml-auto flex items-center">
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="text-white text-xl ml-4" />
+            <FontAwesomeIcon icon={faShoppingBag} className="text-white text-xl ml-4" />
+            <FontAwesomeIcon icon={faUser} className="text-white text-xl ml-4" />
+          </div>
+        
       </div>
     </nav>
   );
