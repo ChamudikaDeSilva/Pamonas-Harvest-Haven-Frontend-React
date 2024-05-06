@@ -13,14 +13,14 @@ const NavBar = () => {
     <nav className="bg-lime-500 p-4 fixed top-0 left-0 w-full z-10">
       <div className="container mx-auto flex items-center justify-between">
         <div> {/* Logo container */}
-          <a href="/" className="text-white font-semibold">Pomona's Harvest Haven</a>
+          <a href="/" className="hover:text-amber-500 text-white font-semibold">Pomona's Harvest Haven</a>
         </div>
         <div className="flex items-center justify-center flex-grow"> {/* Centered nav items */}
-          <a href="/" className="text-white text-base py-2 px-4">Home</a>
-          <a href="/" className="text-white text-base py-2 px-4">Shop</a>
-          <a href="/" className="text-white text-base py-2 px-4">Shop Details</a>
+          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4">Home</a>
+          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4">Shop</a>
+          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4">Shop Details</a>
           <div className="relative">
-            <button className="text-white text-base focus:outline-none py-3 px-4" onClick={toggleDropdown}>Pages</button>
+            <button className="hover:text-amber-500 text-white text-base focus:outline-none py-3 px-4" onClick={toggleDropdown}>Pages</button>
             {isDropdownOpen && (
               <ul className="absolute text-gray-700 pt-1 bg-gray-200 rounded-lg">
                 <li className="group">
@@ -35,12 +35,12 @@ const NavBar = () => {
               </ul>
             )}
           </div>
-          <a href="/" className="text-white text-base py-2 px-4 ">Contact</a>
+          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4 ">Contact</a>
           </div>
           <div className="ml-auto flex items-center">
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="text-white text-xl ml-4" />
-            <FontAwesomeIcon icon={faShoppingBag} className="text-white text-xl ml-4" />
-            <FontAwesomeIcon icon={faUser} className="text-white text-xl ml-4" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-white text-xl ml-4" />
+            <FontAwesomeIcon icon={faShoppingBag} className="hover:text-amber-500 text-white text-xl ml-4" />
+            <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-white text-xl ml-4" />
           </div>
         
       </div>
