@@ -120,14 +120,14 @@ const Footer = () => {
           </div>
           <div>
             <p className='text-lg text-amber-500'>
-              Designed By{' '}
+              Designed By Using{' '}
               <a
                 className='border-b border-gray-300 hover:text-lime-500 text-base'
                 href='https://react.dev/'
               >
-                Using React
+                 React
               </a>{' '}
-              Created By{' '}
+              By{' '}
               <a
                 className='border-b border-gray-300 hover:text-lime-500 text-base'
                 href='https://chamudikadesilva.github.io/HasiniChamudikaDeSilva/'
