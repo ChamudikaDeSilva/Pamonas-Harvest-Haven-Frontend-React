@@ -10,32 +10,32 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-lime-500 p-4 fixed top-0 left-0 w-full z-10">
+    <nav className="bg-lime-500 p-4 relative top-0 left-0 w-full z-10">
       <div className="container mx-auto flex items-center justify-between">
         <div> {/* Logo container */}
-          <a href="/" className="hover:text-amber-500 text-white font-semibold">Pomona's Harvest Haven</a>
+          <a href="/" className="hover:text-amber-500 text-white text-4xl font-semibold">Pomona's Harvest Haven</a>
         </div>
         <div className="flex items-center justify-center flex-grow"> {/* Centered nav items */}
-          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4">Home</a>
-          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4">Shop</a>
-          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4">Shop Details</a>
+          <a href="/" className="hover:text-amber-500 text-white text-lg py-2 px-4">Home</a>
+          <a href="/" className="hover:text-amber-500 text-white text-lg py-2 px-4">Shop</a>
+          <a href="/" className="hover:text-amber-500 text-white text-lg py-2 px-4">Shop Details</a>
           <div className="relative">
-            <button className="hover:text-amber-500 text-white text-base focus:outline-none py-3 px-4" onClick={toggleDropdown}>Pages</button>
+            <button className="hover:text-amber-500 text-white text-lg focus:outline-none py-3 px-4" onClick={toggleDropdown}>Pages</button>
             {isDropdownOpen && (
               <ul className="absolute text-gray-700 pt-1 bg-gray-200 rounded-lg">
                 <li className="group">
-                  <a href="#" className="hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-sm">Cart</a>
+                  <a href="/" className="hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base">Cart</a>
                 </li>
                 <li className="group">
-                  <a href="#" className="hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-sm">Checkout</a>
+                  <a href="/" className="hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base">Checkout</a>
                 </li>
                 <li className="group">
-                  <a href="#" className="hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-sm">Testimonial</a>
+                  <a href="/" className="hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base">Testimonial</a>
                 </li>
               </ul>
             )}
           </div>
-          <a href="/" className="hover:text-amber-500 text-white text-base py-2 px-4 ">Contact</a>
+          <a href="/" className="hover:text-amber-500 text-white text-lg py-2 px-4 ">Contact</a>
           </div>
           <div className="ml-auto flex items-center">
             <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-white text-xl ml-4" />
