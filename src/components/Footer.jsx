@@ -115,17 +115,18 @@ const Footer = () => {
         <div className='flex justify-between items-center'>
           <div>
             <p className='text-lg text-amber-500'>
-              &copy; {new Date().getFullYear()} Pamona's, All rights reserved.
+              &copy; {new Date().getFullYear()} Pamona's Harvest Haven, All
+              rights reserved.
             </p>
           </div>
           <div>
             <p className='text-lg text-amber-500'>
-              Designed By Using{' '}
+              Designed with{' '}
               <a
                 className='border-b border-gray-300 hover:text-lime-500 text-base'
                 href='https://react.dev/'
               >
-                 React
+                React
               </a>{' '}
               By{' '}
               <a

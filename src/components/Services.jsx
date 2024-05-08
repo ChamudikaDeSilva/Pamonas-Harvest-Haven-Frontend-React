@@ -10,9 +10,10 @@ import {
 const Services = () => {
   return (
     <div className='container mx-auto py-8'>
+      <h2 className='text-5xl text-left text-gray-600 font-semibold mb-6'>Our Services</h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8'>
         {/* Service Card 1 */}
-        <div className='bg-gray-100 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faTruckFast}
@@ -24,7 +25,7 @@ const Services = () => {
         </div>
 
         {/* Service Card 2 */}
-        <div className='bg-gray-100 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faShieldAlt}
@@ -38,7 +39,7 @@ const Services = () => {
         </div>
 
         {/* Service Card 3 */}
-        <div className='bg-gray-100 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faUndoAlt}
@@ -50,7 +51,7 @@ const Services = () => {
         </div>
 
         {/* Service Card 4 */}
-        <div className='bg-gray-100 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faPhoneAlt}

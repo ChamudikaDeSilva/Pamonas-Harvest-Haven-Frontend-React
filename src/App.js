@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Footer from './components/Footer'; // Import Footer component
 
 import 'tailwindcss/tailwind.css';
+import Products from './components/Products';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <NavBar />
         <Hero />
         <Services />
-        {/* Include Footer component */}
+        <Products />
         <Footer />
       </header>
     </div>
