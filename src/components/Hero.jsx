@@ -19,7 +19,7 @@ const Hero = () => {
                     <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Organic Veggies & Fruits</h1>
                     <div className="p-5 flex justify-center items-center">
                         <div className="text-center">
-                            <p className="max-w-lg text-lg text-gray-600 mb-8">
+                            <p className="max-w-lg text-lg text-gray-600 mb-8 font-style: italic">
                             Indulge in the freshest, 100% organic produce, meticulously sourced and delivered straight to your doorstep. From succulent fruits to crisp vegetables, each bite is a celebration of nature's bounty. Elevate your meals with our premium selection, handpicked for their unrivaled quality and flavor. Rediscover the joy of wholesome eating, crafted with care and dedication to your well-being.
                             </p>
                         </div>

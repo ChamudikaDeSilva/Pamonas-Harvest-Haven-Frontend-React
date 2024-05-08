@@ -38,9 +38,9 @@ const NavBar = () => {
           <a href="/" className="hover:text-amber-500 text-white text-lg py-2 px-4 ">Contact</a>
           </div>
           <div className="ml-auto flex items-center">
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-white text-xl ml-4" />
-            <FontAwesomeIcon icon={faShoppingBag} className="hover:text-amber-500 text-white text-xl ml-4" />
-            <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-white text-xl ml-4" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-white text-2xl ml-4" />
+            <FontAwesomeIcon icon={faShoppingBag} className="hover:text-amber-500 text-white text-2xl ml-4" />
+            <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-white text-2xl ml-4" />
           </div>
         
       </div>

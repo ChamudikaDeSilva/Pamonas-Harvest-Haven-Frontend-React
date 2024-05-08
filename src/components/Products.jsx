@@ -86,9 +86,9 @@ const Products = () => {
       </div><br></br>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filteredProducts.map(product => (
-          <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105">
+          <div key={product.id}className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105 hover:bg-gray-200">
             <img src={product.image} alt={product.name} className="w-full h-50 object-cover" />
-            <div className="p-4 hover:bg-gray-200">
+            <div className="p-4">
               <h2 className="text-gray-900 text-3xl font-semibold mb-2">{product.name}</h2>
               <p className="text-gray-600 text-xl mb-2">{product.description}</p>
               <p className="text-gray-800 font-semibold mb-2">{product.price}</p>
