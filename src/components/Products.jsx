@@ -90,7 +90,7 @@ const Products = () => {
             <img src={product.image} alt={product.name} className="w-full h-50 object-cover" />
             <div className="p-4">
               <h2 className="text-gray-900 text-3xl font-semibold mb-2">{product.name}</h2>
-              <p className="text-gray-600 text-xl mb-2">{product.description}</p>
+              <p className="text-gray-600 text-xl mb-2 italic">{product.description}</p>
               <p className="text-gray-800 font-semibold mb-2">{product.price}</p>
               <button className="bg-amber-500 text-white text-lg px-4 py-2 rounded-full hover:bg-lime-500 transition duration-300">Add to Cart</button>
             </div>

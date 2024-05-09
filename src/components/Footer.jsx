@@ -60,7 +60,7 @@ const Footer = () => {
             <h4 className='text-light text-3xl mb-3 font-bold text-left'>
               Why People Like us!
             </h4>
-            <p className='text-gray-300 mb-3 text-base text-left'>
+            <p className='text-gray-300 mb-3 text-base text-left italic'>
               At Pamona's, we pride ourselves on quality, freshness, and
               exceptional service. Our wide selection of fresh, delicious
               products and unwavering dedication to customer satisfaction make
@@ -71,7 +71,7 @@ const Footer = () => {
             <h4 className='text-light mb-3 text-3xl font-bold text-left'>
               Shop Info
             </h4>
-            <ul className='text-gray-300 mb-3 text-base text-left'>
+            <ul className='text-gray-300 mb-3 text-base text-left italic'>
               <li>About Us</li>
               <li>Contact Us</li>
               <li>Privacy Policy</li>
@@ -84,7 +84,7 @@ const Footer = () => {
             <h4 className='text-light mb-3 text-3xl font-bold text-left'>
               Account
             </h4>
-            <ul className='text-gray-300 mb-3 text-base text-left'>
+            <ul className='text-gray-300 mb-3 text-base text-left italic'>
               <li>My Account</li>
               <li>Shop details</li>
               <li>Shopping Cart</li>
@@ -97,13 +97,13 @@ const Footer = () => {
             <h4 className='text-light text-left mb-3 text-3xl font-bold'>
               Contact
             </h4>
-            <p className='text-gray-300 text-left mb-3 text-base'>
+            <p className='text-gray-300 text-left mb-3 text-base italic'>
               Address: 100, Kandy Road, Colombo
             </p>
-            <p className='text-gray-300 text-left mb-3 text-base'>
+            <p className='text-gray-300 text-left mb-3 text-base italic'>
               Email: pamonaorg@gmail.com
             </p>
-            <p className='text-gray-300 text-left mb-3 text-base'>
+            <p className='text-gray-300 text-left mb-3 text-base italic'>
               Phone: +94 11 3456720
             </p>
           </div>

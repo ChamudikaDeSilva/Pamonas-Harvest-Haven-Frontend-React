@@ -21,7 +21,7 @@ const Services = () => {
             />
           </div>
           <h3 className='text-lg text-gray-600 font-semibold'>Free Shipping</h3>
-          <p className='text-base text-gray-600'>Free on orders over $300</p>
+          <p className='text-base text-gray-600 italic'>Free on orders over $300</p>
         </div>
 
         {/* Service Card 2 */}
@@ -35,7 +35,7 @@ const Services = () => {
           <h3 className='text-lg text-gray-600 font-semibold'>
             Security Payment
           </h3>
-          <p className='text-base text-gray-600'>100% secure payment</p>
+          <p className='text-base text-gray-600 italic'>100% secure payment</p>
         </div>
 
         {/* Service Card 3 */}
@@ -47,7 +47,7 @@ const Services = () => {
             />
           </div>
           <h3 className='text-lg text-gray-600 font-semibold'>30 Day Return</h3>
-          <p className='text-base text-gray-600'>30-day money guarantee</p>
+          <p className='text-base text-gray-600 italic'>30-day money guarantee</p>
         </div>
 
         {/* Service Card 4 */}
@@ -59,7 +59,7 @@ const Services = () => {
             />
           </div>
           <h3 className='text-lg text-gray-600 font-semibold'>24/7 Support</h3>
-          <p className='text-base text-gray-600'>Fast support anytime</p>
+          <p className='text-base text-gray-600 italic'>Fast support anytime</p>
         </div>
       </div>
     </div>
