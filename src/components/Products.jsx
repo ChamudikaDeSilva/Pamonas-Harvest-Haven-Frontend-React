@@ -62,7 +62,7 @@ const Products = () => {
   return (
     <div className="container mx-auto mt-10">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-5xl text-gray-600 font-semibold">Our Best Selling Organic Products</h1>
+        <h1 className="text-5xl text-left text-gray-600 font-semibold mb-6"> Best Seller Products</h1>
         <div className="flex space-x-4">
           <button
             className={`px-4 py-2 rounded-full ${currentCategory === 'all' ? 'bg-amber-500 text-white text-lg' : 'bg-gray-200 text-gray-700 text-lg'}`}
@@ -84,9 +84,9 @@ const Products = () => {
           </button>
         </div>
       </div><br></br>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8">
         {filteredProducts.map(product => (
-          <div key={product.id}className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105 hover:bg-gray-200">
+          <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105 hover:bg-gray-200">
             <img src={product.image} alt={product.name} className="w-full h-50 object-cover" />
             <div className="p-4">
               <h2 className="text-gray-900 text-3xl font-semibold mb-2">{product.name}</h2>
