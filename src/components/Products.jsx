@@ -86,8 +86,10 @@ const Products = () => {
       </div><br></br>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8">
         {filteredProducts.map(product => (
-          <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105 hover:bg-gray-200">
-            <img src={product.image} alt={product.name} className="w-full h-50 object-cover" />
+          <div key={product.id} className="bg-white border border-amber-500 rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105 hover:bg-gray-200">
+            <div className="w-100 h-80 overflow-hidden">
+              <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            </div>
             <div className="p-4">
               <h2 className="text-gray-900 text-3xl font-semibold mb-2">{product.name}</h2>
               <p className="text-gray-600 text-xl mb-2 italic">{product.description}</p>
@@ -97,6 +99,7 @@ const Products = () => {
           </div>
         ))}
       </div>
+
       <br></br>
     </div>
     

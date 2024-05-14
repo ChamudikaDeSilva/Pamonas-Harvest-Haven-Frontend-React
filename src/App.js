@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Footer from './components/Footer'; // Import Footer component
+import Banner from './components/Banner';
 
 import 'tailwindcss/tailwind.css';
 import Products from './components/Products';
@@ -17,6 +18,7 @@ function App() {
         <Hero />
         <Services />
         <Products />
+        <Banner />
         <Footer />
       </header>
     </div>
