@@ -7,7 +7,7 @@ function Banner() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center">
           <div className="py-4 md:ml-24">  {/* Further increase left margin for the text container */}
             <h1 className="text-5xl md:text-6xl text-white font-bold">Fresh Exotic Fruits</h1>
-            <p className="font-light text-3xl md:text-4xl text-gray-600 mb-4">in Our Store</p>
+            <p className="font-light text-4xl md:text-4xl text-gray-600 mb-4">In Our Store</p>
             <p className="text-lg md:text-xl text-dark mb-4">
               Discover a world of fresh, exotic fruits handpicked just for you. Our store offers a unique selection of high-quality produce that brings vibrant flavors and essential nutrients to your table.
             </p>
@@ -19,7 +19,7 @@ function Banner() {
               <h1 className="text-6xl font-bold text-gray-600">1</h1>
               <div className="flex flex-col ml-2">
                 <span className="text-4xl text-gray-600 font-semi-bold">$50</span>
-                <span className="text-2xl text-gray-500">kg</span>
+                <span className="text-4xl font-bold text-gray-600">kg</span>
               </div>
             </div>
           </div>
