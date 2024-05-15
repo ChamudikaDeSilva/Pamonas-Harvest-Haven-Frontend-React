@@ -10,7 +10,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-white p-4 sticky top-0 left-0 w-full z-10">
+    <nav className="bg-white sm-block p-4 sticky top-0 left-0 w-full z-10">
       <div className="container mx-auto flex items-center justify-between">
         <div> {/* Logo container */}
           <a href="/" className="hover:text-amber-500 text-lime-500 text-4xl font-bold">Pomona's Harvest Haven</a>
