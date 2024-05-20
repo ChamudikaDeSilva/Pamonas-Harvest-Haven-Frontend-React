@@ -1,15 +1,15 @@
 import './App.css';
 import React from 'react';
 
-import NavBar from './components/NavBar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Footer from './components/Footer'; // Import Footer component
-import Banner from './components/Banner';
-import Fact from './components/Fact';
+import NavBar from './components/commonComponent/NavBar';
+import Hero from './components/homeComponent/Hero';
+import Services from './components/homeComponent/Services';
+import Footer from './components/commonComponent/Footer'; // Import Footer component
+import Banner from './components/homeComponent/Banner';
+import Fact from './components/homeComponent/Fact';
 
 import 'tailwindcss/tailwind.css';
-import Products from './components/Products';
+import Products from './components/homeComponent/Products';
 
 function App() {
   return (
