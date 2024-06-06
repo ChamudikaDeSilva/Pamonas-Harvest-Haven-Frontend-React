@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TopInfo = () => (
-  <div className="top-info sticky flex flex-wrap justify-between items-center px-4 py-1 bg-lime-500 w-3/4 rounded-[16px]">
+  <div className="top-info sticky flex flex-wrap justify-between items-center px-6 py-1 bg-lime-500 w-3/4 rounded-[16px]">
     <div className="flex items-center space-x-4">
       <div className="flex items-center">
         <i className="fas fa-map-marker-alt text-secondary hover:text-amber-500"></i>
