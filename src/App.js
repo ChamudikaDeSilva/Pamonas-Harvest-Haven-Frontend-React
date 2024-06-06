@@ -7,14 +7,16 @@ import Services from './components/homeComponent/Services';
 import Footer from './components/commonComponent/Footer'; // Import Footer component
 import Banner from './components/homeComponent/Banner';
 import Fact from './components/homeComponent/Fact';
-
+ // Import Address component
 import 'tailwindcss/tailwind.css';
 import Products from './components/homeComponent/Products';
+import Address from './components/commonComponent/address';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Address />
         <NavBar />
         <Hero />
         <Services />
