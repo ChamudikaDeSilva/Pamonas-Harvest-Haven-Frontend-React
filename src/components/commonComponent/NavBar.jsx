@@ -47,13 +47,13 @@ const NavBar = () => {
                 </ul>
               )}
             </div>
-            <a href="/" className="hover:text-amber-500 text-lime-500 font-semibold text-lg py-2 px-4 ">Contact</a>
+            <a href="/" className="hover:text-amber-500 text-lime-500 font-semibold text-lg py-2 px-4">Contact</a>
           </div>
         </div>
-        <div className="ml-auto flex items-center hidden sm:flex"> {/* Right-aligned icons */}
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-lime-500 text-2xl ml-4" />
-          <FontAwesomeIcon icon={faShoppingBag} className="hover:text-amber-500 text-lime-500 text-2xl ml-4" />
-          <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-lime-500 text-2xl ml-4" />
+        <div className="flex items-center ml-4 sm:ml-auto"> {/* Right-aligned icons */}
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
+          <FontAwesomeIcon icon={faShoppingBag} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
+          <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
         </div>
       </div>
     </nav>

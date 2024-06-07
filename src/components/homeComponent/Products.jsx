@@ -61,32 +61,35 @@ const Products = () => {
 
   return (
     <div className="container mx-auto mt-10">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-5xl text-left text-gray-600 font-semibold mb-6"> Best Seller Products</h1>
-        <div className="flex space-x-4">
-          <button
+      <div className="flex flex-col md:flex-row items-center justify-between mb-6">
+    <h1 className="text-3xl md:text-5xl text-left text-gray-600 font-semibold mb-4 md:mb-0">
+        Best Seller Products
+    </h1>
+    <div className="flex space-x-2 md:space-x-4 flex-wrap justify-center md:justify-end">
+        <button
             className={`px-4 py-2 rounded-full ${currentCategory === 'all' ? 'bg-amber-500 text-white text-lg' : 'bg-gray-200 text-gray-700 text-lg'}`}
             onClick={() => setCurrentCategory('all')}
-          >
+        >
             All Products
-          </button>
-          <button
+        </button>
+        <button
             className={`px-4 py-2 rounded-full ${currentCategory === 'vegetable' ? 'bg-amber-500 text-white text-lg' : 'bg-gray-200 text-gray-700 text-lg'}`}
             onClick={() => setCurrentCategory('vegetable')}
-          >
+        >
             Vegetables
-          </button>
-          <button
+        </button>
+        <button
             className={`px-4 py-2 rounded-full ${currentCategory === 'fruit' ? 'bg-amber-500 text-white text-lg' : 'bg-gray-200 text-gray-700 text-lg'}`}
             onClick={() => setCurrentCategory('fruit')}
-          >
+        >
             Fruits
-          </button>
-        </div>
-      </div><br></br>
+        </button>
+    </div>
+</div>
+<br></br>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-8">
         {filteredProducts.map(product => (
-          <div key={product.id} className="bg-white border border-amber-500 rounded-lg shadow-md overflow-hidden transition duration-300 zoom-in transform hover:scale-105 hover:bg-gray-200">
+          <div key={product.id} className="bg-white border border-amber-500 rounded-lg shadow-md overflow-hidden transition duration-300 ease-in transform hover:scale-105">
             <div className="w-100 h-80 overflow-hidden">
               <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
             </div>
