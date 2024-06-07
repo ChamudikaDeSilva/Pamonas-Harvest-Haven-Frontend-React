@@ -1,0 +1,64 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+
+const Testimonials = () => {
+  // Sample data for testimonials
+  const testimonialsData = [
+    {
+      text: "I absolutely love the quality of the products and the exceptional customer service provided by Pomona's HarvestHaven. Their fresh produce always exceeds my expectations!",
+      name: "Ann",
+      profession: "Doctor",
+      rating: 5
+    },
+    {
+      text: "As a busy professional, I rely on Pomona's HarvestHaven to deliver fresh and organic groceries to my doorstep. Their wide selection and convenient service make my life so much easier!",
+      name: "Jesica",
+      profession: "Lawyer",
+      rating: 5
+    },
+    {
+      text: "I've been a loyal customer of Pomona's HarvestHaven for years, and I'm continually impressed by the freshness and taste of their fruits and vegetables. Their commitment to quality is unmatched!",
+      name: "Adam",
+      profession: "Accountant",
+      rating: 5
+    },
+  ];
+
+  return (
+    <div className="container mx-auto mb-10 md:mb-20">
+      <div className="mt-10 md:mt-20">
+        <h1 className="text-3xl md:text-5xl text-left text-gray-600 font-semibold mb-4 md:mb-8">
+          Testimonials
+        </h1>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonialsData.map((testimonial, index) => (
+            <div key={index} className="bg-white border border-gray-300 rounded-lg shadow-md overflow-hidden transition duration-300 ease-in transform hover:scale-105">
+              <div className="p-4">
+                <i><p className="text-gray-900 text-base mb-4 md:mb-6">{testimonial.text}</p></i>
+                <hr className="border-t border-amber-500 my-4" />
+                <div className="flex items-center flex-col md:flex-row md:items-start">
+                  <div className="bg-gray-200 rounded-full p-1 mb-3 md:mr-3 md:mb-0">
+                  <img src="Images/testimonial-1.jpg" className="w-12 h-12 rounded-full md:w-16 md:h-16" alt={testimonial.name} />
+
+                  </div>
+                  <div>
+                    <h2 className="text-gray-700 font-semibold mb-1">{testimonial.name}</h2>
+                    <p className="text-gray-600 text-lg mb-3 md:mb-1">{testimonial.profession}</p>
+                    <div className="flex text-lime-500">
+                      {[...Array(testimonial.rating)].map((_, index) => (
+                        <FontAwesomeIcon key={index} icon={faStar} className="text-xl" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Testimonials;

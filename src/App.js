@@ -11,6 +11,7 @@ import Fact from './components/homeComponent/Fact';
 import 'tailwindcss/tailwind.css';
 import Products from './components/homeComponent/Products';
 import Address from './components/commonComponent/address';
+import Testimonials from './components/homeComponent/Testimonials';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Products />
         <Banner />
         <Fact />
+        <Testimonials/>
         <Footer />
       </header>
     </div>
