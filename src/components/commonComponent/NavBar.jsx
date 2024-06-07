@@ -36,7 +36,7 @@ const NavBar = () => {
             <a href="/" className="hover:text-amber-500 text-gray-500 text-lg font-semibold py-2 px-4">Shop</a>
             <a href="/" className="hover:text-amber-500 text-gray-500 text-lg font-semibold py-2 px-4">Shop Details</a>
             <div className="relative">
-              <button className="hover:text-amber-500 text-gray-500 text-lg font-semibold focus:outline-none py-3 px-4" onClick={toggleDropdown}>
+              <button className="hover:text-amber-500 text-gray-500 text-lg font-semibold focus:outline-none py-2 px-4" onClick={toggleDropdown}>
                 Pages <FontAwesomeIcon icon={isDropdownOpen ? faChevronUp : faChevronDown} className="ml-1" />
               </button>
               <ul className={`md:absolute md:bg-gray-200 md:rounded-lg md:pt-1 md:text-gray-700 md:w-48 sm:w-40 sm:relative sm:bg-transparent md:shadow-lg ${isDropdownOpen ? 'block' : 'hidden'}`}>
