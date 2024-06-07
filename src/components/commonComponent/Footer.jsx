@@ -115,7 +115,7 @@ const Footer = () => {
         <div className='flex justify-between items-center'>
           <div>
             <p className='text-lg text-amber-500'>
-              &copy; {new Date().getFullYear()} Pamona's Harvest Haven, All
+              &copy; {new Date().getFullYear()} Pamona's HarvestHaven, All
               rights reserved.
             </p>
           </div>
