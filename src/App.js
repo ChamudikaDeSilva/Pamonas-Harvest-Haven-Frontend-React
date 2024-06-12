@@ -9,8 +9,10 @@ import Fact from './components/homeComponent/Fact';
 import Products from './components/homeComponent/Products';
 import Address from './components/commonComponent/address';
 import Testimonials from './components/homeComponent/Testimonials';
-import Shop from './components/shopComponent/Shop'; // Import Shop component
+import ShopHero from './components/shopComponent/ShopHero'; // Import Shop component
+import ShopPageContent from './components/shopComponent/ShopPageContent'; 
 import 'tailwindcss/tailwind.css';
+//import ShopCategory from './components/shopComponent/shopCategory';
 
 function App() {
   return (
@@ -31,10 +33,12 @@ function App() {
           } />
           <Route path="/shop" element={
             <>
-              <Shop />
+              <ShopHero />
+              <ShopPageContent />
+             
             </>
           } />
-          {/* Add more routes for other pages if needed */}
+          
         </Routes>
         <Footer />
       </Router>
