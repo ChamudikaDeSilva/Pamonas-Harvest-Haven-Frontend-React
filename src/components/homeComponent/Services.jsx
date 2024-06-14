@@ -10,9 +10,9 @@ import {
 const Services = () => {
   return (
     <div className='container mx-auto py-8'>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl text-left text-gray-600 font-semibold mb-4 md:mb-6">
+      {/*<h2 className="text-3xl md:text-4xl lg:text-5xl text-left text-gray-600 font-semibold mb-4 md:mb-6">
         Our Services
-      </h2>
+      </h2>*/}
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8'>
        

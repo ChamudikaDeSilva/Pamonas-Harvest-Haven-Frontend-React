@@ -86,7 +86,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12">
         {filteredProducts.map(product => (
           <div key={product.id} className="bg-white border border-amber-500 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
             <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">

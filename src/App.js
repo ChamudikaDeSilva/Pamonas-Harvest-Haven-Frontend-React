@@ -28,8 +28,9 @@ function App() {
               <Hero />
               <ImageContainer/>
               <Products />
-              <Services />
+              
               <Banner />
+              <Services />
               <Fact />
               <Testimonials />
               <LogoSwiper/>

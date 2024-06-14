@@ -4,8 +4,11 @@ const ShopHero = () => {
   return (
     <div
       className="relative bg-cover bg-center h-40 md:h-56 lg:h-64"
-      style={{
+      /*style={{
         backgroundImage: "url('Images/cart-page-header-img.jpg')",
+      }}*/
+      style={{
+        backgroundImage: "url('/Images/Pamonas/fruits & vegetables/slider6.jpg')",
       }}
     >
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50"></div>
