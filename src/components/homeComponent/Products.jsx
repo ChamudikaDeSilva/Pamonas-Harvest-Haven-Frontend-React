@@ -87,14 +87,14 @@ const Products = () => {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2">
           {filteredProducts.map(product => (
             <div key={product.id} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
               <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover transition duration-300 zoom-in transform hover:scale-105" />
               </div>
               <div className="p-3 sm:p-4">
-                <h2 className="text-gray-900 text-lg sm:text-xl md:text-2xl font-semibold mb-1">{product.name}</h2>
+                <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
                 <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
                 <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">{product.price}</p>
                 <button className="bg-amber-500 text-white text-xs sm:text-sm lg:text-base px-2 py-1 sm:px-3 sm:py-1 rounded-full hover:bg-lime-500 transition duration-300">

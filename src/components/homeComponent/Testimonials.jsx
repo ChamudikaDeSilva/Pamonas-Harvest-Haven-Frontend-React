@@ -66,7 +66,7 @@ const Testimonials = () => {
             </button>
         </div>
       </div>
-      <div className="max-w-3xl mx-auto grid grid-cols-1 gap-8">
+      <div className="max-w-3xl mx-auto grid grid-cols-1 gap-8 pr-2 pl-2">
         <div className="col-span-3 md:col-span-2 bg-white border border-amber-500 rounded-lg shadow-md overflow-hidden">
             <div className="p-4">
               <p className="text-gray-900 text-base mb-4 md:mb-6">{testimonial.text}</p>

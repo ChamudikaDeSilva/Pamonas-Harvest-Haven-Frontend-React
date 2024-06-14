@@ -14,7 +14,7 @@ const Services = () => {
         Our Services
       </h2>*/}
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pr-4 pl-4'>
        
         <div className='bg-white p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border border-amber-500'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>

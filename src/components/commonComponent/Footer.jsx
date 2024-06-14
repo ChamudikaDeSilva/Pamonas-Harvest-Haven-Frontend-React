@@ -24,14 +24,14 @@ const Footer = () => {
         {/* Footer Top */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-8'>
           {/* Footer Left */}
-          <div className='flex flex-col md:flex-row justify-left md:items-center'>
-            <h1 className='text-lime-500 text-4xl sm:text-5xl font-bold mb-2 mr-4'>
+          <div className='flex flex-col md:flex-row justify-left md:items-center '>
+            <h1 className='text-lime-500 text-4xl sm:text-5xl font-bold mb-2 mr-4 pr-2 pl-2'>
               Pamona's
             </h1>
-            <p className='text-amber-500 text-xl sm:text-2xl mb-2 mr-4'>Fresh products</p>
+            <p className='text-amber-500 text-xl sm:text-2xl mb-2 mr-4 pr-2 pl-2'>Fresh products</p>
           </div>
 
-          <div className='flex items-center md:justify-end space-x-4'>
+          <div className='flex items-center md:justify-end space-x-4 pr-2 pl-2'>
             <div className='flex space-x-4'>
               <a
                 className='text-gray-300 hover:text-amber-500 rounded-full p-2'
@@ -65,7 +65,7 @@ const Footer = () => {
         <hr className='border-t-2 border-amber-400 mb-8' />
 
         {/* Accordion */}
-        <div className='block md:hidden'>
+        <div className='block md:hidden pr-2 pl-2'>
           <div>
             <button
               className='w-full text-left text-2xl sm:text-3xl font-bold mb-3 flex justify-between items-center focus:outline-none'
@@ -146,7 +146,7 @@ const Footer = () => {
         </div>
 
         {/* Table for larger screens */}
-        <div className='hidden md:grid grid-cols-1 md:grid-cols-4 gap-8 pb-4'>
+        <div className='hidden md:grid grid-cols-1 md:grid-cols-4 gap-8 pb-4 '>
           <div>
             <h4 className='text-light text-2xl sm:text-3xl mb-3 font-bold text-left'>
               Why People Like us!
@@ -201,7 +201,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center pr-2 pl-2 pt-1'>
           <div>
             <p className='text-base sm:text-lg text-amber-500'>
               &copy; {new Date().getFullYear()} Pamona's HarvestHaven, All
