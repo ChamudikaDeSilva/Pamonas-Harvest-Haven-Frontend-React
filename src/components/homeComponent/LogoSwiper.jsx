@@ -20,7 +20,7 @@ const LogoSwiper = () => {
   ];
 
   return (
-    <div className='container mx-auto mt-20 pb-8'>
+    <div className='container mx-auto mt-20 pb-12'>
       <div className='flex justify-center'>
         <Swiper
           modules={[Autoplay]}

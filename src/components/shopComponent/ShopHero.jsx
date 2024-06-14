@@ -8,7 +8,7 @@ const ShopHero = () => {
         backgroundImage: "url('Images/cart-page-header-img.jpg')",
       }}*/
       style={{
-        backgroundImage: "url('/Images/Pamonas/fruits & vegetables/slider6.jpg')",
+        backgroundImage: "url('/Images/Pamonas/fruits & vegetables/vegetables7.jpg')",
       }}
     >
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50"></div>
