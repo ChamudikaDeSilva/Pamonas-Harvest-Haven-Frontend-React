@@ -66,24 +66,25 @@ const Products = () => {
             Best Seller Products
           </h1>
           <div className="flex space-x-2 md:space-x-4  flex-wrap justify-center md:justify-end">
-            <button
-              className={`px-4 py-2 rounded-full ${currentCategory === 'all' ? 'bg-gray-400 text-white text-lg' : 'bg-amber-500 text-gray-700 text-lg'}`}
-              onClick={() => setCurrentCategory('all')}
-            >
-              All Products
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full ${currentCategory === 'vegetable' ? 'bg-gray-400 text-white text-lg' : 'bg-amber-500 text-gray-700 text-lg'}`}
-              onClick={() => setCurrentCategory('vegetable')}
-            >
-              Vegetables
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full ${currentCategory === 'fruit' ? 'bg-gray-400 text-white text-lg' : 'bg-amber-500 text-gray-700 text-lg'}`}
-              onClick={() => setCurrentCategory('fruit')}
-            >
-              Fruits
-            </button>
+          <button
+            className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full ${currentCategory === 'all' ? 'bg-gray-400 text-white text-sm sm:text-lg' : 'bg-amber-500 text-gray-700 text-sm sm:text-lg'}`}
+            onClick={() => setCurrentCategory('all')}
+          >
+            All Products
+          </button>
+          <button
+            className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full ${currentCategory === 'vegetable' ? 'bg-gray-400 text-white text-sm sm:text-lg' : 'bg-amber-500 text-gray-700 text-sm sm:text-lg'}`}
+            onClick={() => setCurrentCategory('vegetable')}
+          >
+            Vegetables
+          </button>
+          <button
+            className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full ${currentCategory === 'fruit' ? 'bg-gray-400 text-white text-sm sm:text-lg' : 'bg-amber-500 text-gray-700 text-sm sm:text-lg'}`}
+            onClick={() => setCurrentCategory('fruit')}
+          >
+            Fruits
+          </button>
+
           </div>
         </div>
 
