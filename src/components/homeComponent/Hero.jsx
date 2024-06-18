@@ -14,7 +14,7 @@ const Hero = () => {
     const fullParagraph = "Indulge in the freshest, 100% organic produce, meticulously sourced and delivered straight to your doorstep. From succulent fruits to crisp vegetables, each bite is a celebration of nature's bounty. Elevate your meals with our premium selection, handpicked for their unrivaled quality and flavor. Rediscover the joy of wholesome eating, crafted with care and dedication to your well-being.";
 
     return (
-        <div className="bg-cover bg-center bg-no-repeat pt-10 md:pt-20 pb-16 md:pb-24 lg:pb-64" style={{ backgroundImage: "url('/Images/pamonas/fruits & vegetables/fruits3.jpg')" }}>
+        <div className="bg-cover bg-center bg-no-repeat pt-10 md:pt-20 pb-16 md:pb-24 lg:pb-64" style={{ backgroundImage: "url('/Images/pamonas/fruits & vegetables/fruits/fruits3.jpg')" }}>
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 mt-20">
                 <div className="p-5 flex flex-col justify-center">
                     <div>

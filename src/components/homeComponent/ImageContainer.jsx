@@ -2,10 +2,10 @@ import React from 'react';
 
 const ImageContainer = () => {
     const images = [
-        { src: "/Images/Pamonas/fruits & vegetables/lemon.jpg", alt: "Description of image 1" },
-        { src: "/Images/Pamonas/fruits & vegetables/orange.jpg", alt: "Description of image 2" },
-        { src: "/Images/Pamonas/fruits & vegetables/watermelon.jpg", alt: "Description of image 3" },
-        { src: "/Images/Pamonas/fruits & vegetables/banana.jpg", alt: "Description of image 4" }
+        { src: "/Images/Pamonas/fruits & vegetables/fruits/lemon.jpg", alt: "Description of image 1" },
+        { src: "/Images/Pamonas/fruits & vegetables/fruits/orange.jpg", alt: "Description of image 2" },
+        { src: "/Images/Pamonas/fruits & vegetables/fruits/watermelon.jpg", alt: "Description of image 3" },
+        { src: "/Images/Pamonas/fruits & vegetables/fruits/banana.jpg", alt: "Description of image 4" }
     ];
 
     return (
