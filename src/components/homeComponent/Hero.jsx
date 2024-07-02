@@ -19,7 +19,8 @@ const Hero = () => {
                 <div className="p-5 flex flex-col justify-center">
                     <div>
                         <h3 className="text-3xl lg:text-2xl font-bold text-amber-500 mb-4">100% Organic Products</h3>
-                        <h1 className="text-3xl lg:text-6xl font-bold text-black mb-4">Organic Veggies & Fruits</h1>
+                        <h1 className="text-3xl lg:text-6xl font-bold text-black mb-4"><span className="text-lime-500">Organic</span> Veggies & Fruits</h1>
+                        <div className="w-20 h-2 bg-amber-500 my-4"></div>
                     </div>
                     <div className="text-left max-w-lg">
                         <p className="text-lg text-gray-800 mb-8 italic">
