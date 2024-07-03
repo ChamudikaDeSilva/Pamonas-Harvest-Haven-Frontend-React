@@ -14,6 +14,8 @@ import ShopPageContent from './components/shopComponent/ShopPageContent';
 import 'tailwindcss/tailwind.css';
 import ImageContainer from './components/homeComponent/ImageContainer';
 import LogoSwiper from './components/homeComponent/LogoSwiper';
+import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponent';
+
 //import ShopCategory from './components/shopComponent/shopCategory';
 
 function App() {
@@ -27,12 +29,14 @@ function App() {
             <>
               <Hero />
               <ImageContainer/>
+              <HealthyFoodComponent />
               <Products />
               
               <Banner />
               <Services />
               <Fact />
               <Testimonials />
+              
               <LogoSwiper/>
             </>
           } />
