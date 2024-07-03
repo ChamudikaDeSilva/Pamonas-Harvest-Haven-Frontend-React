@@ -5,7 +5,7 @@ const HealthyFoodComponent = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
     //'/Images/Pamonas/video-1-1.jpg',
-    '/Images/Pamonas/fruits & vegetables/29364.jpg',
+    '/Images/Pamonas/fruits-breaker.png',
     // Add more image paths as needed
   ];
 
@@ -20,15 +20,15 @@ const HealthyFoodComponent = () => {
   return (
     <div className="relative pt-16 bg-gray-100">
       <div className="container mx-auto flex flex-col md:flex-row items-center py-12 px-4">
-        <div className="md:w-1/2 flex justify-center relative z-10 md:-mt-16">
+        <div className="md:w-1/2 flex justify-center relative z-10 md:-mt-16 shadow-2xl bg-gray-300 top-left -rotate-6">
           <img
             src={images[currentImageIndex]}
             alt="Healthy Food"
-            className="w-full h-auto rounded-lg shadow-lg transition-opacity duration-1000 ease-in-out"
+            className="w-full h-auto rounded-lg shadow-lg transition-opacity duration-1000 ease-in-out "
             style={{ opacity: 1 }}
           />
         </div>
-        <div className="md:w-1/2 md:pl-10 bg-green-900 text-white pt-8 pb-8 relative z-20 md:-ml-16 rounded-lg shadow-lg pt-16 pb-16">
+        <div className="md:w-1/2 md:pl-10 bg-green-900 text-white pt-8 pb-8 relative z-20 md:-ml-16 rounded-lg shadow-lg pt-16 pb-16 shadow-2xl ">
           <h2 className="text-sm font-semibold tracking-wide uppercase mb-2 pl-2 pr-2">
             Get to know us
           </h2>
@@ -55,17 +55,17 @@ const HealthyFoodComponent = () => {
           <div className="flex items-center space-x-6 pl-2 pr-2">
             <div className="flex flex-col items-center">
               <FaSeedling className="text-4xl text-green-400" />
-              <p className="mt-2 text-lg font-bold">500+</p>
+              <p className="mt-2 text-lg font-bold">100+</p>
               <p className="text-sm">Organic Farms</p>
             </div>
             <div className="flex flex-col items-center">
               <FaCarrot className="text-4xl text-orange-400" />
-              <p className="mt-2 text-lg font-bold">1M+</p>
+              <p className="mt-2 text-lg font-bold">50+</p>
               <p className="text-sm">Fresh Vegetables</p>
             </div>
             <div className="flex flex-col items-center">
               <FaAppleAlt className="text-4xl text-red-400" />
-              <p className="mt-2 text-lg font-bold">750K+</p>
+              <p className="mt-2 text-lg font-bold">50+</p>
               <p className="text-sm">Juicy Fruits</p>
             </div>
           </div>
