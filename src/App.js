@@ -29,7 +29,7 @@ function App() {
             <>
               <Hero />
               <ImageContainer/>
-              <HealthyFoodComponent />
+              
               <Products />
               
               <Banner />
@@ -44,6 +44,13 @@ function App() {
             <>
               <ShopHero />
               <ShopPageContent />
+             
+            </>
+          } />
+          <Route path="/about us" element={
+            <>
+              <ShopHero />
+              <HealthyFoodComponent />
              
             </>
           } />
