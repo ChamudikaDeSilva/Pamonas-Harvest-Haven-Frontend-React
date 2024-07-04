@@ -34,7 +34,7 @@ const NavBar = () => {
         <div className={`absolute top-full left-0 w-full bg-white md:relative md:flex md:items-center md:justify-center md:space-x-4 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
           <div className="flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0">
             <Link to="/" className="hover:text-amber-500 text-gray-500 text-lg font-semibold py-2 px-4">Home</Link>
-            <Link to="/about us" className="hover:text-amber-500 text-gray-500 text-lg font-semibold py-2 px-4">About Us</Link>
+            <Link to="/about-us" className="hover:text-amber-500 text-gray-500 text-lg font-semibold py-2 px-4">About Us</Link>
             <Link to="/shop" className="hover:text-amber-500 text-gray-500 text-lg font-semibold py-2 px-4">Shop</Link>
             <div className="relative">
               <button className="hover:text-amber-500 text-gray-500 text-lg font-semibold focus:outline-none py-2 px-4" onClick={toggleDropdown}>

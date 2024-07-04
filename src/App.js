@@ -47,7 +47,7 @@ function App() {
              
             </>
           } />
-          <Route path="/about us" element={
+          <Route path="/about-us" element={
             <>
               <ShopHero />
               <HealthyFoodComponent />

@@ -28,7 +28,7 @@ const HealthyFoodComponent = () => {
             style={{ opacity: 1 }}
           />
         </div>
-        <div className="md:w-1/2 md:pl-10 bg-green-900 text-white pt-8 pb-8 relative z-20 md:-ml-16 rounded-lg shadow-lg pt-16 pb-16 shadow-2xl ">
+        <div className="md:w-1/2 md:pl-10 bg-green-900 text-white pt-8 pb-8 relative z-20 md:-ml-16 rounded-2xl shadow-lg pt-16 pb-16 shadow-2xl ">
           <h2 className="text-sm font-semibold tracking-wide uppercase mb-2 pl-2 pr-2">
             Get to know us
           </h2>

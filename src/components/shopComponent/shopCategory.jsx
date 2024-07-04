@@ -134,7 +134,7 @@ const ShopCategory = () => {
                     {products.map(product => (
                         <div key={product.id} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
                             <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
-                                <img src={product.image} alt={product.name} className="w-full h-full object-cover transition duration-300 transform hover:scale-105" />
+                                <img src={`http://localhost:8000${product.image}`} alt={product.name} className="w-full h-full object-cover transition duration-300 transform hover:scale-105" />
                             </div>
                             <div className="p-3 sm:p-4">
                                 <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
