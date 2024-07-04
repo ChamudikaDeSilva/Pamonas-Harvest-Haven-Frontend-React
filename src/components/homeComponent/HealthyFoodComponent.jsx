@@ -18,13 +18,13 @@ const HealthyFoodComponent = () => {
   }, [images.length]);
 
   return (
-    <div className="relative pt-16 bg-gray-100">
+    <div className="relative pt-16 ">
       <div className="container mx-auto flex flex-col md:flex-row items-center py-12 px-4">
-        <div className="md:w-1/2 flex justify-center relative z-10 md:-mt-16 shadow-2xl bg-gray-300 top-left -rotate-6">
+        <div className="md:w-1/2 flex justify-center relative z-10 md:-mt-16   top-left -rotate-6">
           <img
             src={images[currentImageIndex]}
             alt="Healthy Food"
-            className="w-full h-auto rounded-lg shadow-lg transition-opacity duration-1000 ease-in-out "
+            className="w-full h-auto rounded-lg  transition-opacity duration-1000 ease-in-out "
             style={{ opacity: 1 }}
           />
         </div>
