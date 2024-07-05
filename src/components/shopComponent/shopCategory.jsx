@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ShopCategory = () => {
     const [categories, setCategories] = useState([]);
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 0 });
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 0, current: 0 });
     const [discountTypes, setDiscountTypes] = useState([]);
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,7 @@ const ShopCategory = () => {
                 const response = await axios.get('http://127.0.0.1:8000/api/shop/data/fetch');
                 const { categories, priceRange, discountTypes } = response.data;
                 setCategories(categories);
-                setPriceRange(priceRange);
+                setPriceRange({ ...priceRange, current: priceRange.max });
                 setDiscountTypes(discountTypes);
                 setIsLoading(false);
             } catch (error) {
@@ -36,7 +36,8 @@ const ShopCategory = () => {
             const response = await axios.get('http://127.0.0.1:8000/api/shop/product/fetch', {
                 params: {
                     category_id: selectedCategory,
-                    price_range: priceRange,
+                    min_price: priceRange.min,
+                    max_price: priceRange.current,
                     discount_type: selectedDiscountType,
                     page: page,
                 },
@@ -52,15 +53,15 @@ const ShopCategory = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, [fetchProducts]);
+    }, [fetchProducts, selectedCategory,  selectedDiscountType, page]);
 
     const handleCategoryChange = (categoryId) => {
         setSelectedCategory(categoryId);
         setPage(1);
     };
 
-    const handlePriceRangeChange = (min, max) => {
-        setPriceRange({ min, max });
+    const handlePriceRangeChange = (e) => {
+        setPriceRange((prevState) => ({ ...prevState, current: e.target.value }));
         setPage(1);
     };
 
@@ -74,8 +75,15 @@ const ShopCategory = () => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex justify-center items-center w-full h-screen">
+                <div className="loader">Loading...</div>
+            </div>
+        );
     }
+
+    // Create placeholders to fill the remaining grid space
+    const placeholders = new Array(Math.max(0, 9 - products.length)).fill(null);
 
     return (
         <div className="flex flex-col w-full p-4 bg-white">
@@ -93,7 +101,9 @@ const ShopCategory = () => {
                         <ul>
                             {categories.map((category) => (
                                 <li key={category.id} className="flex justify-between items-center text-gray-700">
-                                    <span onClick={() => handleCategoryChange(category.id)}>{category.name}</span>
+                                    <a href="#" onClick={() => handleCategoryChange(category.id)} className="text-blue-500 hover:underline">
+                                        {category.name}
+                                    </a>
                                     <span>({category.products_count})</span>
                                 </li>
                             ))}
@@ -105,10 +115,11 @@ const ShopCategory = () => {
                             type="range"
                             min={priceRange.min}
                             max={priceRange.max}
+                            value={priceRange.current}
                             className="w-full bg-lime-500"
-                            onChange={(e) => handlePriceRangeChange(priceRange.min, e.target.value)}
+                            onChange={handlePriceRangeChange}
                         />
-                        <div className="text-right">{priceRange.max}</div>
+                        <div className="text-right">{priceRange.current}</div>
                     </div>
                     <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-gray-200">
                         <h2 className="text-lg font-semibold text-green-700">Additional</h2>
@@ -139,11 +150,17 @@ const ShopCategory = () => {
                             <div className="p-3 sm:p-4">
                                 <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
                                 <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
-                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">{product.price}</p>
+                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">Rs.{product.price}</p>
                                 <button className="bg-amber-500 text-white text-xs sm:text-sm lg:text-base px-2 py-1 sm:px-3 sm:py-1 rounded-full hover:bg-lime-500 transition duration-300">
                                     Add to Cart
                                 </button>
                             </div>
+                        </div>
+                    ))}
+                    {placeholders.map((_, index) => (
+                        <div key={`placeholder-${index}`} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible">
+                            <div className="w-full h-36 sm:h-44 md:h-52"></div>
+                            <div className="p-3 sm:p-4"></div>
                         </div>
                     ))}
                 </div>

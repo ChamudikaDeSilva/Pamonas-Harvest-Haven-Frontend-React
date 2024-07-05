@@ -16,12 +16,12 @@ const Hero = () => {
     const fullParagraph = "Indulge in the freshest, 100% organic produce, meticulously sourced and delivered straight to your doorstep. From succulent fruits to crisp vegetables, each bite is a celebration of nature's bounty. Elevate your meals with our premium selection, handpicked for their unrivaled quality and flavor. Rediscover the joy of wholesome eating, crafted with care and dedication to your well-being.";
 
     return (
-        <div className="bg-cover bg-center bg-no-repeat pt-10 md:pt-20 pb-16 md:pb-24 lg:pb-64" style={{ backgroundImage: "url('/Images/pamonas/fruits & vegetables/fruits/fruits3.jpg')" }}>
+        <div className="bg-cover bg-center bg-no-repeat pt-10 md:pt-20 pb-16 md:pb-24 lg:pb-48" style={{ backgroundImage: "url('/Images/pamonas/fruits & vegetables/fruits/fruits3.jpg')" }}>
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 mt-20">
                 <div className="p-5 flex flex-col justify-center">
                     <div>
-                        <h3 className="text-3xl lg:text-2xl font-bold text-amber-500 mb-4">100% Organic Products</h3>
-                        <h1 className="text-3xl lg:text-6xl font-bold text-black mb-4"><span className="text-green-700">Organic</span> Veggies & Fruits</h1>
+                        <h3 className="text-3xl lg:text-2xl font-bold text-amber-500 mb-4">WELCOME TO THE PAMONA'S HARVEST HAVEN </h3>
+                        <h1 className="text-3xl lg:text-6xl font-bold text-black mb-4"><span className="text-green-700">Fresh</span> & Organic Products</h1>
                         <div className="w-20 h-2 bg-amber-500 my-4"></div>
                     </div>
                     <div className="text-left max-w-lg">
