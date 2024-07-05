@@ -33,15 +33,27 @@ const ShopCategory = () => {
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
         try {
+            const params = {
+                page: page,
+            };
+
+            if (selectedCategory) {
+                params.category_id = selectedCategory;
+            }
+
+            if (priceRange.current > 0) {
+                params.min_price = priceRange.min;
+                params.max_price = priceRange.current;
+            }
+
+            if (selectedDiscountType) {
+                params.discount_type = selectedDiscountType;
+            }
+
             const response = await axios.get('http://127.0.0.1:8000/api/shop/product/fetch', {
-                params: {
-                    category_id: selectedCategory,
-                    min_price: priceRange.min,
-                    max_price: priceRange.current,
-                    discount_type: selectedDiscountType,
-                    page: page,
-                },
+                params: params,
             });
+
             setProducts(response.data.data);
             setTotalPages(response.data.last_page);
             setIsLoading(false);
@@ -53,20 +65,34 @@ const ShopCategory = () => {
 
     useEffect(() => {
         fetchProducts();
-    }, [fetchProducts, selectedCategory,  selectedDiscountType, page]);
+    }, [fetchProducts, selectedCategory, selectedDiscountType, priceRange.current, page]);
 
     const handleCategoryChange = (categoryId) => {
         setSelectedCategory(categoryId);
+        setPriceRange({ ...priceRange, current: priceRange.max }); // Reset price range to max when category changes
+        setSelectedDiscountType(null); // Reset discount type when category changes
         setPage(1);
     };
 
-    const handlePriceRangeChange = (e) => {
-        setPriceRange((prevState) => ({ ...prevState, current: e.target.value }));
+    const handlePriceRangeChange = (event) => {
+        const newMax = parseInt(event.target.value); // Convert value to integer
+
+        // Update state
+        setPriceRange((prevPriceRange) => ({
+            ...prevPriceRange,
+            current: newMax, // Update current price range dynamically
+        }));
+
+        // Reset other filters
+        setSelectedCategory(null);
+        setSelectedDiscountType(null);
         setPage(1);
     };
 
     const handleDiscountTypeChange = (type) => {
         setSelectedDiscountType(type);
+        setSelectedCategory(null); // Reset category when discount type changes
+        setPriceRange({ ...priceRange, current: priceRange.max }); // Reset price range to max when discount type changes
         setPage(1);
     };
 
@@ -74,12 +100,12 @@ const ShopCategory = () => {
         setPage(newPage);
     };
 
+    
+
+    
+
     if (isLoading) {
-        return (
-            <div className="flex justify-center items-center w-full h-screen">
-                <div className="loader">Loading...</div>
-            </div>
-        );
+        return <div>Loading...</div>;
     }
 
     // Create placeholders to fill the remaining grid space
@@ -96,12 +122,12 @@ const ShopCategory = () => {
                             className="w-full p-2 border border-lime-500 rounded focus:border-lime-500 focus:ring-lime-500 focus:outline-none"
                         />
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-gray-200">
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-amber-100">
                         <h2 className="text-lg font-semibold text-green-700">Categories</h2>
                         <ul>
                             {categories.map((category) => (
                                 <li key={category.id} className="flex justify-between items-center text-gray-700">
-                                    <a href="#" onClick={() => handleCategoryChange(category.id)} className="text-blue-500 hover:underline">
+                                    <a href="#" onClick={() => handleCategoryChange(category.id)} className="text-gray-500 ">
                                         {category.name}
                                     </a>
                                     <span>({category.products_count})</span>
@@ -109,7 +135,7 @@ const ShopCategory = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-gray-200">
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-amber-100">
                         <h2 className="text-lg font-semibold text-green-700">Price</h2>
                         <input
                             type="range"
@@ -121,8 +147,8 @@ const ShopCategory = () => {
                         />
                         <div className="text-right">{priceRange.current}</div>
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-gray-200">
-                        <h2 className="text-lg font-semibold text-green-700">Additional</h2>
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-amber-100">
+                        <h2 className="text-lg font-semibold text-green-700">Discounts</h2>
                         <ul>
                             {discountTypes.map((type) => (
                                 <li key={type}>
@@ -132,6 +158,7 @@ const ShopCategory = () => {
                                             name="additional"
                                             value={type}
                                             className="mr-2 text-lime-600"
+                                            checked={type === selectedDiscountType}
                                             onChange={() => handleDiscountTypeChange(type)}
                                         />
                                         {type}
@@ -141,7 +168,7 @@ const ShopCategory = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2">
+                <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2 pt-3">
                     {products.map(product => (
                         <div key={product.id} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
                             <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
@@ -150,7 +177,7 @@ const ShopCategory = () => {
                             <div className="p-3 sm:p-4">
                                 <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
                                 <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
-                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">Rs.{product.price}</p>
+                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">Rs.{product.price}/1Kg</p>
                                 <button className="bg-amber-500 text-white text-xs sm:text-sm lg:text-base px-2 py-1 sm:px-3 sm:py-1 rounded-full hover:bg-lime-500 transition duration-300">
                                     Add to Cart
                                 </button>

@@ -15,6 +15,7 @@ import 'tailwindcss/tailwind.css';
 import ImageContainer from './components/homeComponent/ImageContainer';
 import LogoSwiper from './components/homeComponent/LogoSwiper';
 import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponent';
+import AboutUsHero from './components/aboutUsComponent/AboutUsHero';
 
 //import ShopCategory from './components/shopComponent/shopCategory';
 
@@ -49,7 +50,7 @@ function App() {
           } />
           <Route path="/about-us" element={
             <>
-              <ShopHero />
+              <AboutUsHero />
               <HealthyFoodComponent />
               <LogoSwiper/>
              
