@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const ShopCategory = () => {
     const [categories, setCategories] = useState([]);
@@ -133,7 +135,7 @@ const ShopCategory = () => {
                             onChange={handleSearchChange}
                         />
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4">
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-lime-100">
                         <h2 className="text-lg font-semibold text-lime-500">Categories</h2>
                         <ul>
                             {categories.map((category) => (
@@ -153,7 +155,7 @@ const ShopCategory = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4">
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-lime-100">
                         <h2 className="text-lg font-semibold text-lime-500">Price</h2>
                         <input
                             type="range"
@@ -165,7 +167,7 @@ const ShopCategory = () => {
                         />
                         <div className="text-right">{priceRange.current}</div>
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4">
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-lime-100">
                         <h2 className="text-lg font-semibold text-lime-500">Discounts</h2>
                         <ul>
                             {discountTypes.map((type) => (
@@ -185,48 +187,58 @@ const ShopCategory = () => {
                             ))}
                         </ul>
                     </div>
+                    <div className="mb-4 pt-4 pb-4 opacity-50">
+                        <img
+                        src="/Images/Pamonas/fruis-slider.jpg" // Replace with your actual image path
+                        alt="Promotional"
+                        className="w-full"
+                        />
+                        
+                    </div>
                 </div>
 
                 <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2 pt-3">
                     {filteredProducts.map((product) => (
                         <div
-                            key={product.id}
-                            className="bg-white border border-lime-500 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm"
+                        key={product.id}
+                        className="border rounded-md shadow-xl overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm"
                         >
-                            <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
-                                <img
-                                    src={`http://localhost:8000${product.image}`}
-                                    alt={product.name}
-                                    className="w-full h-full object-cover transition duration-300 transform hover:scale-105"
-                                />
+                        <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
+                            <img
+                            src={`http://localhost:8000${product.image}`}
+                            alt={product.name}
+                            className="w-full h-full object-cover transition duration-300 transform hover:scale-105"
+                            />
+                        </div>
+                        <div className="p-3 sm:p-4 text-center">
+                            <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">
+                            {product.name}
+                            </h2>
+                            <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">
+                            {product.description}
+                            </p>
+                            <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">
+                            Rs.{product.price}/1Kg
+                            </p>
+                            <div className="flex justify-center items-center space-x-4 mt-2">
+                            <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                            <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                            <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
                             </div>
-                            <div className="p-3 sm:p-4">
-                                <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">
-                                    {product.name}
-                                </h2>
-                                <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">
-                                    {product.description}
-                                </p>
-                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">
-                                    Rs.{product.price}/1Kg
-                                </p>
-                                <button className="bg-amber-500 text-white text-xs sm:text-sm lg:text-base px-2 py-1 sm:px-3 sm:py-1 rounded-full hover:bg-lime-500 transition duration-300">
-                                    Add to Cart
-                                </button>
-                            </div>
+                        </div>
                         </div>
                     ))}
                     {placeholders.map((_, index) => (
                         <div
-                            key={`placeholder-${index}`}
-                            className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible"
+                        key={`placeholder-${index}`}
+                        className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible"
                         >
-                            <div className="w-full h-36 sm:h-44 md:h-52"></div>
-                            <div className="p-3 sm:p-4"></div>
+                        <div className="w-full h-36 sm:h-44 md:h-52"></div>
+                        <div className="p-3 sm:p-4"></div>
                         </div>
                     ))}
+                    </div>
                 </div>
-            </div>
             
             <div className="flex justify-center mt-4">
                 <button

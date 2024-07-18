@@ -17,6 +17,7 @@ const Hero = () => {
 
     return (
         <div className="bg-cover bg-center bg-no-repeat pt-10 md:pt-20 pb-16 md:pb-24 lg:pb-48" style={{ backgroundImage: "url('/Images/pamonas/fruits & vegetables/fruits/fruits3.jpg')" }}>
+           
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 mt-20">
                 <div className="p-5 flex flex-col justify-center">
                     <div>

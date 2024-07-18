@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faShoppingBag, faUser, faBars, faTimes, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCartShopping, faUser, faBars, faTimes, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -56,7 +56,7 @@ const NavBar = () => {
           </div>
           <div className="flex justify-center pb-4 pt-2">
             <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
-            <FontAwesomeIcon icon={faShoppingBag} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
+            <FontAwesomeIcon icon={faCartShopping} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
             <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
           </div>
         </div>

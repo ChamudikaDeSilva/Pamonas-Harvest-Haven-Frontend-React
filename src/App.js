@@ -32,11 +32,11 @@ function App() {
             <>
               <Hero />
               <ImageContainer/>
-              
+              <Services />
               <Products />
               
               <Banner />
-              <Services />
+              
               <Fact />
               <Testimonials />
               
@@ -47,6 +47,8 @@ function App() {
             <>
               <ShopHero />
               <ShopPageContent />
+              <Testimonials />
+
              
             </>
           } />

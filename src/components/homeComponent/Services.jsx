@@ -15,9 +15,8 @@ const Services = () => {
       </h2>*/}
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pr-4 pl-4'>
-       
-        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
-          <div className='bg-amber-500 rounded-full p-4 inline-block'>
+        <div className=' p-6 text-center transition duration-300 ease-in-out transform hover:scale-105'>
+          <div className='bg-lime-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faTruckFast}
               className='text-4xl text-white'
@@ -27,8 +26,8 @@ const Services = () => {
           <p className='text-base text-gray-600 italic'>Free on orders over $300</p>
         </div>
 
-        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
-          <div className='bg-amber-500 rounded-full p-4 inline-block'>
+        <div className=' p-6 text-center transition duration-300 ease-in-out transform hover:scale-105'>
+          <div className='bg-lime-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faShieldAlt}
               className='text-4xl text-white'
@@ -40,8 +39,8 @@ const Services = () => {
           <p className='text-base text-gray-600 italic'>100% secure payment</p>
         </div>
 
-        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
-          <div className='bg-amber-500 rounded-full p-4 inline-block'>
+        <div className=' p-6 text-center transition duration-300 ease-in-out transform hover:scale-105'>
+          <div className='bg-lime-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faSeedling}
               className='text-4xl text-white'
@@ -51,8 +50,8 @@ const Services = () => {
           <p className='text-base text-gray-600 italic'>Fresh Organic Products</p>
         </div>
 
-        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
-          <div className='bg-amber-500 rounded-full p-4 inline-block'>
+        <div className=' p-6 text-center transition duration-300 ease-in-out transform hover:scale-105'>
+          <div className='bg-lime-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faPhoneAlt}
               className='text-4xl text-white'

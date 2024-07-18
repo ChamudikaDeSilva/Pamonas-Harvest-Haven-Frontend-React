@@ -12,7 +12,7 @@ const ImageContainer = () => {
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0">
             {images.map((image, index) => (
                 <div key={index} className="w-full h-full">
-                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover hover:brightness-50" />
+                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover opacity-50" />
                 </div>
             ))}
         </div>
