@@ -236,7 +236,7 @@ const ShopCategory = () => {
                 >
                     Previous
                 </button>
-                <span className="px-4 py-2 m-2 bg-amber-500 rounded">{page}</span>
+                <span className="px-4 py-2 m-2 border border-lime-500 rounded">{page}</span>
                 <button
                     onClick={() => handlePageChange(page + 1)}
                     disabled={page >= totalPages}

@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTruckFast,
   faShieldAlt,
-  faUndoAlt,
   faPhoneAlt,
+  faSeedling
 } from '@fortawesome/free-solid-svg-icons';
 
 const Services = () => {
@@ -43,12 +43,12 @@ const Services = () => {
         <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
-              icon={faUndoAlt}
+              icon={faSeedling}
               className='text-4xl text-white'
             />
           </div>
-          <h3 className='text-lg text-gray-600 font-semibold'>30 Day Return</h3>
-          <p className='text-base text-gray-600 italic'>30-day money guarantee</p>
+          <h3 className='text-lg text-gray-600 font-semibold'>Natural Process</h3>
+          <p className='text-base text-gray-600 italic'>Fresh Organic Products</p>
         </div>
 
         <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>

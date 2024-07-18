@@ -18,26 +18,26 @@ const HealthyFoodComponent = () => {
   }, [images.length]);
 
   return (
-    <div className="relative pt-10 pb-10">
+    <div className="relative pt-8 pb-8">
       <div className="container mx-auto flex flex-col md:flex-row items-center py-12 px-4">
-        <div className="md:w-1/2 flex justify-center pt-0">
+        <div className="md:w-2/5 flex justify-center pt-0">
           <img
             src={images[currentImageIndex]}
             alt="Healthy Food"
-            className="w-full h-auto rounded-lg transition-opacity duration-1000 ease-in-out"
+            className="w-full h-auto"
             style={{ opacity: 1 }}
           />
         </div>
-        <div className="md:w-1/2 text-black p-8 rounded-2xl">
+        <div className="md:w-3/5 text-black p-8 rounded-2xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 mb-2 pl-2">Best Organic Fruits And Vegetables</h2>
           <h2 className="text-sm font-semibold tracking-wide uppercase mb-2 pl-2 text-gray-600">
             Get to know us
           </h2>
-          <h1 className="text-4xl md:text-4xl text-green-700 font-bold mb-4 pl-2">
+          <h1 className="text-4xl md:text-4xl text-green-700 font-semibold mb-4 pl-2">
             Pamona's Harvest Haven
           </h1>
           <p className="mb-6 pl-2">
-            Welcome to Pamona's Harvest Haven, your source for the freshest and healthiest <span className="text-green-500">organic</span> produce. We are dedicated to growing food that nourishes your body and respects the planet.
+            Welcome to Pamona's Harvest Haven, your source for the freshest and healthiest <span className="text-green-500">organic</span> produce. <br></br>We are dedicated to growing food that nourishes your body and respects the planet.
           </p>
           <ul className="mb-6 pl-2">
             <li className="flex items-center mb-2">
