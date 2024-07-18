@@ -10,6 +10,7 @@ module.exports = {
         right: '4px 0 4px rgba(0, 0, 0, 0.1)',
         left: '-4px 0 4px rgba(0, 0, 0, 0.1)',
       },
+      
     },
     
   },

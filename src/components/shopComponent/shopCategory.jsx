@@ -11,7 +11,9 @@ const ShopCategory = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedDiscountType, setSelectedDiscountType] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
+    // Fetch initial shop data (categories, price range, discount types)
     useEffect(() => {
         const fetchShopData = async () => {
             try {
@@ -30,11 +32,17 @@ const ShopCategory = () => {
         fetchShopData();
     }, []);
 
+    // Fetch products based on selected filters and search term
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
         try {
             const params = {
-                page: page,
+                // Only use pagination params when not searching
+                ...(searchTerm
+                    ? {}
+                    : {
+                          page: page,
+                      }),
             };
 
             if (selectedCategory) {
@@ -61,73 +69,83 @@ const ShopCategory = () => {
             console.error('Error fetching products:', error);
             setIsLoading(false);
         }
-    }, [selectedCategory, priceRange, selectedDiscountType, page]);
+    }, [selectedCategory, priceRange, selectedDiscountType, page, searchTerm]);
 
+    // Effect to fetch products when filters or page change
     useEffect(() => {
         fetchProducts();
-    }, [fetchProducts, selectedCategory, selectedDiscountType, page]);
+    }, [fetchProducts, selectedCategory, priceRange, selectedDiscountType, page, searchTerm]);
 
+    // Handle search term change
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+        setPage(1); // Reset page number when search term changes
+    };
+
+    // Filter products based on search term
+    const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Handle category change
     const handleCategoryChange = (categoryId) => {
         setSelectedCategory(categoryId);
-        setPriceRange({ ...priceRange, current: priceRange.max }); // Reset price range to max when category changes
-        setSelectedDiscountType(null); // Reset discount type when category changes
-        setPage(1);
+        setPage(1); // Reset page number when category changes
     };
 
+    // Handle price range change
     const handlePriceRangeChange = (event) => {
-        const newMax = parseInt(event.target.value); // Convert value to integer
+        const newMax = parseInt(event.target.value, 10);
 
-        // Update state
         setPriceRange((prevPriceRange) => ({
             ...prevPriceRange,
-            current: newMax, // Update current price range dynamically
+            current: newMax,
         }));
 
-        // Reset other filters
-        setSelectedCategory(null);
-        setSelectedDiscountType(null);
-        setPage(1);
+        setSelectedCategory(null); // Clear selected category when price range changes
+        setPage(1); // Reset page number when price range changes
     };
 
+    // Handle discount type change
     const handleDiscountTypeChange = (type) => {
         setSelectedDiscountType(type);
-        setSelectedCategory(null); // Reset category when discount type changes
-        setPriceRange({ ...priceRange, current: priceRange.max }); // Reset price range to max when discount type changes
-        setPage(1);
+        setPage(1); // Reset page number when discount type changes
     };
 
+    // Handle page change
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
 
-    
-
-    
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    // Create placeholders to fill the remaining grid space
-    const placeholders = new Array(Math.max(0, 9 - products.length)).fill(null);
+    // Placeholder items for layout consistency
+    const placeholders = new Array(Math.max(0, 9 - filteredProducts.length)).fill(null);
 
     return (
         <div className="flex flex-col w-full p-4 bg-white">
             <div className="flex flex-col md:flex-row">
                 <div className="w-full md:w-1/4 p-4">
                     <div className="mb-4">
-                        <input 
-                            type="text" 
-                            placeholder="Search Products" 
+                        <input
+                            type="text"
+                            placeholder="Search Products"
                             className="w-full p-2 border border-lime-500 rounded focus:border-lime-500 focus:ring-lime-500 focus:outline-none"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
                         />
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-amber-100">
-                        <h2 className="text-lg font-semibold text-green-700">Categories</h2>
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4">
+                        <h2 className="text-lg font-semibold text-lime-500">Categories</h2>
                         <ul>
                             {categories.map((category) => (
-                                <li key={category.id} className="flex justify-between items-center text-gray-700">
-                                    <a href="#" onClick={() => handleCategoryChange(category.id)} className="text-gray-500 ">
+                                <li
+                                    key={category.id}
+                                    className="flex justify-between items-center text-gray-700"
+                                >
+                                    <a
+                                        href="#"
+                                        onClick={() => handleCategoryChange(category.id)}
+                                        className="text-gray-500"
+                                    >
                                         {category.name}
                                     </a>
                                     <span>({category.products_count})</span>
@@ -135,8 +153,8 @@ const ShopCategory = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-amber-100">
-                        <h2 className="text-lg font-semibold text-green-700">Price</h2>
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4">
+                        <h2 className="text-lg font-semibold text-lime-500">Price</h2>
                         <input
                             type="range"
                             min={priceRange.min}
@@ -147,8 +165,8 @@ const ShopCategory = () => {
                         />
                         <div className="text-right">{priceRange.current}</div>
                     </div>
-                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4 bg-amber-100">
-                        <h2 className="text-lg font-semibold text-green-700">Discounts</h2>
+                    <div className="mb-4 pl-3 pr-3 pt-4 pb-4">
+                        <h2 className="text-lg font-semibold text-lime-500">Discounts</h2>
                         <ul>
                             {discountTypes.map((type) => (
                                 <li key={type}>
@@ -168,16 +186,30 @@ const ShopCategory = () => {
                         </ul>
                     </div>
                 </div>
+
                 <div className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2 pt-3">
-                    {products.map(product => (
-                        <div key={product.id} className="bg-white border border-lime-500 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
+                    {filteredProducts.map((product) => (
+                        <div
+                            key={product.id}
+                            className="bg-white border border-lime-500 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm"
+                        >
                             <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
-                                <img src={`http://localhost:8000${product.image}`} alt={product.name} className="w-full h-full object-cover transition duration-300 transform hover:scale-105" />
+                                <img
+                                    src={`http://localhost:8000${product.image}`}
+                                    alt={product.name}
+                                    className="w-full h-full object-cover transition duration-300 transform hover:scale-105"
+                                />
                             </div>
                             <div className="p-3 sm:p-4">
-                                <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
-                                <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
-                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">Rs.{product.price}/1Kg</p>
+                                <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">
+                                    {product.name}
+                                </h2>
+                                <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">
+                                    {product.description}
+                                </p>
+                                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">
+                                    Rs.{product.price}/1Kg
+                                </p>
                                 <button className="bg-amber-500 text-white text-xs sm:text-sm lg:text-base px-2 py-1 sm:px-3 sm:py-1 rounded-full hover:bg-lime-500 transition duration-300">
                                     Add to Cart
                                 </button>
@@ -185,13 +217,17 @@ const ShopCategory = () => {
                         </div>
                     ))}
                     {placeholders.map((_, index) => (
-                        <div key={`placeholder-${index}`} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible">
+                        <div
+                            key={`placeholder-${index}`}
+                            className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible"
+                        >
                             <div className="w-full h-36 sm:h-44 md:h-52"></div>
                             <div className="p-3 sm:p-4"></div>
                         </div>
                     ))}
                 </div>
             </div>
+            
             <div className="flex justify-center mt-4">
                 <button
                     onClick={() => handlePageChange(page - 1)}

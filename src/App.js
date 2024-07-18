@@ -16,6 +16,8 @@ import ImageContainer from './components/homeComponent/ImageContainer';
 import LogoSwiper from './components/homeComponent/LogoSwiper';
 import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponent';
 import AboutUsHero from './components/aboutUsComponent/AboutUsHero';
+import AboutImageContainer from './components/aboutUsComponent/AboutImageContainer';
+import ShopRedirect from './components/aboutUsComponent/ShopRedirect';
 
 //import ShopCategory from './components/shopComponent/shopCategory';
 
@@ -52,6 +54,9 @@ function App() {
             <>
               <AboutUsHero />
               <HealthyFoodComponent />
+              <AboutImageContainer />
+              <Testimonials />
+              <ShopRedirect />
               <LogoSwiper/>
              
             </>

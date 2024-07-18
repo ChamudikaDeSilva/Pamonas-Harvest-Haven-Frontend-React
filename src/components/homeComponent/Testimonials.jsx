@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const Testimonials = () => {
   const testimonialsData = [
@@ -28,67 +32,42 @@ const Testimonials = () => {
     },
   ];
 
-  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
-
-  const nextTestimonial = () => {
-    setCurrentTestimonialIndex((prevIndex) =>
-      prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonialIndex((prevIndex) =>
-      prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1
-    );
-  };
-
-  const testimonial = testimonialsData[currentTestimonialIndex];
-
   return (
-    <div className="container mx-auto mt-10">
-      <div className="flex flex-col md:flex-row items-center justify-between mb-6 pb-2">
-      <h1 className="text-3xl md:text-5xl text-left text-gray-600 font-semibold mb-4 md:mb-0">
-          
-        </h1>
-        
-        <div className="flex space-x-2 md:space-x-4 flex-wrap justify-center md:justify-end">
-          <button
-              onClick={prevTestimonial}
-              className="bg-amber-500 hover:bg-lime-500 rounded-full p-3 text-white focus:outline-none"
-            >
-              <FontAwesomeIcon icon={faArrowLeft} className="text-xl" />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="bg-amber-500 hover:bg-lime-500 rounded-full p-3 text-white focus:outline-none ml-4"
-            >
-              <FontAwesomeIcon icon={faArrowRight} className="text-xl" />
-            </button>
-        </div>
-      </div>
-      <div className="max-w-3xl mx-auto grid grid-cols-1 gap-8 pr-2 pl-2">
-        <div className="col-span-3 md:col-span-2 bg-white border border-amber-500 rounded-lg shadow-md overflow-hidden">
-            <div className="p-4">
-              <p className="text-gray-900 text-base mb-4 md:mb-6">{testimonial.text}</p>
-              <hr className="border-t border-amber-500 my-4" />
-              <div className="flex items-center">
-                <div className="bg-gray-200 rounded-full p-1 mr-3">
-                  <img src={testimonial.image} className="w-12 h-12 rounded-full" alt={testimonial.name} />
-                </div>
-                <div>
-                  <h2 className="text-lime-500 font-semibold mb-1">{testimonial.name}</h2>
-                  <p className="text-gray-600 text-lg mb-1">{testimonial.profession}</p>
-                  <div className="flex text-lime-500">
-                    {[...Array(testimonial.rating)].map((_, index) => (
-                      <FontAwesomeIcon key={index} icon={faStar} className="text-xl" />
-                    ))}
-                  </div>
-                </div>
+    <div className="container mx-auto mt-10 pb-10">
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        spaceBetween={50}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 3000 }}
+      >
+        {testimonialsData.map((testimonial, index) => (
+          <SwiperSlide key={index}>
+            <div className="flex flex-col items-center bg-white rounded-lg shadow-md overflow-hidden p-6 text-center">
+              <div className="w-24 h-24 mb-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="rounded-full w-full h-full object-cover"
+                />
+              </div>
+              <h2 className="text-lime-500 font-semibold text-xl mb-1">{testimonial.name}</h2>
+              <p className="text-gray-600 text-lg mb-2">{testimonial.profession}</p>
+              <div className="flex justify-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <FontAwesomeIcon key={i} icon={faStar} className="text-xl text-lime-500" />
+                ))}
+              </div>
+              <div className="w-full md:w-3/4 lg:w-1/2">
+                <p className="text-gray-900 text-base break-words whitespace-pre-wrap">
+                  {testimonial.text}
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 

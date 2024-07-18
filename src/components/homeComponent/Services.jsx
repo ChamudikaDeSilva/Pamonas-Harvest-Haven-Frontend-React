@@ -16,7 +16,7 @@ const Services = () => {
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pr-4 pl-4'>
        
-        <div className='bg-white p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border border-amber-500'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faTruckFast}
@@ -27,7 +27,7 @@ const Services = () => {
           <p className='text-base text-gray-600 italic'>Free on orders over $300</p>
         </div>
 
-        <div className='bg-white p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border border-amber-500'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faShieldAlt}
@@ -40,7 +40,7 @@ const Services = () => {
           <p className='text-base text-gray-600 italic'>100% secure payment</p>
         </div>
 
-        <div className='bg-white p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border border-amber-500'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faUndoAlt}
@@ -51,7 +51,7 @@ const Services = () => {
           <p className='text-base text-gray-600 italic'>30-day money guarantee</p>
         </div>
 
-        <div className='bg-white p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border border-amber-500'>
+        <div className='bg-gray-200 p-6 rounded-lg shadow-md text-center transition duration-300 ease-in-out transform hover:scale-105  border'>
           <div className='bg-amber-500 rounded-full p-4 inline-block'>
             <FontAwesomeIcon
               icon={faPhoneAlt}
