@@ -102,15 +102,31 @@ const ShopCategory = () => {
         setPage(newPage);
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    
 
     // Create placeholders to fill the remaining grid space
     const placeholders = new Array(Math.max(0, 9 - products.length)).fill(null);
 
     return (
         <div className="flex flex-col w-full p-4 bg-white">
+            {isLoading && (
+                <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-50">
+                    <div className="relative w-64 p-4">
+                        <span id="ProgressLabel" className="sr-only">Loading</span>
+                        <span
+                            role="progressbar"
+                            aria-labelledby="ProgressLabel"
+                            aria-valuenow="75"
+                            className="block rounded-full bg-gray-200"
+                        >
+                            <span
+                                className="block h-3 rounded-full bg-[repeating-linear-gradient(45deg,_var(--tw-gradient-from)_0,_var(--tw-gradient-from)_20px,_var(--tw-gradient-to)_20px,_var(--tw-gradient-to)_40px)] from-lime-400 to-lime-500 animate-pulse"
+                                style={{ width: '75%' }}
+                            ></span>
+                        </span>
+                    </div>
+                </div>
+            )}
             <div className="flex flex-col md:flex-row">
                 <div className="w-full md:w-1/4 p-4">
                     <div className="mb-4">
@@ -187,7 +203,7 @@ const ShopCategory = () => {
                         <div key={product.id} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
                             <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
                                 <img src={`http://localhost:8000${product.image}`} alt={product.name} className="w-full h-full object-cover transition duration-300 transform hover:scale-105" />
-                            </div><span className="absolute -right-px -top-px rounded-bl-3xl rounded-tr-md bg-amber-500 px-4 py-2 font-medium uppercase tracking-widest text-white">
+                            </div><span className="absolute -right-px -top-px rounded-bl-3xl rounded-tr-md bg-red-600 px-4 py-2 font-medium uppercase tracking-widest text-white">
                             Save 5%
                         </span>
                             <div className="p-3 sm:p-4 text-center">
