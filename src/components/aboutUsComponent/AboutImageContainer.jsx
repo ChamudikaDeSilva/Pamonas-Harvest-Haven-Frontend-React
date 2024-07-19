@@ -39,7 +39,13 @@ const ImageItem = ({ image }) => {
                 animate={controls}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-                <span className="text-lime-900 font-bold text-3xl">{image.text}</span>
+                <div className="flex items-center justify-center w-full h-full">
+                    <div className="bg-gradient-to-r from-lime-600 to-green-700 p-4 rounded-bl-3xl rounded-tr-3xl pl-4 pr-4 opacity-80">
+                        <span className="text-white font-semibold text-l sm:text-xl md:text-2xl lg:text-3xl">
+                            {image.text}
+                        </span>
+                    </div>
+                </div>
             </motion.div>
         </div>
     );
