@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 // Sample data for products
 const productsData = [
@@ -98,25 +100,42 @@ const Products = () => {
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2">
           {filteredProducts.map(product => (
-            <div key={product.id} className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm">
-              <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover transition duration-300 zoom-in transform hover:scale-105" />
-              </div>
-              <div className="p-3 sm:p-4 text-center">
-                <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
-                <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
-                <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">{product.price}</p>
-                <div className="flex justify-center items-center space-x-4 mt-2">
-                  <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                  <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                  <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                </div>
-              </div>
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
     </div>
+  );
+};
+
+const ProductCard = ({ product }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Ensure the animation only happens once
+    threshold: 0.1, // Adjust the threshold as needed
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm"
+      initial={{ opacity: 0, x: -100 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <div className="w-full h-36 sm:h-44 md:h-52 overflow-hidden">
+        <img src={product.image} alt={product.name} className="w-full h-full object-cover transition duration-300 zoom-in transform hover:scale-105" />
+      </div>
+      <div className="p-3 sm:p-4 text-center">
+        <h2 className="text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1">{product.name}</h2>
+        <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
+        <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">{product.price}</p>
+        <div className="flex justify-center items-center space-x-4 mt-2">
+          <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+          <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+          <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

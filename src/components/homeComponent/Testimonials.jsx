@@ -4,8 +4,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Testimonials = () => {
   const testimonialsData = [
@@ -53,13 +51,8 @@ const Testimonials = () => {
               </div>
               <h2 className="text-lime-500 font-semibold text-xl mb-1">{testimonial.name}</h2>
               <p className="text-gray-600 text-lg mb-2">{testimonial.profession}</p>
-              <div className="flex justify-center mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FontAwesomeIcon key={i} icon={faStar} className="text-xl text-lime-500" />
-                ))}
-              </div>
               <div className="w-full md:w-3/4 lg:w-1/2">
-                <p className="text-gray-900 text-base break-words whitespace-pre-wrap">
+                <p className="text-gray-900 text-lg font-light break-words whitespace-pre-wrap">
                   {testimonial.text}
                 </p>
               </div>

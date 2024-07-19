@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaCheckCircle, FaSeedling, FaCarrot, FaAppleAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const HealthyFoodComponent = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -21,11 +22,14 @@ const HealthyFoodComponent = () => {
     <div className="relative pt-8 pb-8">
       <div className="container mx-auto flex flex-col md:flex-row items-center py-12 px-4">
         <div className="md:w-2/5 flex justify-center pt-0">
-          <img
+          <motion.img
             src={images[currentImageIndex]}
             alt="Healthy Food"
             className="w-full h-auto"
-            style={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
           />
         </div>
         <div className="md:w-3/5 text-black p-8 rounded-2xl">
@@ -70,7 +74,7 @@ const HealthyFoodComponent = () => {
               <p className="text-sm">Juicy Fruits</p>
             </div>
           </div>
-          <div className="text-3xl md:text-4xl font-bold mt-6 pl-2 ">
+          <div className="text-3xl md:text-4xl font-bold mt-6 pl-2">
             2,500+
             <p className="text-lg font-normal font-style: italic">Agriculture, Organic and Dairy Products</p>
           </div>
