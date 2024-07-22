@@ -70,10 +70,10 @@ const Products = () => {
         backgroundAttachment: 'fixed'
       }}
     >
-      <div className="absolute inset-0 bg-gray-200 bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="container relative mx-auto mt-10 w-full">
         <div className="flex flex-col md:flex-row items-center justify-between mb-6 pb-2">
-          <h1 className="text-3xl md:text-5xl text-left text-gray-900 font-semibold mb-4 md:mb-0">
+          <h1 className="text-3xl md:text-5xl text-left text-white font-semibold mb-4 md:mb-0">
             Best Sellers
           </h1>
           <div className="flex space-x-2 md:space-x-4 flex-wrap justify-center md:justify-end">
