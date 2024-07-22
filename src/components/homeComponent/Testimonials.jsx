@@ -31,35 +31,41 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="container mx-auto mt-10 pb-10">
-      <Swiper
-        modules={[Autoplay, Pagination]}
-        spaceBetween={50}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
-      >
-        {testimonialsData.map((testimonial, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex flex-col items-center bg-white rounded-lg shadow-md overflow-hidden p-6 text-center">
-              <div className="w-24 h-24 mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="rounded-full w-full h-full object-cover"
-                />
+    <div 
+      className="relative bg-fixed bg-cover bg-center py-10" 
+      style={{ backgroundImage: `url('Images/Pamonas/fruits & vegetables/testi-banner2.jpg')` }}
+    >
+      <div className="bg-black bg-opacity-50 absolute inset-0"></div>
+      <div className="container mx-auto mt-10 pb-10 relative z-10">
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={50}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+        >
+          {testimonialsData.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <div className="flex flex-col items-center p-6 text-center" style={{ background: 'none', border: 'none' }}>
+                <div className="w-24 h-24 mb-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="rounded-full w-full h-full object-cover"
+                  />
+                </div>
+                <h2 className="text-lime-500 font-semibold text-xl mb-1">{testimonial.name}</h2>
+                <p className="text-white text-lg mb-2">{testimonial.profession}</p>
+                <div className="w-full md:w-3/4 lg:w-1/2">
+                  <p className="text-white text-lg font-light break-words whitespace-pre-wrap">
+                    {testimonial.text}
+                  </p>
+                </div>
               </div>
-              <h2 className="text-lime-500 font-semibold text-xl mb-1">{testimonial.name}</h2>
-              <p className="text-gray-600 text-lg mb-2">{testimonial.profession}</p>
-              <div className="w-full md:w-3/4 lg:w-1/2">
-                <p className="text-gray-900 text-lg font-light break-words whitespace-pre-wrap">
-                  {testimonial.text}
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

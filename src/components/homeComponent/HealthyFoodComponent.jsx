@@ -41,7 +41,7 @@ const HealthyFoodComponent = () => {
             Pamona's Harvest Haven
           </h1>
           <p className="mb-6 pl-2">
-            Welcome to Pamona's Harvest Haven, your source for the freshest and healthiest <span className="text-green-500">organic</span> produce. <br></br>We are dedicated to growing food that nourishes your body and respects the planet.
+            Welcome to Pamona's Harvest Haven, your source for the freshest and healthiest <span className="text-lime-500 font-style: italic text-xl">organic</span> produce. <br></br>We are dedicated to growing food that nourishes your body and respects the planet.
           </p>
           <ul className="mb-6 pl-2">
             <li className="flex items-center mb-2">

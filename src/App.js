@@ -57,8 +57,8 @@ function App() {
               <AboutUsHero />
               <HealthyFoodComponent />
               <AboutImageContainer />
-              <Testimonials />
               <ShopRedirect />
+              <Testimonials />
               <LogoSwiper/>
              
             </>
