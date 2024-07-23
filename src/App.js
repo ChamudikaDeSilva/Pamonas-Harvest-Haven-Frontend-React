@@ -11,7 +11,7 @@ import Address from './components/commonComponent/address';
 import Testimonials from './components/homeComponent/Testimonials';
 import ShopHero from './components/shopComponent/ShopHero'; // Import Shop component
 import ShopPageContent from './components/shopComponent/ShopPageContent'; 
-import 'tailwindcss/tailwind.css';
+
 import ImageContainer from './components/homeComponent/ImageContainer';
 import LogoSwiper from './components/homeComponent/LogoSwiper';
 import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponent';
