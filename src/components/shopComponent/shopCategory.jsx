@@ -105,7 +105,6 @@ const ShopCategory = () => {
     };
 
     
-
     // Create placeholders to fill the remaining grid space
     const placeholders = new Array(Math.max(0, 9 - products.length)).fill(null);
 

@@ -74,7 +74,7 @@ const NavBar = () => {
               <ul className={`md:absolute md:bg-gray-200 md:rounded-lg md:pt-1 md:text-gray-700 md:w-48 sm:w-40 sm:relative sm:bg-transparent md:shadow-lg ${isDropdownOpen ? 'block' : 'hidden'}`}>
                 <li className="group">
                   <Link
-                    to="/cart"
+                    to="/shopping-cart"
                     className={`bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold ${activeItem === 'cart' ? 'text-amber-500' : ''}`}
                     onClick={() => handleMenuItemClick('cart')}
                   >
