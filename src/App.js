@@ -9,17 +9,14 @@ import Fact from './components/homeComponent/Fact';
 import Products from './components/homeComponent/Products';
 import Address from './components/commonComponent/address';
 import Testimonials from './components/homeComponent/Testimonials';
-import ShopHero from './components/shopComponent/ShopHero'; // Import Shop component
+import ShopHero from './components/shopComponent/ShopHero'; 
 import ShopPageContent from './components/shopComponent/ShopPageContent'; 
-
 import ImageContainer from './components/homeComponent/ImageContainer';
 import LogoSwiper from './components/homeComponent/LogoSwiper';
 import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponent';
 import AboutUsHero from './components/aboutUsComponent/AboutUsHero';
 import AboutImageContainer from './components/aboutUsComponent/AboutImageContainer';
 import ShopRedirect from './components/aboutUsComponent/ShopRedirect';
-
-//import ShopCategory from './components/shopComponent/shopCategory';
 
 function App() {
   return (
@@ -34,12 +31,9 @@ function App() {
               <ImageContainer/>
               <Services />
               <Products />
-              
               <Banner />
-              
               <Fact />
               <Testimonials />
-              
               <LogoSwiper/>
             </>
           } />
@@ -47,9 +41,7 @@ function App() {
             <>
               <ShopHero />
               <ShopPageContent />
-              <Testimonials />
-
-             
+              <Testimonials /> 
             </>
           } />
           <Route path="/about-us" element={
@@ -60,10 +52,8 @@ function App() {
               <ShopRedirect />
               <Testimonials />
               <LogoSwiper/>
-             
             </>
           } />
-          
         </Routes>
         <Footer />
       </Router>
