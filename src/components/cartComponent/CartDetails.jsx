@@ -1,4 +1,6 @@
 import React from  'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const CartDetails=()=>{
     return(
@@ -35,6 +37,9 @@ const CartDetails=()=>{
                                         </div>
                                     </td>
                                     <td class="py-4">$19.99</td>
+                                    <td class="py-4">
+                                        <FontAwesomeIcon icon={faTrash} className="text-red-500 text-lg hover:text-red-700 transition duration-300" />
+                                    </td>
                                 </tr>
                                 
                             </tbody>
