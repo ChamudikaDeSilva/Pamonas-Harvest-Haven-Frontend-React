@@ -40,6 +40,7 @@ const NavBar = () => {
             </button>
           </div>
         </div>
+
         <div className={`absolute top-full left-0 w-full bg-white md:relative md:flex md:items-center md:justify-center md:space-x-4 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
           <div className="flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0">
             <Link
@@ -49,6 +50,7 @@ const NavBar = () => {
             >
               Home
             </Link>
+            
             <Link
               to="/about-us"
               className={`text-lg font-semibold py-2 px-4 ${activeItem === 'about-us' ? 'text-amber-500' : 'text-gray-500'} hover:text-amber-500`}
@@ -56,6 +58,7 @@ const NavBar = () => {
             >
               About Us
             </Link>
+
             <Link
               to="/shop"
               className={`text-lg font-semibold py-2 px-4 ${activeItem === 'shop' ? 'text-amber-500' : 'text-gray-500'} hover:text-amber-500`}
@@ -63,6 +66,7 @@ const NavBar = () => {
             >
               Shop
             </Link>
+            
             <div className="relative">
               <button className="hover:text-amber-500 text-gray-500 text-lg font-semibold focus:outline-none py-2 px-4" onClick={toggleDropdown}>
                 Pages <FontAwesomeIcon icon={isDropdownOpen ? faChevronUp : faChevronDown} className="ml-1" />
@@ -97,6 +101,7 @@ const NavBar = () => {
                 </li>
               </ul>
             </div>
+
             <Link
               to="/contact"
               className={`text-lg font-semibold py-2 px-4 ${activeItem === 'contact' ? 'text-amber-500' : 'text-gray-500'} hover:text-amber-500`}
@@ -105,20 +110,22 @@ const NavBar = () => {
               Contact
             </Link>
           </div>
+
           <div className="flex justify-center pb-4 pt-2">
             <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
             <Link to="/shopping-cart">
               <div className="relative">
                   <FontAwesomeIcon icon={faCartShopping} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
                   {cartCount > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                                    {cartCount}
-                                </span>
-                            )}
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
               </div>
             </Link>
             <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
           </div>
+
         </div>
       </div>
     </nav>

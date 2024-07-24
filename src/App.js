@@ -18,6 +18,8 @@ import AboutUsHero from './components/aboutUsComponent/AboutUsHero';
 import AboutImageContainer from './components/aboutUsComponent/AboutImageContainer';
 import ShopRedirect from './components/aboutUsComponent/ShopRedirect';
 import { CartProvider } from './CartContext';
+import CartHero from './components/cartComponent/CartHero';
+import CartDetails from './components/cartComponent/CartDetails';
 
 function App() {
   return (
@@ -56,6 +58,12 @@ function App() {
               <LogoSwiper/>
             </>
           } />
+          <Route path="/shopping-cart" element={
+            <>
+             <CartHero />
+             <CartDetails />
+            </>
+          }/>
         </Routes>
         <Footer />
         </CartProvider>
