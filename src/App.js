@@ -17,11 +17,13 @@ import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponen
 import AboutUsHero from './components/aboutUsComponent/AboutUsHero';
 import AboutImageContainer from './components/aboutUsComponent/AboutImageContainer';
 import ShopRedirect from './components/aboutUsComponent/ShopRedirect';
+import { CartProvider } from './CartContext';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <CartProvider>
         <Address />
         <NavBar />
         <Routes>
@@ -56,6 +58,7 @@ function App() {
           } />
         </Routes>
         <Footer />
+        </CartProvider>
       </Router>
     </div>
   );

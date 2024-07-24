@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback,useContext } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { CartContext } from '../../CartContext';
 
 const ShopCategory = () => {
     const [categories, setCategories] = useState([]);
@@ -13,6 +14,7 @@ const ShopCategory = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedDiscountType, setSelectedDiscountType] = useState(null);
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
         const fetchShopData = async () => {
@@ -211,7 +213,7 @@ const ShopCategory = () => {
                                 <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
                                 <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">Rs.{product.price}/1Kg</p>
                                 <div className="flex justify-center items-center space-x-4 mt-2">
-                                    <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                                    <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" onClick={() => addToCart(product)} />
                                     <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
                                     <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
                                 </div>

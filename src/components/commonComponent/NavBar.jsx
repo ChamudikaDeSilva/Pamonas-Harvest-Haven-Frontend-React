@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faCartShopping, faUser, faBars, faTimes, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../../CartContext';
 
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(''); // Track the active menu item
+  const { cartCount } = useContext(CartContext);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -105,7 +107,16 @@ const NavBar = () => {
           </div>
           <div className="flex justify-center pb-4 pt-2">
             <FontAwesomeIcon icon={faMagnifyingGlass} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
-            <FontAwesomeIcon icon={faCartShopping} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
+            <Link to="/shopping-cart">
+              <div className="relative">
+                  <FontAwesomeIcon icon={faCartShopping} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
+                  {cartCount > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                                    {cartCount}
+                                </span>
+                            )}
+              </div>
+            </Link>
             <FontAwesomeIcon icon={faUser} className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4" />
           </div>
         </div>
