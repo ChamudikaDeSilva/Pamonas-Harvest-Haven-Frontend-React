@@ -20,11 +20,13 @@ import ShopRedirect from './components/aboutUsComponent/ShopRedirect';
 import { CartProvider } from './CartContext';
 import CartHero from './components/cartComponent/CartHero';
 import CartDetails from './components/cartComponent/CartDetails';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <AuthProvider>
         <CartProvider>
         <Address />
         <NavBar />
@@ -66,12 +68,13 @@ function App() {
           }/>
           <Route path="/checkout" element={
             <>
-              
+
             </>
           } />
         </Routes>
         <Footer />
         </CartProvider>
+        </AuthProvider>
       </Router>
     </div>
   );
