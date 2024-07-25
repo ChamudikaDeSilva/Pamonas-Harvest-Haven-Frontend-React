@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import SigninModal from './SigninModal';
+import { register } from '../../api/auth';
 
 const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
     const [formData, setFormData] = useState({
@@ -18,10 +18,19 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic
-        console.log(formData);
+        try {
+            const response = await register(formData.name, formData.email, formData.password, formData.confirmPassword);
+            const { data } = response;
+            console.log(data); // Handle response data
+            // Example: save token to localStorage or handle successful registration
+            localStorage.setItem('user', JSON.stringify(data.data.user));
+            localStorage.setItem('token', data.data.token);
+            onClose();
+        } catch (error) {
+            console.error(error.response.data);
+        }
     };
 
     const handleReset = () => {

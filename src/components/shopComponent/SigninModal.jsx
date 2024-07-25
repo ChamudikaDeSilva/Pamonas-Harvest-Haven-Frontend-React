@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { login } from '../../api/auth';
 
-const SigninModal = ({ isOpen, onClose,onSwitchToSignup }) => {
+const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -14,11 +16,18 @@ const SigninModal = ({ isOpen, onClose,onSwitchToSignup }) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic
-        console.log(formData);
+        try {
+            const response = await login(formData.email, formData.password);
+            console.log(response.data); // Handle the response as needed
+            onClose();
+        } catch (error) {
+            console.error(error.response.data);
+        }
     };
+
+    if (!isOpen) return null;
 
     const handleReset = () => {
         setFormData({
@@ -29,7 +38,7 @@ const SigninModal = ({ isOpen, onClose,onSwitchToSignup }) => {
         });
     };
 
-    if (!isOpen) return null;
+    
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -88,6 +97,11 @@ const SigninModal = ({ isOpen, onClose,onSwitchToSignup }) => {
             </div>
         </div>
     );
+};
+SigninModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onSwitchToSignup: PropTypes.func.isRequired
 };
 
 export default SigninModal;

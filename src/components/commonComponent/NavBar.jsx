@@ -23,7 +23,7 @@ const NavBar = () => {
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
         if (!isMobileMenuOpen) {
-            setIsDropdownOpen(false);
+            setIsDropdownOpen(false); // Close dropdown when opening mobile menu
         }
     };
 
@@ -32,15 +32,15 @@ const NavBar = () => {
         setIsMobileMenuOpen(false);
     };
 
-    const handleSwitchToSignin=()=> {
-      setIsSigninModalOpen(true);
-      setIsSignupModalOpen(false);
-  };
+    const handleSwitchToSignin = () => {
+        setIsSigninModalOpen(true);
+        setIsSignupModalOpen(false);
+    };
 
-  const handleSwitchToSignup=()=> {
-      setIsSigninModalOpen(false);
-      setIsSignupModalOpen(true);
-  };
+    const handleSwitchToSignup = () => {
+        setIsSigninModalOpen(false);
+        setIsSignupModalOpen(true);
+    };
 
     return (
         <nav className="bg-white p-4 sticky top-0 left-0 w-full z-50">
@@ -118,7 +118,6 @@ const NavBar = () => {
                                 </li>
                             </ul>
                         </div>
-
                         <Link
                             to="/contact"
                             className={`text-lg font-semibold py-2 px-4 ${activeItem === 'contact' ? 'text-amber-500' : 'text-gray-500'} hover:text-amber-500`}
@@ -159,8 +158,8 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-            <SigninModal isOpen={isSigninModalOpen} onClose={() => setIsSigninModalOpen(false)}  onSwitchToSignup={handleSwitchToSignup}/>
-            <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)}  onSwitchToSignin={handleSwitchToSignin}/>
+            <SigninModal isOpen={isSigninModalOpen} onClose={() => setIsSigninModalOpen(false)} onSwitchToSignup={handleSwitchToSignup} />
+            <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onSwitchToSignin={handleSwitchToSignin} />
         </nav>
     );
 };

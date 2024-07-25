@@ -5,9 +5,14 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
-    const login = (userData) => {
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
+    const login = (response) => {
+        // Check if response contains user data
+        if (response.user) {
+            setUser(response.user);
+            localStorage.setItem('user', JSON.stringify(response.user));
+        } else {
+            console.error('Login response does not contain user data');
+        }
     };
 
     const logout = () => {
