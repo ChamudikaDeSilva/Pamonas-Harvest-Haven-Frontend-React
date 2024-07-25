@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import SigninModal from './SigninModal';
 
 const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
@@ -35,11 +36,12 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" aria-labelledby="signup-modal" role="dialog" aria-modal="true">
             <div className="relative bg-gray-900 w-full h-full flex items-center justify-center">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-white font-bold"
+                    aria-label="Close"
                 >
                     X
                 </button>
@@ -47,7 +49,7 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
                     <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-lime-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                     <div className="text-white relative px-4 py-10 bg-gradient-to-r from-lime-500 to-green-700 shadow-lg sm:rounded-3xl sm:p-20">
                         <div className="text-center pb-6">
-                            <h1 className="text-3xl font-bold font-style :italic">Sign Up</h1>
+                            <h1 className="text-3xl font-bold italic">Sign Up</h1>
                             <p className="text-gray-300 font-semibold">Fill up the form below to create an account.</p>
                         </div>
                         <form onSubmit={handleSubmit}>
@@ -58,6 +60,8 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
+                                required
+                                aria-label="Name"
                             />
                             <input
                                 className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -66,6 +70,8 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                required
+                                aria-label="Email"
                             />
                             <input
                                 className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -74,6 +80,8 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                required
+                                aria-label="Password"
                             />
                             <input
                                 className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -82,6 +90,8 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
+                                required
+                                aria-label="Confirm Password"
                             />
                             <div className="flex justify-between">
                                 <input
@@ -97,9 +107,9 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
                                 />
                             </div>
                         </form>
-                        <div className="text-center pb-6">
-                            <p className="text-gray-300 font-semibold" onClick={onSwitchToSignin}>
-                                Do you have an account? Login
+                        <div className="text-center pt-6">
+                            <p className="text-gray-300 font-semibold cursor-pointer" onClick={onSwitchToSignin}>
+                                Already have an account? Login
                             </p>
                         </div>
                     </div>
@@ -107,6 +117,12 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
             </div>
         </div>
     );
+};
+
+SignupModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onSwitchToSignin: PropTypes.func.isRequired
 };
 
 export default SignupModal;

@@ -64,6 +64,11 @@ function App() {
              <CartDetails />
             </>
           }/>
+          <Route path="/checkout" element={
+            <>
+              
+            </>
+          } />
         </Routes>
         <Footer />
         </CartProvider>

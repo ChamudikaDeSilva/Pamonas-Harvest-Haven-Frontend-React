@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../CartContext';
-import EmptyCartMessage from './EmptyCartMessage'; // Make sure to import the new component
+import EmptyCartMessage from './EmptyCartMessage';
+import SignupModal from '../shopComponent/SignupModal';
+import SigninModal from '../shopComponent/SigninModal';
 
 const CartDetails = () => {
     const { cartItems, updateItemQuantity, removeItemFromCart } = useContext(CartContext);
+    const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+    const [isSigninModalOpen, setIsSigninModalOpen] = useState(false);
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => total + (parseFloat(item.price) * (item.quantity || 1)), 0);
@@ -19,6 +23,21 @@ const CartDetails = () => {
 
     const handleRemoveItem = (index) => {
         removeItemFromCart(index);
+    };
+
+    const handleProceedToCheckout = () => {
+        setIsSignupModalOpen(true);
+        setIsSigninModalOpen(false);
+    };
+
+    const handleSwitchToSignin=()=> {
+        setIsSigninModalOpen(true);
+        setIsSignupModalOpen(false);
+    };
+
+    const handleSwitchToSignup=()=> {
+        setIsSigninModalOpen(false);
+        setIsSignupModalOpen(true);
     };
 
     const hasItems = cartItems.length > 0;
@@ -59,6 +78,7 @@ const CartDetails = () => {
                                                         <button
                                                             className="border rounded-md py-2 px-4 mr-2"
                                                             onClick={() => handleQuantityChange(index, -1)}
+                                                            disabled={item.quantity <= 1}
                                                         >
                                                             -
                                                         </button>
@@ -115,13 +135,29 @@ const CartDetails = () => {
                                 <span className="font-semibold">Total</span>
                                 <span className="font-semibold">Rs.{(calculateTotal() + (hasItems ? 1.99 : 0) + (hasItems ? 222.00 : 0)).toFixed(2)}</span>
                             </div>
-                            <button className="bg-lime-500 text-white font-bold hover:bg-lime-600 py-2 px-4 rounded-lg mt-4 w-full">
+                            <button
+                                className={`bg-lime-500 text-white font-bold hover:bg-lime-600 py-2 px-4 rounded-lg mt-4 w-full ${!hasItems ? 'cursor-not-allowed opacity-50' : ''}`}
+                                disabled={!hasItems}
+                                onClick={handleProceedToCheckout}
+                            >
                                 Proceed to Checkout
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            <SignupModal
+                isOpen={isSignupModalOpen}
+                onClose={() => setIsSignupModalOpen(false)}
+                onSwitchToSignin={handleSwitchToSignin}
+            />
+            <SigninModal
+                isOpen={isSigninModalOpen}
+                onClose={() => setIsSigninModalOpen(false)}
+                onSwitchToSignup={handleSwitchToSignup}
+                    
+                
+            />
         </div>
     );
 };
