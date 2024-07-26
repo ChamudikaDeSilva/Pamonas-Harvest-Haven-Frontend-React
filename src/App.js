@@ -21,6 +21,8 @@ import { CartProvider } from './CartContext';
 import CartHero from './components/cartComponent/CartHero';
 import CartDetails from './components/cartComponent/CartDetails';
 import { AuthProvider } from './AuthContext';
+import CheckoutCart from './components/CheckoutComponent/CheckoutCart';
+
 
 function App() {
   return (
@@ -68,7 +70,7 @@ function App() {
           }/>
           <Route path="/checkout" element={
             <>
-
+              <CheckoutCart />
             </>
           } />
         </Routes>

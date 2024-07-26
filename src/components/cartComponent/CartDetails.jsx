@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash,faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../CartContext';
 import EmptyCartMessage from './EmptyCartMessage';
@@ -63,7 +63,7 @@ const CartDetails = () => {
                                             <th className="text-left text-xl text-gray-600 font-bold pb-2">Price</th>
                                             <th className="text-left text-xl text-gray-600 font-bold pb-2">Quantity</th>
                                             <th className="text-left text-xl text-gray-600 font-bold pb-2">Total</th>
-                                            <th className="text-left text-xl text-gray-600 font-bold pb-2">Action</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -112,9 +112,11 @@ const CartDetails = () => {
                                 </table>
                                 <div className="flex justify-between mt-4">
                                     <Link to="/shop">
-                                        <button className="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg">
-                                            Continue Shopping
-                                        </button>
+                                    <button className="bg-amber-500 text-white font-semibold py-2 px-4 rounded-lg flex items-center">
+                                        <FontAwesomeIcon icon={faArrowLeftLong} className="mr-2 text-white" />
+                                        Continue Shopping
+                                    </button>
+
                                     </Link>
                                 </div>
                             </div>
@@ -129,11 +131,11 @@ const CartDetails = () => {
                                 <span>Subtotal</span>
                                 <span>Rs.{calculateTotal().toFixed(2)}</span>
                             </div>
-                            <div className="flex justify-between mb-2">
+                            <div className="flex justify-between mb-2 text-red-500">
                                 <span>Taxes</span>
                                 <span>Rs.{hasItems ? 1.99 : 0.00}</span>
                             </div>
-                            <div className="flex justify-between mb-2">
+                            <div className="flex justify-between mb-2 text-red-500">
                                 <span>Delivery</span>
                                 <span>Rs.{hasItems ? 222.00 : 0.00}</span>
                             </div>

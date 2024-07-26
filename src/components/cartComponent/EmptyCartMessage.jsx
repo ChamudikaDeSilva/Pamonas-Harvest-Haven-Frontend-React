@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 const EmptyCartMessage = () => {
     return (
-        <div className="relative rounded-lg border border-gray-200 shadow-lg p-4 mb-4 transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl">
+        <div className="relative rounded-lg border border-gray-200 shadow-lg p-4 mb-4 transition duration-500 ease-in-out transform hover:scale-100 hover:shadow-xl">
             <div className="flex items-center gap-4">
                 <img
                     alt="Empty Cart"
@@ -16,7 +18,8 @@ const EmptyCartMessage = () => {
                         Your cart is currently empty. Continue shopping to add items to your cart.
                     </p>
                     <Link to="/shop">
-                        <button className="mt-2 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition duration-300 ease-in-out">
+                        <button className="mt-2 bg-amber-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-amber-600 transition duration-300 ease-in-out">
+                            <FontAwesomeIcon icon={faArrowLeftLong} className="mr-2 text-white" />
                             Continue Shopping
                         </button>
                     </Link>
