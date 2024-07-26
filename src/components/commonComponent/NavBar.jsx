@@ -157,7 +157,7 @@ const NavBar = () => {
                             />
                             {user && (
                                 <ul className={`md:absolute md:bg-gray-200 md:rounded-lg md:pt-1 md:text-gray-700 md:w-48 sm:w-40 sm:relative sm:bg-transparent md:shadow-lg ${isUserDropdownOpen ? 'block' : 'hidden'}`}>
-                                    <li className="bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold">
+                                    <li className="bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold cursor-pointer">
                                         {user.name}
                                     </li>
                                     <li className="bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold cursor-pointer" onClick={logout}>
