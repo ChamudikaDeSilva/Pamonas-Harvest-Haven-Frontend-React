@@ -8,27 +8,39 @@ import SigninModal from '../shopComponent/SigninModal';
 import SignupModal from '../shopComponent/SignupModal';
 
 const NavBar = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+    const [isPagesDropdownOpen, setIsPagesDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSigninModalOpen, setIsSigninModalOpen] = useState(false);
     const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState('home'); // Define activeItem and setActiveItem
+    const [activeItem, setActiveItem] = useState('home');
     const { cartCount } = useContext(CartContext);
     const { user, logout } = useContext(AuthContext);
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+    const toggleUserDropdown = () => {
+        setIsUserDropdownOpen(!isUserDropdownOpen);
+        if (!isUserDropdownOpen) {
+            setIsPagesDropdownOpen(false); // Close pages dropdown when opening user dropdown
+        }
+    };
+
+    const togglePagesDropdown = () => {
+        setIsPagesDropdownOpen(!isPagesDropdownOpen);
+        if (!isPagesDropdownOpen) {
+            setIsUserDropdownOpen(false); // Close user dropdown when opening pages dropdown
+        }
     };
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
         if (!isMobileMenuOpen) {
-            setIsDropdownOpen(false); // Close dropdown when opening mobile menu
+            setIsUserDropdownOpen(false); // Close user dropdown when opening mobile menu
+            setIsPagesDropdownOpen(false); // Close pages dropdown when opening mobile menu
         }
     };
 
     const handleMenuItemClick = (item) => {
-        setActiveItem(item); // Update activeItem when a menu item is clicked
+        setActiveItem(item);
         setIsMobileMenuOpen(false);
     };
 
@@ -83,12 +95,11 @@ const NavBar = () => {
                         >
                             Shop
                         </Link>
-                        
                         <div className="relative">
-                            <button className="hover:text-amber-500 text-gray-500 text-lg font-semibold focus:outline-none py-2 px-4" onClick={toggleDropdown}>
-                                Pages <FontAwesomeIcon icon={isDropdownOpen ? faChevronUp : faChevronDown} className="ml-1" />
+                            <button className="hover:text-amber-500 text-gray-500 text-lg font-semibold focus:outline-none py-2 px-4" onClick={togglePagesDropdown}>
+                                Pages <FontAwesomeIcon icon={isPagesDropdownOpen ? faChevronUp : faChevronDown} className="ml-1" />
                             </button>
-                            <ul className={`md:absolute md:bg-gray-200 md:rounded-lg md:pt-1 md:text-gray-700 md:w-48 sm:w-40 sm:relative sm:bg-transparent md:shadow-lg ${isDropdownOpen ? 'block' : 'hidden'}`}>
+                            <ul className={`md:absolute md:bg-gray-200 md:rounded-lg md:pt-1 md:text-gray-700 md:w-48 sm:w-40 sm:relative sm:bg-transparent md:shadow-lg ${isPagesDropdownOpen ? 'block' : 'hidden'}`}>
                                 <li className="group">
                                     <Link
                                         to="/shopping-cart"
@@ -142,14 +153,14 @@ const NavBar = () => {
                             <FontAwesomeIcon
                                 icon={faUser}
                                 className="hover:text-amber-500 text-lime-500 text-2xl ml-2 md:ml-4 cursor-pointer"
-                                onClick={() => user ? toggleDropdown() : setIsSigninModalOpen(true)}
+                                onClick={() => user ? toggleUserDropdown() : setIsSigninModalOpen(true)}
                             />
                             {user && (
-                                <ul className={`absolute right-0 mt-2 w-48 bg-white shadow-lg ${isDropdownOpen ? 'block' : 'hidden'}`}>
-                                    <li className="px-4 py-2 text-gray-700 hover:bg-gray-200">
+                                <ul className={`md:absolute md:bg-gray-200 md:rounded-lg md:pt-1 md:text-gray-700 md:w-48 sm:w-40 sm:relative sm:bg-transparent md:shadow-lg ${isUserDropdownOpen ? 'block' : 'hidden'}`}>
+                                    <li className="bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold">
                                         {user.name}
                                     </li>
-                                    <li className="px-4 py-2 text-gray-700 hover:bg-gray-200 cursor-pointer" onClick={logout}>
+                                    <li className="bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold cursor-pointer" onClick={logout}>
                                         Logout
                                     </li>
                                 </ul>

@@ -1,16 +1,19 @@
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../CartContext';
 import EmptyCartMessage from './EmptyCartMessage';
 import SignupModal from '../shopComponent/SignupModal';
 import SigninModal from '../shopComponent/SigninModal';
+import { AuthContext } from '../../AuthContext';
 
 const CartDetails = () => {
     const { cartItems, updateItemQuantity, removeItemFromCart } = useContext(CartContext);
     const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
     const [isSigninModalOpen, setIsSigninModalOpen] = useState(false);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => total + (parseFloat(item.price) * (item.quantity || 1)), 0);
@@ -26,16 +29,20 @@ const CartDetails = () => {
     };
 
     const handleProceedToCheckout = () => {
-        setIsSignupModalOpen(true);
-        setIsSigninModalOpen(false);
+        if (user) {
+            navigate('/checkout');
+        } else {
+            setIsSignupModalOpen(true);
+            setIsSigninModalOpen(false);
+        }
     };
 
-    const handleSwitchToSignin=()=> {
+    const handleSwitchToSignin = () => {
         setIsSigninModalOpen(true);
         setIsSignupModalOpen(false);
     };
 
-    const handleSwitchToSignup=()=> {
+    const handleSwitchToSignup = () => {
         setIsSigninModalOpen(false);
         setIsSignupModalOpen(true);
     };
@@ -155,8 +162,6 @@ const CartDetails = () => {
                 isOpen={isSigninModalOpen}
                 onClose={() => setIsSigninModalOpen(false)}
                 onSwitchToSignup={handleSwitchToSignup}
-                    
-                
             />
         </div>
     );

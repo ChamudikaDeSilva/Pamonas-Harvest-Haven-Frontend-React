@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { register } from '../../api/auth';
+import { AuthContext } from '../../AuthContext';
 
 const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
     const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
         password: '',
         confirmPassword: ''
     });
+
+    const { login } = useContext(AuthContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,9 +27,14 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
             const response = await register(formData.name, formData.email, formData.password, formData.confirmPassword);
             const { data } = response;
             console.log(data); // Handle response data
-            // Example: save token to localStorage or handle successful registration
+            
+            // Save user and token to localStorage
             localStorage.setItem('user', JSON.stringify(data.data.user));
             localStorage.setItem('token', data.data.token);
+
+            // Update AuthContext
+            login(data.data);
+
             onClose();
         } catch (error) {
             console.error(error.response.data);
@@ -43,7 +51,6 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
     };
 
     if (!isOpen) return null;
-
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" aria-labelledby="signup-modal" role="dialog" aria-modal="true">
             <div className="relative bg-gray-900 w-full h-full flex items-center justify-center">

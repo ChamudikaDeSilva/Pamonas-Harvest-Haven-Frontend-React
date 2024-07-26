@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../../api/auth';
-
+import { AuthContext } from '../../AuthContext';
 const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+
+    const { login: loginContext } = useContext(AuthContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,41 +22,46 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
         e.preventDefault();
         try {
             const response = await login(formData.email, formData.password);
-            console.log(response.data); // Handle the response as needed
+            const { data } = response;
+            console.log(data); // Handle response data
+            
+            // Save token and user to localStorage
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('token', data.access_token);
+
+            // Update AuthContext
+            loginContext(data);
+
             onClose();
         } catch (error) {
             console.error(error.response.data);
         }
     };
 
-    if (!isOpen) return null;
-
     const handleReset = () => {
         setFormData({
-            
             email: '',
-            password: '',
-            
+            password: ''
         });
     };
 
-    
-
+    if (!isOpen) return null;
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" aria-labelledby="signin-modal" role="dialog" aria-modal="true">
             <div className="relative bg-gray-900 w-full h-full flex items-center justify-center">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-white font-bold"
+                    aria-label="Close"
                 >
                     X
                 </button>
                 <div className="relative py-3 sm:max-w-xl sm:mx-auto w-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-lime-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-                <div className="text-white relative px-4 py-10 bg-gradient-to-r from-lime-500 to-green-700 shadow-lg sm:rounded-3xl sm:p-20">
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-lime-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+                    <div className="text-white relative px-4 py-10 bg-gradient-to-r from-lime-500 to-green-700 shadow-lg sm:rounded-3xl sm:p-20">
                         <div className="text-center pb-6">
-                        <h1 className="text-3xl font-bold italic">Sign In</h1>
-                        <p className="text-gray-300 font-semibold">Fill up the form below to signin.</p>
+                            <h1 className="text-3xl font-bold italic">Sign In</h1>
+                            <p className="text-gray-300 font-semibold">Fill up the form below to log into your account.</p>
                         </div>
                         <form onSubmit={handleSubmit}>
                             <input
@@ -64,6 +71,8 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                required
+                                aria-label="Email"
                             />
                             <input
                                 className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -72,6 +81,8 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                required
+                                aria-label="Password"
                             />
                             <div className="flex justify-between">
                                 <input
@@ -87,9 +98,9 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
                                 />
                             </div>
                         </form>
-                        <div className="text-center pb-6">
+                        <div className="text-center pt-6">
                             <p className="text-gray-300 font-semibold cursor-pointer" onClick={onSwitchToSignup}>
-                                Are you a new member? Register
+                                Don't have an account? Sign Up
                             </p>
                         </div>
                     </div>
@@ -98,6 +109,7 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
         </div>
     );
 };
+
 SigninModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
