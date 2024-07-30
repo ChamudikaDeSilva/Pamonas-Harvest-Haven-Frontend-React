@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { login } from '../../api/auth';
-import { AuthContext } from '../../AuthContext';
+import AuthContext from '../../AuthContext';
+
 const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
+    const { login } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
-
-    const { login: loginContext } = useContext(AuthContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,20 +20,10 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await login(formData.email, formData.password);
-            const { data } = response;
-            console.log(data); // Handle response data
-            
-            // Save token and user to localStorage
-            localStorage.setItem('user', JSON.stringify(data.user));
-            localStorage.setItem('token', data.access_token);
-
-            // Update AuthContext
-            loginContext(data);
-
+            await login(formData.email, formData.password);
             onClose();
         } catch (error) {
-            console.error(error.response.data);
+            console.error("Sign-in error:", error);
         }
     };
 

@@ -1,17 +1,15 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { register } from '../../api/auth';
-import { AuthContext } from '../../AuthContext';
+import AuthContext from '../../AuthContext';
 
 const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
+    const { register } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
         confirmPassword: ''
     });
-
-    const { login } = useContext(AuthContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,21 +21,15 @@ const SignupModal = ({ isOpen, onClose, onSwitchToSignin }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
         try {
-            const response = await register(formData.name, formData.email, formData.password, formData.confirmPassword);
-            const { data } = response;
-            console.log(data); // Handle response data
-            
-            // Save user and token to localStorage
-            localStorage.setItem('user', JSON.stringify(data.data.user));
-            localStorage.setItem('token', data.data.token);
-
-            // Update AuthContext
-            login(data.data);
-
+            await register(formData.name, formData.email, formData.password, formData.confirmPassword);
             onClose();
         } catch (error) {
-            console.error(error.response.data);
+            console.error("Registration error:", error);
         }
     };
 

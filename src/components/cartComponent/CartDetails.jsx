@@ -6,7 +6,7 @@ import { CartContext } from '../../CartContext';
 import EmptyCartMessage from './EmptyCartMessage';
 import SignupModal from '../shopComponent/SignupModal';
 import SigninModal from '../shopComponent/SigninModal';
-import { AuthContext } from '../../AuthContext';
+import AuthContext from '../../AuthContext';
 
 const CartDetails = () => {
     const { cartItems, updateItemQuantity, removeItemFromCart } = useContext(CartContext);

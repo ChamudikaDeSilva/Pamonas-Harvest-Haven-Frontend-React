@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faCartShopping, faUser, faBars, faTimes, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../CartContext';
-import { AuthContext } from '../../AuthContext';
+import AuthContext from '../../AuthContext';
 import SigninModal from '../shopComponent/SigninModal';
 import SignupModal from '../shopComponent/SignupModal';
 
