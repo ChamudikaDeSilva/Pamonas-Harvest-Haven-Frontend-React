@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/auth/login', { email, password });
-            console.log('Login response:', response.data); // Debugging line
+            //console.log('Login response:', response.data); // Debugging line
             setUser(response.data.user);
             // Adjust the path to match the actual response structure
             localStorage.setItem('token', response.data.token || response.data.authorisation?.token || response.data.authorization?.token);

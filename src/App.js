@@ -25,6 +25,7 @@ import CheckoutCart from './components/CheckoutComponent/CheckoutCart';
 import CheckoutHero from './components/CheckoutComponent/CheckoutHero';
 
 
+
 function App() {
   return (
     <div className="App">
@@ -73,6 +74,7 @@ function App() {
             <>
               <CheckoutHero />
               <CheckoutCart />
+              
             </>
           } />
         </Routes>
