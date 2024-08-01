@@ -1,10 +1,14 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        getCurrentUser();
+    }, []);
 
     const register = async (name, email, password, confirmPassword) => {
         try {
@@ -25,16 +29,13 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/auth/login', { email, password });
-            //console.log('Login response:', response.data); // Debugging line
             setUser(response.data.user);
-            // Adjust the path to match the actual response structure
-            localStorage.setItem('token', response.data.token || response.data.authorisation?.token || response.data.authorization?.token);
+            localStorage.setItem('token', response.data.authorisation.token);
         } catch (error) {
             console.error('Login error:', error.response.data);
             throw error;
         }
     };
-    
 
     const logout = () => {
         setUser(null);
@@ -52,6 +53,7 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Fetch current user error:', error);
+            logout(); // Log out if the token is invalid or expired
         }
     };
 

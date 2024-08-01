@@ -8,6 +8,7 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
         email: '',
         password: ''
     });
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,7 +24,8 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
             await login(formData.email, formData.password);
             onClose();
         } catch (error) {
-            console.error("Sign-in error:", error);
+            console.error("Sign-in error:", error.response ? error.response.data : error.message);
+            setError(error.response ? error.response.data.message : "An error occurred. Please try again.");
         }
     };
 
@@ -32,6 +34,7 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
             email: '',
             password: ''
         });
+        setError('');
     };
 
     if (!isOpen) return null;
@@ -52,6 +55,7 @@ const SigninModal = ({ isOpen, onClose, onSwitchToSignup }) => {
                             <h1 className="text-3xl font-bold italic">Sign In</h1>
                             <p className="text-gray-300 font-semibold">Fill up the form below to log into your account.</p>
                         </div>
+                        {error && <p className="text-red-500 text-center">{error}</p>}
                         <form onSubmit={handleSubmit}>
                             <input
                                 className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
