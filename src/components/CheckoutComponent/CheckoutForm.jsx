@@ -4,6 +4,7 @@ import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement, useElem
 import axios from 'axios';
 import { CartContext } from '../../CartContext';
 import AuthContext from '../../AuthContext'; // Import AuthContext for authentication
+import SuccessModal from './SuccessModal';
 
 const stripePromise = loadStripe('pk_test_51PiCIrEwYbDgtEhczRVguhi5v83HYID2ovbzrsZmQbtzQYk7AJgLf0oo8UZmFksiFySG30Yx5jfU6LaeikzYTPXa00ygqCf60a');
 
@@ -27,6 +28,7 @@ const CheckoutForm = () => {
 
     const [paymentType, setPaymentType] = useState('card');
     const [error, setError] = useState(null);
+    const [successModalOpen, setSuccessModalOpen] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
@@ -55,9 +57,9 @@ const CheckoutForm = () => {
         const orderData = {
             formData,
             total_amount: totalAmount,
-            payment_type: paymentType,
+            payment_type: paymentType, // Ensure payment_type is included here
         };
-
+    
         try {
             if (paymentType === 'card') {
                 const cardNumberElement = elements.getElement(CardNumberElement);
@@ -85,39 +87,68 @@ const CheckoutForm = () => {
     
                 const response = await axios.post('http://127.0.0.1:8000/api/create-payment-intent', {
                     total_amount: totalAmount,
-                    payment_method_id: paymentMethod.id
-                    
+                    payment_method_id: paymentMethod.id,
+                    formData,
+                    payment_type: paymentType // Include payment_type here as well
                 }, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
-
+    
                 const { client_secret } = response.data;
-
+    
                 const { error: confirmError } = await stripe.confirmCardPayment(client_secret, {
                     payment_method: paymentMethod.id,
                 });
-
+    
                 if (confirmError) {
                     setError('Payment confirmation error: ' + confirmError.message);
                     return;
                 }
+    
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    billingAddress: '',
+                    city: '',
+                    country: '',
+                    postalCode: '',
+                    phone: '',
+                    email: '',
+                    shippingAddress: ''
+                });
+                setSuccessModalOpen(true);
             } else {
                 await axios.post('http://127.0.0.1:8000/api/place-order', orderData, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
+    
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    billingAddress: '',
+                    city: '',
+                    country: '',
+                    postalCode: '',
+                    phone: '',
+                    email: '',
+                    shippingAddress: ''
+                });
+                setSuccessModalOpen(true);
             }
-
-            // Handle success
-            alert('Order placed successfully!');
         } catch (error) {
             setError('Error placing order: ' + (error.response?.data?.message || error.message));
         }
     };
 
+    const handleCloseModal = () => {
+        setSuccessModalOpen(false);
+    };
+    
+    
     return (
         <div className="container mx-auto px-4 py-8 bg-white">
             <h2 className="flex items-center w-full pb-6">
@@ -178,19 +209,33 @@ const CheckoutForm = () => {
 
                 <div className="bg-gray-100 p-6 rounded-lg shadow-md">
                     <h3 className="text-lg font-semibold mb-4">Payment Method</h3>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Payment Type</label>
-                        <div className="mt-1">
-                            <label className="inline-flex items-center mr-4">
-                                <input type="radio" name="paymentType" value="card" checked={paymentType === 'card'} onChange={handlePaymentTypeChange} className="form-radio text-lime-500" />
-                                <span className="ml-2">Card</span>
-                            </label>
-                            <label className="inline-flex items-center">
-                                <input type="radio" name="paymentType" value="cash" checked={paymentType === 'cash'} onChange={handlePaymentTypeChange} className="form-radio text-lime-500" />
-                                <span className="ml-2">Cash on Delivery</span>
-                            </label>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Payment Type</label>
+                            <div className="mt-2">
+                                <label className="inline-flex items-center mr-4">
+                                    <input 
+                                        type="radio" 
+                                        name="paymentType" 
+                                        value="card" 
+                                        checked={paymentType === 'card'} 
+                                        onChange={handlePaymentTypeChange} 
+                                        className="form-radio text-lime-500" 
+                                    />
+                                    <span className="ml-2">Card</span>
+                                </label>
+                                <label className="inline-flex items-center">
+                                    <input 
+                                        type="radio" 
+                                        name="paymentType" 
+                                        value="cash" 
+                                        checked={paymentType === 'cash'} 
+                                        onChange={handlePaymentTypeChange} 
+                                        className="form-radio text-lime-500" 
+                                    />
+                                    <span className="ml-2">Cash on Delivery</span>
+                                </label>
+                            </div>
                         </div>
-                    </div>
 
                     {paymentType === 'card' && (
                         <div className="mt-4">
@@ -218,6 +263,7 @@ const CheckoutForm = () => {
                 </div>
                 {error && <div className="text-red-500 mt-4">{error}</div>}
             </form>
+            <SuccessModal isOpen={successModalOpen} onClose={handleCloseModal} />
         </div>
     );
 };
