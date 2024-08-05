@@ -57,21 +57,14 @@ const CheckoutForm = () => {
             total_amount: totalAmount,
             payment_type: paymentType,
         };
-    
+
         try {
             if (paymentType === 'card') {
                 const cardNumberElement = elements.getElement(CardNumberElement);
-                const cardExpiryElement = elements.getElement(CardExpiryElement);
-                const cardCvcElement = elements.getElement(CardCvcElement);
     
                 const { error, paymentMethod } = await stripe.createPaymentMethod({
                     type: 'card',
-                    card: {
-                        number: cardNumberElement.value,
-                        exp_month: cardExpiryElement.value.split('/')[0],
-                        exp_year: cardExpiryElement.value.split('/')[1],
-                        cvc: cardCvcElement.value,
-                    },
+                    card: cardNumberElement,
                     billing_details: {
                         name: `${formData.firstName} ${formData.lastName}`,
                         address: {
@@ -90,13 +83,26 @@ const CheckoutForm = () => {
                     return;
                 }
     
-                orderData.payment_method_id = paymentMethod.id;
-    
-                await axios.post('http://127.0.0.1:8000/api/process-payment', orderData, {
+                const response = await axios.post('http://127.0.0.1:8000/api/create-payment-intent', {
+                    total_amount: totalAmount,
+                    payment_method_id: paymentMethod.id
+                    
+                }, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
+
+                const { client_secret } = response.data;
+
+                const { error: confirmError } = await stripe.confirmCardPayment(client_secret, {
+                    payment_method: paymentMethod.id,
+                });
+
+                if (confirmError) {
+                    setError('Payment confirmation error: ' + confirmError.message);
+                    return;
+                }
             } else {
                 await axios.post('http://127.0.0.1:8000/api/place-order', orderData, {
                     headers: {
@@ -160,61 +166,66 @@ const CheckoutForm = () => {
                             <input type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" required />
                         </div>
                     </div>
+                </div>
+
+                <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+                    <h3 className="text-lg font-semibold mb-4">Shipping Details</h3>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Shipping Address</label>
                         <input type="text" name="shippingAddress" value={formData.shippingAddress} onChange={handleChange} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" required />
                     </div>
                 </div>
-                
+
                 <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                    <h3 className="text-lg font-semibold mb-4">Payment Details</h3>
-                    <div className="flex items-center space-x-4 mb-4">
-                        <div>
-                            <input type="radio" id="card" name="paymentType" value="card" checked={paymentType === 'card'} onChange={handlePaymentTypeChange} />
-                            <label htmlFor="card" className="ml-2 text-sm font-medium text-gray-700">Card</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="cod" name="paymentType" value="cod" checked={paymentType === 'cod'} onChange={handlePaymentTypeChange} />
-                            <label htmlFor="cod" className="ml-2 text-sm font-medium text-gray-700">Cash On Delivery</label>
+                    <h3 className="text-lg font-semibold mb-4">Payment Method</h3>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Payment Type</label>
+                        <div className="mt-1">
+                            <label className="inline-flex items-center mr-4">
+                                <input type="radio" name="paymentType" value="card" checked={paymentType === 'card'} onChange={handlePaymentTypeChange} className="form-radio text-lime-500" />
+                                <span className="ml-2">Card</span>
+                            </label>
+                            <label className="inline-flex items-center">
+                                <input type="radio" name="paymentType" value="cash" checked={paymentType === 'cash'} onChange={handlePaymentTypeChange} className="form-radio text-lime-500" />
+                                <span className="ml-2">Cash on Delivery</span>
+                            </label>
                         </div>
                     </div>
-                    
+
                     {paymentType === 'card' && (
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">Card Number</label>
-                                <CardNumberElement className="p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" />
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="mt-4">
+                            <label className="block text-sm font-medium text-gray-700">Card Number</label>
+                            <CardNumberElement className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">Expiration Date (MM/YY)</label>
-                                    <CardExpiryElement className="p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" />
+                                    <CardExpiryElement className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">CVC</label>
-                                    <CardCvcElement className="p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" />
+                                    <CardCvcElement className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:border-lime-500 focus:ring-lime-200" />
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
-                
-                {error && (
-                    <div className="bg-red-100 text-red-700 p-4 rounded-md">
-                        {error}
-                    </div>
-                )}
 
-                <button type="submit" className="w-full py-2 px-4 bg-lime-500 text-white font-semibold rounded-md hover:bg-lime-600">Place Order</button>
+                <div className="text-center">
+                    <button type="submit" className="mt-6 px-6 py-3 bg-lime-500 text-white rounded-md shadow-md hover:bg-lime-600">
+                        Place Order
+                    </button>
+                </div>
+                {error && <div className="text-red-500 mt-4">{error}</div>}
             </form>
         </div>
     );
 };
 
-export default function CheckoutPage() {
-    return (
-        <Elements stripe={stripePromise}>
-            <CheckoutForm />
-        </Elements>
-    );
-}
+const WrappedCheckoutForm = () => (
+    <Elements stripe={stripePromise}>
+        <CheckoutForm />
+    </Elements>
+);
+
+export default WrappedCheckoutForm;
