@@ -111,7 +111,7 @@ const NavBar = () => {
                                 </li>
                                 <li className="group">
                                     <Link
-                                        to="/checkout"
+                                        to=""
                                         className={`bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold ${activeItem === 'checkout' ? 'text-amber-500' : ''}`}
                                         onClick={() => handleMenuItemClick('checkout')}
                                     >
