@@ -57,11 +57,15 @@ const NavBar = () => {
     return (
         <nav className="bg-white p-4 sticky top-0 left-0 w-full z-50">
             <div className="container mx-auto flex items-center justify-between">
-                <div>
-                    <Link to="/" className="hover:text-amber-500 text-lime-500 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">
-                        Pomona's HarvestHaven
-                    </Link>
-                </div>
+            <div>
+                <Link
+                    to="/"
+                    className="bg-gradient-to-r from-lime-500 via-amber-400 to-green-600 bg-clip-text text-fill-transparent text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold"
+                >
+                    Pomona's HarvestHaven
+                </Link>
+            </div>
+
                 <div className="flex items-center">
                     <div className="ml-4 md:hidden">
                         <button className="text-lime-500 hover:text-amber-500 focus:outline-none" onClick={toggleMobileMenu}>

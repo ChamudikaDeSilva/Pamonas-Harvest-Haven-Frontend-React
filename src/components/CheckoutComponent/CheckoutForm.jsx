@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51PiCIrEwYbDgtEhczRVguhi5v83HYID2ovbzr
 const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, clearCart } = useContext(CartContext);
     const { user } = useContext(AuthContext); // Get user from AuthContext
 
     const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const CheckoutForm = () => {
     const [paymentType, setPaymentType] = useState('card');
     const [error, setError] = useState(null);
     const [successModalOpen, setSuccessModalOpen] = useState(false);
-
+    
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -119,6 +119,7 @@ const CheckoutForm = () => {
                     shippingAddress: ''
                 });
                 setSuccessModalOpen(true);
+                clearCart();
             } else {
                 await axios.post('http://127.0.0.1:8000/api/place-order', orderData, {
                     headers: {
@@ -138,6 +139,7 @@ const CheckoutForm = () => {
                     shippingAddress: ''
                 });
                 setSuccessModalOpen(true);
+                clearCart();
             }
         } catch (error) {
             setError('Error placing order: ' + (error.response?.data?.message || error.message));
