@@ -9,85 +9,97 @@ import Fact from './components/homeComponent/Fact';
 import Products from './components/homeComponent/Products';
 import Address from './components/commonComponent/address';
 import Testimonials from './components/homeComponent/Testimonials';
-import ShopHero from './components/shopComponent/ShopHero'; 
-import ShopPageContent from './components/shopComponent/ShopPageContent'; 
+import ShopHero from './components/shopComponent/ShopHero';
+import ShopPageContent from './components/shopComponent/ShopPageContent';
 import ImageContainer from './components/homeComponent/ImageContainer';
 import LogoSwiper from './components/homeComponent/LogoSwiper';
 import HealthyFoodComponent from './components/homeComponent/HealthyFoodComponent';
 import AboutUsHero from './components/aboutUsComponent/AboutUsHero';
 import AboutImageContainer from './components/aboutUsComponent/AboutImageContainer';
 import ShopRedirect from './components/aboutUsComponent/ShopRedirect';
-import { CartProvider } from './CartContext';
+import { CartProvider } from './contexts/CartContext';
 import CartHero from './components/cartComponent/CartHero';
 import CartDetails from './components/cartComponent/CartDetails';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import CheckoutCart from './components/CheckoutComponent/CheckoutCart';
 import CheckoutHero from './components/CheckoutComponent/CheckoutHero';
 import ContactUS from './components/ContactUsComponent/ContactUS';
 import ContactUsHero from './components/ContactUsComponent/ContactUsHero';
-
-
+import ProtectedRoute from './components/RouteProtectComponent/ProtectedRoute';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <AuthProvider>
-        <CartProvider>
-        <Address />
-        <NavBar />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <ImageContainer/>
-              <Services />
-              <Products />
-              <Banner />
-              <Fact />
-              <Testimonials />
-              <LogoSwiper/>
-            </>
-          } />
-          <Route path="/shop" element={
-            <>
-              <ShopHero />
-              <ShopPageContent />
-              <Testimonials /> 
-            </>
-          } />
-          <Route path="/about-us" element={
-            <>
-              <AboutUsHero />
-              <HealthyFoodComponent />
-              <AboutImageContainer />
-              <ShopRedirect />
-              <Testimonials />
-              <LogoSwiper/>
-            </>
-          } />
-          <Route path="/shopping-cart" element={
-            <>
-             <CartHero />
-             <CartDetails />
-            </>
-          }/>
-          <Route path="/checkout" element={
-            <>
-              <CheckoutHero />
-              <CheckoutCart />
+          <CartProvider>
+            <Address />
+            <NavBar />
+            <Routes>
+              <Route path='/' element={
+                  <>
+                    <Hero />
+                    <ImageContainer />
+                    <Services />
+                    <Products />
+                    <Banner />
+                    <Fact />
+                    <Testimonials />
+                    <LogoSwiper />
+                  </>
+                }
+              />
+
+              <Route path='/shop' element={
+                  <>
+                    <ShopHero />
+                    <ShopPageContent />
+                    <Testimonials />
+                  </>
+                }
+              />
+
+              <Route path='/about-us' element={
+                  <>
+                    <AboutUsHero />
+                    <HealthyFoodComponent />
+                    <AboutImageContainer />
+                    <ShopRedirect />
+                    <Testimonials />
+                    <LogoSwiper />
+                  </>
+                }
+              />
+
+              <Route path='/shopping-cart' element={
+                  <>
+                    <CartHero />
+                    <CartDetails />
+                  </>
+                }
+              />
+
+              <Route path='/checkout' element={
+                  <ProtectedRoute element={
+                  <>
+                    <CheckoutHero />
+                    <CheckoutCart />
+                  </>
+                  }/>
+                }
+              />
+
+              <Route path='/contact-us'element={
+                  <>
+                    <ContactUsHero />
+                    <ContactUS />
+                  </>
+                }
+              />
               
-            </>
-          } />
-          <Route path="/contact-us" element={
-            <>
-              <ContactUsHero />
-              <ContactUS />
-            </>
-          } />
-        </Routes>
-        <Footer />
-        </CartProvider>
+            </Routes>
+            <Footer />
+          </CartProvider>
         </AuthProvider>
       </Router>
     </div>
@@ -95,3 +107,11 @@ function App() {
 }
 
 export default App;
+<Route path="/contact-us" element={
+                        <ProtectedRoute element={
+                            <>
+                                <ContactUsHero />
+                                <ContactUS />
+                            </>
+                        } />
+                    } />

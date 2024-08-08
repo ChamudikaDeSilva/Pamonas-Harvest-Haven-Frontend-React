@@ -5,10 +5,13 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
     useEffect(() => {
         getCurrentUser();
     }, []);
+    
 
     const register = async (name, email, password, confirmPassword) => {
         try {
@@ -20,6 +23,7 @@ export const AuthProvider = ({ children }) => {
             });
             setUser(response.data.user);
             localStorage.setItem('token', response.data.token);
+            setIsAuthenticated(true);
         } catch (error) {
             console.error('Registration error:', error.response.data);
             throw error;
@@ -31,6 +35,7 @@ export const AuthProvider = ({ children }) => {
             const response = await axios.post('http://127.0.0.1:8000/api/auth/login', { email, password });
             setUser(response.data.user);
             localStorage.setItem('token', response.data.authorisation.token);
+            setIsAuthenticated(true);
         } catch (error) {
             console.error('Login error:', error.response.data);
             throw error;
@@ -39,29 +44,40 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setUser(null);
+        setIsAuthenticated(false);
         localStorage.removeItem('token');
     };
 
     const getCurrentUser = async () => {
         try {
             const token = localStorage.getItem('token');
+            console.log('Token found:', token); // Debugging
             if (token) {
                 const response = await axios.get('http://127.0.0.1:8000/api/auth/user', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
+                console.log('User data:', response.data); // Debugging
                 setUser(response.data);
+                setIsAuthenticated(true); // Ensure this line is reached
+            } else {
+                setIsAuthenticated(false);
             }
         } catch (error) {
             console.error('Fetch current user error:', error);
-            logout(); // Log out if the token is invalid or expired
+            setIsAuthenticated(false); // Ensure to handle errors properly
         }
     };
+    
+    
+    
+    
 
     return (
-        <AuthContext.Provider value={{ user, register, login, logout, getCurrentUser }}>
+        <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, getCurrentUser }}>
             {children}
         </AuthContext.Provider>
     );
+    
 };
 
 export default AuthContext;

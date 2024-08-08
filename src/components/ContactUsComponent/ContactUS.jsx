@@ -111,7 +111,7 @@ const ContactUS = () => {
                 <input
                   type="text"
                   id="name"
-                  className="mt-1 block w-full border-2 border-lime-500 rounded-md py-2 px-3 text-gray-900 focus-border focus:border-amber-500 focus:ring focus:ring-amber-500 focus:ring-opacity-50"
+                  className="mt-1 block w-full border-2 border-lime-500 rounded-md py-2 px-3 text-gray-900 focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:bg-white"
                 />
               </div>
 
@@ -120,7 +120,7 @@ const ContactUS = () => {
                 <input
                   type="email"
                   id="email"
-                  className="mt-1 block w-full border-2 border-lime-500 rounded-md py-2 px-3 text-gray-900 focus:border-amber-500 focus:ring focus:ring-amber-500 focus:ring-opacity-50"
+                  className="mt-1 block w-full border-2 border-lime-500 rounded-md py-2 px-3 text-gray-900 focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:bg-white"
                 />
               </div>
 
@@ -129,7 +129,7 @@ const ContactUS = () => {
                 <textarea
                   id="message"
                   rows="4"
-                  className="mt-1 block w-full border-2 border-lime-500 rounded-md py-2 px-3 text-gray-900 focus:border-amber-500 focus:ring focus:ring-amber-500 focus:ring-opacity-50"
+                  className="mt-1 block w-full border-2 border-lime-500 rounded-md py-2 px-3 text-gray-900 focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:bg-white"
                 ></textarea>
               </div>
 
