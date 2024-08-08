@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import ItemExistModal from './components/cartComponent/ItemExistModal';
 
 // Create a Context for the cart
 export const CartContext = createContext();
@@ -6,13 +7,25 @@ export const CartContext = createContext();
 // Create a provider component
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems]);
 
     const addToCart = (product) => {
-        setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
+        setCartItems((prevItems) => {
+            const itemIndex = prevItems.findIndex((item) => item.id === product.id);
+
+            if (itemIndex !== -1) {
+                // Item already exists, show the modal
+                setIsModalOpen(true);
+                return prevItems;
+            } else {
+                // Item does not exist, add it to the cart
+                return [...prevItems, { ...product, quantity: 1 }];
+            }
+        });
     };
 
     const removeItemFromCart = (index) => {
@@ -40,6 +53,7 @@ export const CartProvider = ({ children }) => {
     return (
         <CartContext.Provider value={{ cartItems, addToCart, removeItemFromCart, updateItemQuantity, clearCart, cartCount }}>
             {children}
+            <ItemExistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </CartContext.Provider>
     );
 };

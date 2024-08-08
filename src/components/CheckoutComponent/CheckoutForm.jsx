@@ -48,112 +48,121 @@ const CheckoutForm = () => {
     const totalAmount = calculateTotal();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        if (!stripe || !elements) {
-            return;
-        }
+    e.preventDefault();
 
-        const cartData={
-            items: cartItems.map((item) => ({
-                id: item.id,
-                quantity: item.quantity || 1,
-                price: item.price
-            }))
-        }
-    
-        const orderData = {
-            formData,
-            total_amount: totalAmount,
-            payment_type: paymentType, // Ensure payment_type is included here
-        };
-    
-        try {
-            if (paymentType === 'card') {
-                const cardNumberElement = elements.getElement(CardNumberElement);
-    
-                const { error, paymentMethod } = await stripe.createPaymentMethod({
-                    type: 'card',
-                    card: cardNumberElement,
-                    billing_details: {
-                        name: `${formData.firstName} ${formData.lastName}`,
-                        address: {
-                            line1: formData.billingAddress,
-                            city: formData.city,
-                            country: formData.country,
-                            postal_code: formData.postalCode,
-                        },
-                        email: formData.email,
-                        phone: formData.phone,
-                    },
-                });
-    
-                if (error) {
-                    setError('Error with card details: ' + error.message);
-                    return;
-                }
-    
-                const response = await axios.post('http://127.0.0.1:8000/api/create-payment-intent', {
-                    total_amount: totalAmount,
-                    payment_method_id: paymentMethod.id,
-                    formData,
-                    cartData,
-                    payment_type: paymentType // Include payment_type here as well
-                }, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    }
-                });
-    
-                const { client_secret } = response.data;
-    
-                const { error: confirmError } = await stripe.confirmCardPayment(client_secret, {
-                    payment_method: paymentMethod.id,
-                });
-    
-                if (confirmError) {
-                    setError('Payment confirmation error: ' + confirmError.message);
-                    return;
-                }
-    
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    billingAddress: '',
-                    city: '',
-                    country: '',
-                    postalCode: '',
-                    phone: '',
-                    email: '',
-                    shippingAddress: ''
-                });
-                setSuccessModalOpen(true);
-                clearCart();
-            } else {
-                await axios.post('http://127.0.0.1:8000/api/place-order', orderData,cartData, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    }
-                });
-    
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    billingAddress: '',
-                    city: '',
-                    country: '',
-                    postalCode: '',
-                    phone: '',
-                    email: '',
-                    shippingAddress: ''
-                });
-                setSuccessModalOpen(true);
-                clearCart();
-            }
-        } catch (error) {
-            setError('Error placing order: ' + (error.response?.data?.message || error.message));
-        }
+    if (!stripe || !elements) {
+        console.log("Stripe.js or Elements not loaded");
+        return;
+    }
+
+    const cartData = {
+        items: cartItems.map((item) => ({
+            id: item.id,
+            quantity: item.quantity || 1,
+            price: item.price
+        }))
     };
+
+    // Debug: Logging cartData
+    console.log("Cart Data:", cartData);
+
+    const orderData = {
+        formData,
+        total_amount: totalAmount,
+        payment_type: paymentType, // Ensure payment_type is included here
+    };
+
+    try {
+        if (paymentType === 'card') {
+            const cardNumberElement = elements.getElement(CardNumberElement);
+
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: cardNumberElement,
+                billing_details: {
+                    name: `${formData.firstName} ${formData.lastName}`,
+                    address: {
+                        line1: formData.billingAddress,
+                        city: formData.city,
+                        country: formData.country,
+                        postal_code: formData.postalCode,
+                    },
+                    email: formData.email,
+                    phone: formData.phone,
+                },
+            });
+
+            if (error) {
+                console.error("Error with card details:", error.message);
+                setError('Error with card details: ' + error.message);
+                return;
+            }
+
+            console.log("Payment Method Created:", paymentMethod);
+
+            const response = await axios.post('http://127.0.0.1:8000/api/create-payment-intent', {
+                total_amount: totalAmount,
+                payment_method_id: paymentMethod.id,
+                formData,
+                cartData,
+                payment_type: paymentType // Include payment_type here as well
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            });
+
+            const { client_secret } = response.data;
+
+            const { error: confirmError } = await stripe.confirmCardPayment(client_secret, {
+                payment_method: paymentMethod.id,
+            });
+
+            if (confirmError) {
+                console.error("Payment confirmation error:", confirmError.message);
+                setError('Payment confirmation error: ' + confirmError.message);
+                return;
+            }
+
+            setFormData({
+                firstName: '',
+                lastName: '',
+                billingAddress: '',
+                city: '',
+                country: '',
+                postalCode: '',
+                phone: '',
+                email: '',
+                shippingAddress: ''
+            });
+            setSuccessModalOpen(true);
+            clearCart();
+        } else {
+            const response = await axios.post('http://127.0.0.1:8000/api/place-order', orderData, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            });
+
+            setFormData({
+                firstName: '',
+                lastName: '',
+                billingAddress: '',
+                city: '',
+                country: '',
+                postalCode: '',
+                phone: '',
+                email: '',
+                shippingAddress: ''
+            });
+            setSuccessModalOpen(true);
+            clearCart();
+        }
+    } catch (error) {
+        console.error("Error placing order:", error.response?.data?.message || error.message);
+        setError('Error placing order: ' + (error.response?.data?.message || error.message));
+    }
+};
 
     const handleCloseModal = () => {
         setSuccessModalOpen(false);

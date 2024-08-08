@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../CartContext';
 import EmptyCartMessage from '../cartComponent/EmptyCartMessage';
-import CheckoutWrapper from './CheckoutForm';// Adjust the path if necessary
+import CheckoutWrapper from './CheckoutForm';
 
 const CheckoutCart = () => {
     const { cartItems } = useContext(CartContext);

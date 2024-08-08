@@ -24,6 +24,7 @@ import { AuthProvider } from './AuthContext';
 import CheckoutCart from './components/CheckoutComponent/CheckoutCart';
 import CheckoutHero from './components/CheckoutComponent/CheckoutHero';
 import ContactUS from './components/ContactUsComponent/ContactUS';
+import ContactUsHero from './components/ContactUsComponent/ContactUsHero';
 
 
 
@@ -80,6 +81,7 @@ function App() {
           } />
           <Route path="/contact-us" element={
             <>
+              <ContactUsHero />
               <ContactUS />
             </>
           } />
