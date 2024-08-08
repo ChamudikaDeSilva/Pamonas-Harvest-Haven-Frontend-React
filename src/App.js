@@ -23,6 +23,7 @@ import CartDetails from './components/cartComponent/CartDetails';
 import { AuthProvider } from './AuthContext';
 import CheckoutCart from './components/CheckoutComponent/CheckoutCart';
 import CheckoutHero from './components/CheckoutComponent/CheckoutHero';
+import ContactUS from './components/ContactUsComponent/ContactUS';
 
 
 
@@ -75,6 +76,11 @@ function App() {
               <CheckoutHero />
               <CheckoutCart />
               
+            </>
+          } />
+          <Route path="/contact-us" element={
+            <>
+              <ContactUS />
             </>
           } />
         </Routes>

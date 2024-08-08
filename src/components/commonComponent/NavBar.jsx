@@ -134,7 +134,7 @@ const NavBar = () => {
                             </ul>
                         </div>
                         <Link
-                            to="/contact"
+                            to="/contact-us"
                             className={`text-lg font-semibold py-2 px-4 ${activeItem === 'contact' ? 'text-amber-500' : 'text-gray-500'} hover:text-amber-500`}
                             onClick={() => handleMenuItemClick('contact')}
                         >

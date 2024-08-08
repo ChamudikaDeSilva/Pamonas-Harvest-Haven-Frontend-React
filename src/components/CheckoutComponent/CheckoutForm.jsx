@@ -53,6 +53,14 @@ const CheckoutForm = () => {
         if (!stripe || !elements) {
             return;
         }
+
+        const cartData={
+            items: cartItems.map((item) => ({
+                id: item.id,
+                quantity: item.quantity || 1,
+                price: item.price
+            }))
+        }
     
         const orderData = {
             formData,
@@ -89,6 +97,7 @@ const CheckoutForm = () => {
                     total_amount: totalAmount,
                     payment_method_id: paymentMethod.id,
                     formData,
+                    cartData,
                     payment_type: paymentType // Include payment_type here as well
                 }, {
                     headers: {
@@ -121,7 +130,7 @@ const CheckoutForm = () => {
                 setSuccessModalOpen(true);
                 clearCart();
             } else {
-                await axios.post('http://127.0.0.1:8000/api/place-order', orderData, {
+                await axios.post('http://127.0.0.1:8000/api/place-order', orderData,cartData, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
