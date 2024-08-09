@@ -76,7 +76,7 @@ const CheckoutForm = () => {
     };
 
     // Debug: Logging cartData
-    console.log('Cart Data:', cartData);
+    //console.log('Cart Data:', cartData);
 
     const orderData = {
       formData,
@@ -110,7 +110,7 @@ const CheckoutForm = () => {
           return;
         }
 
-        console.log('Payment Method Created:', paymentMethod);
+        //console.log('Payment Method Created:', paymentMethod);
 
         const response = await axios.post(
           'http://127.0.0.1:8000/api/create-payment-intent',
@@ -192,6 +192,8 @@ const CheckoutForm = () => {
       );
     }
   };
+
+  const hasItems = cartItems.length > 0;
 
   const handleCloseModal = () => {
     setSuccessModalOpen(false);
@@ -396,12 +398,14 @@ const CheckoutForm = () => {
         </div>
 
         <div className='text-center'>
-          <button
-            type='submit'
-            className='mt-6 px-6 py-3 bg-lime-500 text-white rounded-md shadow-md hover:bg-lime-600'
-          >
-            Place Order
-          </button>
+        <button
+          type="submit"
+          className={`mt-6 px-6 w-3/4 align:center py-3 bg-lime-500 font-bold text-white rounded-md shadow-md hover:bg-lime-600 ${!hasItems ? 'cursor-not-allowed opacity-50' : ''}`}
+          disabled={!hasItems}
+      >
+          Place Order
+      </button>
+
         </div>
         {error && <div className='text-red-500 mt-4'>{error}</div>}
       </form>
