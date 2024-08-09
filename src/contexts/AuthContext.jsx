@@ -6,12 +6,11 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(true); // Track loading state
 
     useEffect(() => {
         getCurrentUser();
     }, []);
-    
 
     const register = async (name, email, password, confirmPassword) => {
         try {
@@ -50,34 +49,34 @@ export const AuthProvider = ({ children }) => {
 
     const getCurrentUser = async () => {
         try {
+            setIsLoading(true); // Start loading
             const token = localStorage.getItem('token');
             console.log('Token found:', token); // Debugging
+
             if (token) {
                 const response = await axios.get('http://127.0.0.1:8000/api/auth/user', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 console.log('User data:', response.data); // Debugging
                 setUser(response.data);
-                setIsAuthenticated(true); // Ensure this line is reached
+                setIsAuthenticated(true);
             } else {
                 setIsAuthenticated(false);
             }
         } catch (error) {
             console.error('Fetch current user error:', error);
-            setIsAuthenticated(false); // Ensure to handle errors properly
+            setIsAuthenticated(false); // Reset authentication on error
+            setUser(null); // Clear user data on error
+        } finally {
+            setIsLoading(false); // Stop loading
         }
     };
-    
-    
-    
-    
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, register, login, logout, getCurrentUser }}>
+        <AuthContext.Provider value={{ user, isAuthenticated, isLoading, register, login, logout, getCurrentUser }}>
             {children}
         </AuthContext.Provider>
     );
-    
 };
 
 export default AuthContext;

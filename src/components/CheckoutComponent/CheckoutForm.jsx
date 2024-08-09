@@ -10,7 +10,7 @@ import {
 } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { CartContext } from '../../contexts/CartContext';
-import AuthContext from '../../contexts/AuthContext'; // Import AuthContext for authentication
+import AuthContext from '../../contexts/AuthContext'; 
 import SuccessModal from './SuccessModal';
 
 const stripePromise = loadStripe(
@@ -21,7 +21,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { cartItems, clearCart } = useContext(CartContext);
-  const { user } = useContext(AuthContext); // Get user from AuthContext
+  const { user } = useContext(AuthContext); 
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -81,7 +81,7 @@ const CheckoutForm = () => {
     const orderData = {
       formData,
       total_amount: totalAmount,
-      payment_type: paymentType, // Ensure payment_type is included here
+      payment_type: paymentType, 
     };
 
     try {
@@ -119,7 +119,7 @@ const CheckoutForm = () => {
             payment_method_id: paymentMethod.id,
             formData,
             cartData,
-            payment_type: paymentType, // Include payment_type here as well
+            payment_type: paymentType, 
           },
           {
             headers: {
