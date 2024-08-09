@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TopInfo = () => (
   <div className="top-info sticky hidden md:flex flex-wrap justify-between items-center px-6 py-1 bg-lime-500 w-3/4 mx-auto rounded-[16px]">
@@ -13,10 +14,12 @@ const TopInfo = () => (
       </div>
     </div>
     <div className="top-link flex items-center space-x-4">
-      <a href=" " className="text-white text-sm hover:text-amber-500">Privacy Policy</a>
-      <span className="text-white">/</span>
+      <Link
+        to='/privacy-policy' className="text-white text-sm hover:text-amber-500">Privacy Policy
+      </Link>
+            <span className="text-white">/</span>
       <a href=" " className="text-white text-sm hover:text-amber-500">Terms of Use</a>
-      <span className="text-white">/</span>
+            <span className="text-white">/</span>
       <a href=" " className="text-white text-sm hover:text-amber-500">Sales and Refunds</a>
     </div>
   </div>

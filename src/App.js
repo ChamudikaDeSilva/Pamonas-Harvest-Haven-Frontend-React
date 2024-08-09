@@ -26,6 +26,8 @@ import CheckoutHero from './components/CheckoutComponent/CheckoutHero';
 import ContactUS from './components/ContactUsComponent/ContactUS';
 import ContactUsHero from './components/ContactUsComponent/ContactUsHero';
 import ProtectedRoute from './components/RouteProtectComponent/ProtectedRoute';
+import PrivacyPolicyHero from './components/PrivacyPolicyComponent/PrivacyPolicyHero';
+import PrivacyPolicy from './components/PrivacyPolicyComponent/PrivacyPolicy';
 
 function App() {
   return (
@@ -95,6 +97,16 @@ function App() {
                     <ContactUS />
                   </>
                 }
+              />
+
+              <Route path='/privacy-policy' element={
+                  <>
+                    <PrivacyPolicyHero />
+                    <PrivacyPolicy />
+                    <Testimonials />
+                    <LogoSwiper />
+                  </>
+              }
               />
               
             </Routes>
