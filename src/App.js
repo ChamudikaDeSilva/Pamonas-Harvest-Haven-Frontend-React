@@ -28,6 +28,8 @@ import ContactUsHero from './components/ContactUsComponent/ContactUsHero';
 import ProtectedRoute from './components/RouteProtectComponent/ProtectedRoute';
 import PrivacyPolicyHero from './components/PrivacyPolicyComponent/PrivacyPolicyHero';
 import PrivacyPolicy from './components/PrivacyPolicyComponent/PrivacyPolicy';
+import TermHero from './components/TermsComponent/TermsHero';
+import TermsConditions from './components/TermsComponent/TermsConditions';
 
 function App() {
   return (
@@ -108,7 +110,14 @@ function App() {
                   </>
               }
               />
-              
+
+              <Route path='/terms-conditions' element={
+                <>
+                  <TermHero />
+                  <TermsConditions />
+                </>
+              }
+              />
             </Routes>
             <Footer />
           </CartProvider>

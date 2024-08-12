@@ -18,7 +18,7 @@ const TopInfo = () => (
         to='/privacy-policy' className="text-white text-sm hover:text-amber-500">Privacy Policy
       </Link>
             <span className="text-white">/</span>
-      <a href=" " className="text-white text-sm hover:text-amber-500">Terms of Use</a>
+      <Link to="/terms-conditions" className="text-white text-sm hover:text-amber-500">Terms of Use</Link>
             <span className="text-white">/</span>
       <a href=" " className="text-white text-sm hover:text-amber-500">Sales and Refunds</a>
     </div>
