@@ -18,7 +18,7 @@ const CartDetails = () => {
 
   const calculateTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + parseFloat(item.price) * (item.quantity || 1),
+      (total, item) => total + parseFloat(item.unit_price) * (item.quantity || 1),
       0
     );
   };
@@ -93,7 +93,7 @@ const CartDetails = () => {
                           </div>
                         </td>
                         <td className='py-4'>
-                          Rs.{parseFloat(item.price).toFixed(2)}
+                          Rs.{parseFloat(item.unit_price).toFixed(2)}
                         </td>
                         <td className='py-4'>
                           <div className='flex items-center'>
@@ -118,7 +118,7 @@ const CartDetails = () => {
                         <td className='py-4'>
                           Rs.
                           {(
-                            parseFloat(item.price) * (item.quantity || 1)
+                            parseFloat(item.unit_price) * (item.quantity || 1)
                           ).toFixed(2)}
                         </td>
                         <td className='py-4'>

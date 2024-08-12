@@ -52,7 +52,7 @@ const CheckoutForm = () => {
 
   const calculateTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + parseFloat(item.price) * (item.quantity || 1),
+      (total, item) => total + parseFloat(item.unit_price) * (item.quantity || 1),
       0
     );
   };
@@ -159,7 +159,14 @@ const CheckoutForm = () => {
       } else {
         const response = await axios.post(
           'http://127.0.0.1:8000/api/place-order',
-          orderData,
+          {
+            total_amount: totalAmount,
+
+            formData,
+            cartData,
+            payment_type: paymentType, 
+          },
+          
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
