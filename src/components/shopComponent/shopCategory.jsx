@@ -224,7 +224,7 @@ const ShopCategory = () => {
                   {product.description}
                 </p>
                 <p className='text-gray-800 font-semibold text-sm sm:text-base mb-1'>
-                  Rs.{product.price}/1Kg
+                  Rs.{product.unit_price}/{product.unit}
                 </p>
                 <div className='flex justify-center items-center space-x-4 mt-2'>
                   <FontAwesomeIcon
