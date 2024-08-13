@@ -204,7 +204,7 @@ const ShopCategory = () => {
           {products.map((product) => (
             <div
               key={product.id}
-              className='bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm'
+              className='bg-gray-50 border border-gray-50 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm'
             >
               <div className='w-full h-36 sm:h-44 md:h-52 overflow-hidden'>
                 <img

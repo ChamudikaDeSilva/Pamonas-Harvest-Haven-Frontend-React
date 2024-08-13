@@ -30,6 +30,7 @@ import PrivacyPolicyHero from './components/PrivacyPolicyComponent/PrivacyPolicy
 import PrivacyPolicy from './components/PrivacyPolicyComponent/PrivacyPolicy';
 import TermHero from './components/TermsComponent/TermsHero';
 import TermsConditions from './components/TermsComponent/TermsConditions';
+import FrequentlyAskQuestion from './components/ContactUsComponent/F&Q';
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
                   <>
                     <ContactUsHero />
                     <ContactUS />
+                    <FrequentlyAskQuestion />
                   </>
                 }
               />
