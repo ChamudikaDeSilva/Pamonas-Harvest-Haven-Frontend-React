@@ -9,7 +9,7 @@ import {
 
 const Services = () => {
   return (
-    <div className='container mx-auto py-8 pt-16 pb-16'>
+    <div className='mx-auto py-8 pt-16 pb-16 bg-gray-200 w-screen'>
       {/*<h2 className="text-3xl md:text-4xl lg:text-5xl text-left text-gray-600 font-semibold mb-4 md:mb-6">
         Our Services
       </h2>*/}

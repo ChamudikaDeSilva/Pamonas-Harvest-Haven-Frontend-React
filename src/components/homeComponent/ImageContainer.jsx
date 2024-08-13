@@ -11,8 +11,14 @@ const ImageContainer = () => {
     return (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0">
             {images.map((image, index) => (
-                <div key={index} className="w-full h-full">
-                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                <div key={index} className={`relative w-full h-full transform origin-bottom ${
+                    index % 2 === 0 ? 'rotate-6' : '-rotate-12'
+                } hover:rotate-0 duration-500 hover:-translate-y-12`}>
+                    <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="rounded-xl h-full w-full object-cover hover:scale-100"
+                    />
                 </div>
             ))}
         </div>

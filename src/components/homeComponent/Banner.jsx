@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Banner() {
   return (
@@ -13,7 +14,7 @@ function Banner() {
               Discover a world of fresh, exotic products handpicked just for you. 
               Our store offers a unique selection of high-quality produce that brings vibrant flavors and essential nutrients to your table.
             </p>
-            <a href=" " className="banner-btn btn border-2 border-white rounded-full text-dark py-3 px-5 inline-block hover:bg-lime-500 ">SHOP</a>
+            <Link to="/shop" className="banner-btn btn border-2 border-white rounded-full text-dark py-3 px-5 inline-block hover:bg-lime-500 ">SHOP</Link>
           </div>
           <div className="relative">
             <img src="Images/baner-1.png" alt="Fresh Exotic Fruits" className="w-full rounded-md md:max-w-full md:rounded-none md:transform max-h-full" />

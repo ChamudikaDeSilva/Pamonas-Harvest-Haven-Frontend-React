@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ShopRedirect = () => {
   return (
@@ -9,13 +10,17 @@ const ShopRedirect = () => {
           <p className="text-gray-200 mb-6 italic font-light text-xl">
             Explore Pamona's Harvest Haven and discover the freshest and healthiest organic produce. Our commitment is to provide food that nourishes your body and respects the planet through sustainable farming practices.
           </p>
-          <button className="bg-lime-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-amber-500 transition duration-300">
-            Shop
-          </button>
+          
+          <Link to="/shop">
+            <button className="bg-lime-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-amber-500 transition duration-300">
+              Shop
+            </button>
+          </Link>
+          
         </div>
         <div className="md:w-1/3 flex justify-end items-center px-2 mt-4 md:mt-0">
           <img
-            src="/Images/Pamonas/basket.png" // Replace with the actual image path
+            src="/Images/Pamonas/basket.png" 
             alt="Shop with Us"
             className="w-full h-auto rounded-lg"
           />

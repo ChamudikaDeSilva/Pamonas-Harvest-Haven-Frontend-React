@@ -105,8 +105,7 @@ function App() {
                   <>
                     <PrivacyPolicyHero />
                     <PrivacyPolicy />
-                    <Testimonials />
-                    <LogoSwiper />
+                    
                   </>
               }
               />
