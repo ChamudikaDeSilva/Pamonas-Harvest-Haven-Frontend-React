@@ -163,13 +163,13 @@ const NavBar = () => {
                 </li>
                 <li className='group'>
                   <Link
-                    to='/testimonial'
+                    to='/my-account'
                     className={`bg-gray-200 text-gray-500 hover:bg-amber-500 py-2 px-4 block whitespace-no-wrap text-base font-semibold ${
                       activeItem === 'testimonial' ? 'text-amber-500' : ''
                     }`}
                     onClick={() => handleMenuItemClick('testimonial')}
                   >
-                    Testimonial
+                    My Account
                   </Link>
                 </li>
               </ul>

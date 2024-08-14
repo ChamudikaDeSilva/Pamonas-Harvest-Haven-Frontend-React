@@ -31,6 +31,8 @@ import PrivacyPolicy from './components/PrivacyPolicyComponent/PrivacyPolicy';
 import TermHero from './components/TermsComponent/TermsHero';
 import TermsConditions from './components/TermsComponent/TermsConditions';
 import FrequentlyAskQuestion from './components/ContactUsComponent/F&Q';
+import AccountHero from './components/MyAccountComponent/AccountHero';
+import MyOrders from './components/MyAccountComponent/MyOrders';
 
 function App() {
   return (
@@ -119,6 +121,14 @@ function App() {
                 </>
               }
               />
+
+              <Route path='/my-account' element={
+                <>
+                  <AccountHero />
+                  <MyOrders />
+                </>
+              }
+              />
             </Routes>
             <Footer />
           </CartProvider>
@@ -129,11 +139,3 @@ function App() {
 }
 
 export default App;
-<Route path="/contact-us" element={
-                        <ProtectedRoute element={
-                            <>
-                                <ContactUsHero />
-                                <ContactUS />
-                            </>
-                        } />
-                    } />
