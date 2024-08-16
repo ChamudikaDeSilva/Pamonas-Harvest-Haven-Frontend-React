@@ -70,7 +70,7 @@ const NavBar = () => {
       <img
         src="/Images/Harvest.png"
         alt="Pomona's HarvestHaven Logo"
-        className='w-24 h-auto mr-2' // Adjust width and margin as needed
+        className='w-16 h-auto mr-2' // Adjust width and margin as needed
       />
       {/* Text */}
       <Link

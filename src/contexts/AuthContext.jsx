@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
                 setIsAuthenticated(false);
             }
         } catch (error) {
-            console.error('Fetch current user error:', error);
+            //console.error('Fetch current user error:', error);
             setIsAuthenticated(false); // Reset authentication on error
             setUser(null); // Clear user data on error
         } finally {

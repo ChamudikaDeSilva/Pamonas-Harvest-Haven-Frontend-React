@@ -33,6 +33,7 @@ import TermsConditions from './components/TermsComponent/TermsConditions';
 import FrequentlyAskQuestion from './components/ContactUsComponent/F&Q';
 import AccountHero from './components/MyAccountComponent/AccountHero';
 import MyOrders from './components/MyAccountComponent/MyOrders';
+import PromoCards from './components/homeComponent/PromoCards';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
                     <Services />
                     <Products />
                     <Banner />
+                    <PromoCards />
                     <Fact />
                     <Testimonials />
                     <LogoSwiper />
