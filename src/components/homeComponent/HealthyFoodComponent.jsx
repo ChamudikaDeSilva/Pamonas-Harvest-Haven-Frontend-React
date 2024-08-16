@@ -33,7 +33,9 @@ const HealthyFoodComponent = () => {
           />
         </div>
         <div className="md:w-3/5 text-black p-8 rounded-2xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 mb-2 pl-2">Best Organic Fruits And Vegetables</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 mb-2 pl-2 text-white" style={{ 
+            textShadow: '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d' 
+            }}>Best Organic Fruits And Vegetables</h2>
           <h2 className="text-sm font-semibold tracking-wide uppercase mb-2 pl-2 text-gray-600">
             Get to know us
           </h2>

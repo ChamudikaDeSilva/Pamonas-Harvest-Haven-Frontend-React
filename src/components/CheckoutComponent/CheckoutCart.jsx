@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import EmptyCartMessage from '../cartComponent/EmptyCartMessage';
 import CheckoutWrapper from './CheckoutForm';
+import CheckoutHeading from './CheckoutHeading';
 
 const CheckoutCart = () => {
   const { cartItems } = useContext(CartContext);
@@ -17,6 +18,7 @@ const CheckoutCart = () => {
 
   return (
     <div className='bg-gray-100 h-auto py-8'>
+      <CheckoutHeading/>
       <div className='container mx-auto px-4'>
         <div className='flex flex-col md:flex-row gap-4'>
           {/* Left side - Cart Details */}
@@ -77,7 +79,7 @@ const CheckoutCart = () => {
             )}
 
             <div className='mt-4 pt-4 bg-gray-50 rounded-lg shadow-xl p-6'>
-              <h2 className='text-lg font-semibold mb-4'>Cart Total</h2>
+              <h2 className='text-lg font-semibold mb-4'>Your Total</h2>
               <div className='flex justify-between mb-2'>
                 <span>Subtotal</span>
                 <span>Rs.{calculateTotal().toFixed(2)}</span>

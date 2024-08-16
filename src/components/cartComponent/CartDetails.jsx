@@ -55,6 +55,15 @@ const CartDetails = () => {
 
   return (
     <div className='bg-gray-100 h-auto py-8'>
+      <div className="flex items-center justify-center pl-24 pr-22">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold mb-4 md:mb-6" style={{ 
+            textShadow: '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d' 
+          }}>
+            My Cart
+          </h2>
+          <div className="h-px flex-1 bg-green-600 pr-24"></div>
+      </div>
+      
       <div className='container mx-auto px-4'>
         <div className='flex flex-col md:flex-row gap-4 pt-10'>
           <div className='md:w-3/4'>

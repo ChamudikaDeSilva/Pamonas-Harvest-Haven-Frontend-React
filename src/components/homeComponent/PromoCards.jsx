@@ -18,11 +18,15 @@ const PromoCards = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <div className="flex justify-between gap-4">
+      <div className="flex flex-col lg:flex-row justify-between gap-4">
         {/* Card 1 */}
         <motion.div
           className="w-full lg:w-1/2 h-64 bg-cover bg-center cursor-pointer"
-          style={{ backgroundImage: "url('/Images/Pamonas/banners/vegetables2.jpg')" }}
+          style={{
+            backgroundImage: "url('/Images/Pamonas/banners/vegetables2.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
           onClick={handleCardClick}
           variants={cardVariants}
           initial="hidden"
@@ -37,7 +41,11 @@ const PromoCards = () => {
         {/* Card 2 */}
         <motion.div
           className="w-full lg:w-1/2 h-64 bg-cover bg-center cursor-pointer"
-          style={{ backgroundImage: "url('/Images/Pamonas/banners/papaya.jpg')" }}
+          style={{
+            backgroundImage: "url('/Images/Pamonas/banners/papaya.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
           onClick={handleCardClick}
           variants={cardVariants}
           initial="hidden"

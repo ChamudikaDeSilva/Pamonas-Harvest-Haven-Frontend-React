@@ -34,6 +34,7 @@ import FrequentlyAskQuestion from './components/ContactUsComponent/F&Q';
 import AccountHero from './components/MyAccountComponent/AccountHero';
 import MyOrders from './components/MyAccountComponent/MyOrders';
 import PromoCards from './components/homeComponent/PromoCards';
+import DealsCombos from './components/homeComponent/DealsCombo';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                     <Products />
                     <Banner />
                     <PromoCards />
+                    <DealsCombos />
                     <Fact />
                     <Testimonials />
                     <LogoSwiper />

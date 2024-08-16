@@ -73,9 +73,14 @@ const Products = () => {
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       <div className="container relative mx-auto mt-10 w-full">
         <div className="flex flex-col md:flex-row items-center justify-between mb-6 pb-2">
-          <h1 className="text-3xl md:text-5xl text-left text-white font-semibold mb-4 md:mb-0">
+        <div className="flex items-center justify-center pl-24 pr-22">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold mb-4 md:mb-6" style={{ 
+            textShadow: '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d' 
+          }}>
             Best Sellers
-          </h1>
+          </h2>
+          {/*<div className="h-px flex-1 bg-green-600 pr-24"></div>*/}
+      </div>
           <div className="flex space-x-2 md:space-x-4 flex-wrap justify-center md:justify-end">
             <button
               className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full ${currentCategory === 'all' ? 'bg-gray-400 text-white text-sm sm:text-lg' : 'bg-amber-500 text-gray-700 text-sm sm:text-lg'}`}
