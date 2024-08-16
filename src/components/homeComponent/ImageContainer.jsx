@@ -9,7 +9,7 @@ const ImageContainer = () => {
     ];
 
     return (
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0 pt-10">
             {images.map((image, index) => (
                 <div key={index} className={`relative w-full h-full transform origin-bottom ${
                     index % 2 === 0 ? 'rotate-6' : '-rotate-12'

@@ -1,0 +1,58 @@
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import CountUp from 'react-countup';
+
+function CounterSection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Only trigger the animation once
+    threshold: 0.3, // Trigger when 30% of the component is in view
+  });
+
+  return (
+    <div ref={ref} className="container-fluid py-10  my-0 left-0 w-full z-10 relative"style={{
+      position: 'relative',
+      overflow: 'hidden',
+      background: `url('data:image/svg+xml;utf8,<svg width="100%" height="100%" id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,400 L 0,0 C 18.684492306492793,48.483552543406226 37.368984612985585,96.96710508681245 64,104 C 90.63101538701441,111.03289491318755 125.20855385455044,76.61513219615642 153,90 C 180.79144614544956,103.38486780384358 201.79679996881262,164.57236612856184 223,179 C 244.20320003118738,193.42763387143816 265.60424627019887,161.09540328959622 293,139 C 320.39575372980113,116.90459671040378 353.78621495039187,105.04602071305334 381,107 C 408.21378504960813,108.95397928694666 429.25089392823367,124.72051385819043 449,150 C 468.74910607176633,175.27948614180957 487.2102093366733,210.07192385418486 517,222 C 546.7897906633267,233.92807614581514 587.9082687250734,222.9917907250701 618,184 C 648.0917312749266,145.0082092749299 667.1567157630336,77.96091324553466 693,89 C 718.8432842369664,100.03908675446534 751.464868222792,189.16455629279125 771,195 C 790.535131777208,200.83544370720875 796.9838113457982,123.38086158330034 822,85 C 847.0161886542018,46.61913841669965 890.5998863940152,47.31199737400732 919,90 C 947.4001136059848,132.68800262599268 960.6166430781408,217.3711489206704 985,217 C 1009.3833569218592,216.6288510793296 1044.9335412934215,131.20340694331105 1072,105 C 1099.0664587065785,78.79659305668895 1117.6491917481728,111.81522330608541 1138,116 C 1158.3508082518272,120.18477669391459 1180.4696917138872,95.53569983234728 1209,107 C 1237.5303082861128,118.46430016765272 1272.4720413962775,166.04197736452548 1299,181 C 1325.5279586037225,195.95802263547452 1343.6421427010023,178.29639070955085 1369,184 C 1394.3578572989977,189.70360929044915 1426.9593877997136,218.77245979727118 1440,192 C 1453.0406122002864,165.22754020272882 1446.5203061001432,82.61377010136441 1440,0 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="%2384cc16" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-0"></path></svg>') no-repeat center center`,
+      backgroundSize: 'cover',
+      
+    }}> 
+      <div className="container max-w-7xl mx-auto"> 
+        <div className="p-12 rounded-lg"> 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-center"> 
+
+            <div className="counter border border-lime-700 rounded-xl p-12 text-center "> 
+              <i className="fa fa-users text-amber-500 text-6xl mb-6"></i> 
+              <h4 className="text-2xl font-medium text-gray-700 mb-4">Satisfied Customers</h4> 
+              <h1 className="text-6xl font-bold text-gray-800">
+                {inView && <CountUp end={1963} duration={3} />}
+              </h1> 
+            </div>
+            <div className="counter border border-lime-700 rounded-xl p-12 text-center"> 
+              <i className="fa fa-star text-amber-500 text-6xl mb-6"></i> 
+              <h4 className="text-2xl font-medium text-gray-700 mb-4">Quality of Service</h4> 
+              <h1 className="text-6xl font-bold text-gray-800">
+                {inView && <CountUp end={99} duration={3} suffix="%" />}
+              </h1> 
+            </div>
+            <div className="counter border border-lime-700 rounded-xl p-12 text-center "> 
+              <i className="fa fa-certificate text-amber-500 text-6xl mb-6"></i> 
+              <h4 className="text-2xl font-medium text-gray-700 mb-4">Quality Certificates</h4> 
+              <h1 className="text-6xl font-bold text-gray-800">
+                {inView && <CountUp end={33} duration={3} />}
+              </h1> 
+            </div>
+            <div className="counter border border-lime-700 rounded-xl p-12 text-center "> 
+              <i className="fa fa-box text-amber-500 text-6xl mb-6"></i>
+              <h4 className="text-2xl font-medium text-gray-700 mb-4">Available Products</h4> 
+              <h1 className="text-6xl font-bold text-gray-800">
+                {inView && <CountUp end={789} duration={3} />}
+              </h1> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default CounterSection;

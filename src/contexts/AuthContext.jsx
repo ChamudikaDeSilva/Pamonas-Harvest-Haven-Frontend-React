@@ -51,13 +51,13 @@ export const AuthProvider = ({ children }) => {
         try {
             setIsLoading(true); // Start loading
             const token = localStorage.getItem('token');
-            console.log('Token found:', token); // Debugging
+            //console.log('Token found:', token); // Debugging
 
             if (token) {
                 const response = await axios.get('http://127.0.0.1:8000/api/auth/user', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                console.log('User data:', response.data); // Debugging
+                //console.log('User data:', response.data); // Debugging
                 setUser(response.data);
                 setIsAuthenticated(true);
             } else {

@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom';
 
 const ShopRedirect = () => {
   return (
-    <div className="bg-green-700 w-full py-10 flex flex-col items-center justify-center">
+    <div
+      className=" w-full py-10 flex flex-col items-center justify-center"
+      style={{
+        backgroundImage: 'url(/Images/svg.png)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-start md:items-center">
         <div className="md:w-2/3 px-2">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Shop with Us</h2><div className="w-20 h-2 bg-amber-500 my-4"></div>
-          <p className="text-gray-200 mb-6 italic font-light text-xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Shop with Us</h2>
+          <div className="w-20 h-2 bg-amber-500 my-4"></div>
+          <p className="text-gray-800 mb-6 italic font-light text-xl">
             Explore Pamona's Harvest Haven and discover the freshest and healthiest organic produce. Our commitment is to provide food that nourishes your body and respects the planet through sustainable farming practices.
           </p>
           
