@@ -14,6 +14,16 @@ const center = {
 const ContactUS = () => {
   return (
     <div className="container mx-auto px-4 py-8 pt-16">
+
+      <div className="flex items-center justify-center">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold mb-4 md:mb-6" style={{ 
+            textShadow: '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d' 
+            }}>
+            Contact Us
+        </h2>
+        <div className="h-px flex-1 bg-green-600"></div>
+      </div>
+
       <div className="flex flex-wrap">
         {/* Google Map Section */}
         <div className="w-full lg:w-5/12 mb-8 lg:mb-0">
