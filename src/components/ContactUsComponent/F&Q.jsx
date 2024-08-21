@@ -1,4 +1,56 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const FaqItem = ({ faq, index, openQuestion, toggleQuestion }) => {
+    const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+    const questionVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.1 } },
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            variants={questionVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            className="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50"
+        >
+            <button
+                type="button"
+                className="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+                onClick={() => toggleQuestion(index)}
+            >
+                <span className="flex text-lg font-semibold text-gray-700">
+                    {faq.question}
+                </span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className={`w-6 h-6 text-gray-400 transform transition-transform duration-200 ${
+                        openQuestion === index ? "rotate-0" : "rotate-180"
+                    }`}
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                    />
+                </svg>
+            </button>
+            {openQuestion === index && (
+                <div className="px-4 pb-5 sm:px-6 sm:pb-6">
+                    <p>{faq.answer}</p>
+                </div>
+            )}
+        </motion.div>
+    );
+};
 
 const FrequentlyAskQuestion = () => {
     const [openQuestion, setOpenQuestion] = useState(null);
@@ -10,7 +62,7 @@ const FrequentlyAskQuestion = () => {
     const faqs = [
         {
             question: "What types of organic foods do you offer?",
-            answer: "We offer a wide variety of organic fruits, vegetables, grains, dairy products,meats and more. All our products are sourced from certified organic farms."
+            answer: "We offer a wide variety of organic fruits, vegetables, grains, dairy products, meats, and more. All our products are sourced from certified organic farms."
         },
         {
             question: "How do you ensure the quality of your organic products?",
@@ -48,7 +100,6 @@ const FrequentlyAskQuestion = () => {
             question: "What should I do if I receive damaged or spoiled products?",
             answer: "If you receive any damaged or spoiled products, please contact our customer support immediately. We will arrange for a replacement or refund."
         },
-        
     ];
 
     return (
@@ -61,45 +112,17 @@ const FrequentlyAskQuestion = () => {
                 </div>
                 <div className="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16">
                     {faqs.map((faq, index) => (
-                        <div
+                        <FaqItem
                             key={index}
-                            className="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50"
-                        >
-                            <button
-                                type="button"
-                                className="flex items-center justify-between w-full px-4 py-5 sm:p-6"
-                                onClick={() => toggleQuestion(index)}
-                            >
-                                <span className="flex text-lg font-semibold text-gray-700">
-                                    {faq.question}
-                                </span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    className={`w-6 h-6 text-gray-400 transform transition-transform duration-200 ${
-                                        openQuestion === index ? "rotate-0" : "rotate-180"
-                                    }`}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            </button>
-                            {openQuestion === index && (
-                                <div className="px-4 pb-5 sm:px-6 sm:pb-6">
-                                    <p>{faq.answer}</p>
-                                </div>
-                            )}
-                        </div>
+                            faq={faq}
+                            index={index}
+                            openQuestion={openQuestion}
+                            toggleQuestion={toggleQuestion}
+                        />
                     ))}
                 </div>
                 <p className="text-center text-gray-600 text-base mt-9">
-                    Still have questions?
+                    Still have questions?{" "}
                     <span className="cursor-pointer font-medium text-tertiary transition-all duration-200 hover:text-tertiary focus:text-tertiary hover:underline">
                         Contact our support <span className="text-lime-500">pamonaorg@gmail.com</span>
                     </span>
