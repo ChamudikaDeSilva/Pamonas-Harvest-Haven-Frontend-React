@@ -18,10 +18,11 @@ const CartDetails = () => {
 
   const calculateTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + parseFloat(item.unit_price) * (item.quantity || 1),
+      (total, item) => total + parseFloat(item.current_price || item.unit_price) * (item.quantity || 1),
       0
     );
   };
+  
 
   const handleQuantityChange = (index, change) => {
     const newQuantity = cartItems[index].quantity + change;
@@ -55,7 +56,7 @@ const CartDetails = () => {
 
   return (
     <div className='bg-gray-100 h-auto py-8'>
-      <div className="flex items-center justify-center pl-24 pr-22">
+      <div className="flex items-center justify-center pl-48">
           <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold mb-4 md:mb-6" style={{ 
             textShadow: '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d' 
           }}>
@@ -102,7 +103,7 @@ const CartDetails = () => {
                           </div>
                         </td>
                         <td className='py-4'>
-                          Rs.{parseFloat(item.unit_price).toFixed(2)}
+                          Rs.{parseFloat(item.current_price || item.unit_price).toFixed(2)}
                         </td>
                         <td className='py-4'>
                           <div className='flex items-center'>
@@ -127,7 +128,7 @@ const CartDetails = () => {
                         <td className='py-4'>
                           Rs.
                           {(
-                            parseFloat(item.unit_price) * (item.quantity || 1)
+                            parseFloat(item.current_price || item.unit_price) * (item.quantity || 1)
                           ).toFixed(2)}
                         </td>
                         <td className='py-4'>
@@ -140,6 +141,7 @@ const CartDetails = () => {
                       </tr>
                     ))}
                   </tbody>
+
                 </table>
                 <div className='flex justify-between mt-4'>
                   <Link to='/shop'>

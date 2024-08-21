@@ -201,60 +201,76 @@ const ShopCategory = () => {
         </div>
 
         <div className='w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 pb-12 pr-2 pl-2 pt-3'>
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className='bg-gray-50 border border-gray-50 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm'
-            >
-              <div className='w-full h-36 sm:h-44 md:h-52 overflow-hidden'>
-                <img
-                  src={`http://localhost:8000${product.image}`}
-                  alt={product.name}
-                  className='w-full h-full object-cover transition duration-300 transform hover:scale-105'
-                />
-              </div>
-              <span className='absolute -right-px -top-px rounded-bl-3xl rounded-tr-md bg-red-600 px-4 py-2 font-medium uppercase tracking-widest text-white'>
-                Save 5%
+  {products.map((product) => (
+    <div
+      key={product.id}
+      className='bg-gray-50 border border-gray-50 rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm'
+    >
+      <div className='w-full h-36 sm:h-44 md:h-52 overflow-hidden'>
+        <img
+          src={`http://localhost:8000${product.image}`}
+          alt={product.name}
+          className='w-full h-full object-cover transition duration-300 transform hover:scale-105'
+        />
+      </div>
+      {/*<span className='absolute -right-px -top-px rounded-bl-3xl rounded-tr-md bg-red-600 px-4 py-2 font-medium uppercase tracking-widest text-white'>
+        Save 5%
+      </span>*/}
+      <div className='p-3 sm:p-4 text-center'>
+        <h2 className='text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1'>
+          {product.name}
+        </h2>
+        <p className='text-gray-600 text-sm sm:text-base mb-1 line-clamp-2'>
+          {product.description}
+        </p>
+        <div className='text-gray-800 font-semibold text-sm sm:text-base mb-1'>
+          {product.current_price !== product.unit_price ? (
+            <div className='flex justify-center items-center space-x-2'>
+              <span className='line-through'>
+                Rs.{product.unit_price}/{product.unit}
               </span>
-              <div className='p-3 sm:p-4 text-center'>
-                <h2 className='text-gray-900 text-md sm:text-lg md:text-xl font-semibold mb-1'>
-                  {product.name}
-                </h2>
-                <p className='text-gray-600 text-sm sm:text-base mb-1 line-clamp-2'>
-                  {product.description}
-                </p>
-                <p className='text-gray-800 font-semibold text-sm sm:text-base mb-1'>
-                  Rs.{product.unit_price}/{product.unit}
-                </p>
-                <div className='flex justify-center items-center space-x-4 mt-2'>
-                  <FontAwesomeIcon
-                    icon={faCartShopping}
-                    className='text-amber-500 text-lg hover:text-gray-700 transition duration-300'
-                    onClick={() => addToCart(product)}
-                  />
-                  <FontAwesomeIcon
-                    icon={faEye}
-                    className='text-amber-500 text-lg hover:text-gray-700 transition duration-300'
-                  />
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className='text-amber-500 text-lg hover:text-gray-700 transition duration-300'
-                  />
-                </div>
-              </div>
+              <span className='text-red-600'>
+                Rs.{product.current_price}/{product.unit}
+              </span>
             </div>
-          ))}
-          {placeholders.map((_, index) => (
-            <div
-              key={`placeholder-${index}`}
-              className='bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible'
-            >
-              <div className='w-full h-36 sm:h-44 md:h-52'></div>
-              <div className='p-3 sm:p-4'></div>
-            </div>
-          ))}
+          ) : (
+            <span>
+              Rs.{product.unit_price}/{product.unit}
+            </span>
+          )}
+        </div>
+        <div className='flex justify-center items-center space-x-4 mt-2'>
+          <FontAwesomeIcon
+            icon={faCartShopping}
+            className='text-amber-500 text-lg hover:text-gray-700 transition duration-300'
+            onClick={() => addToCart(product)}
+          />
+          <FontAwesomeIcon
+            icon={faEye}
+            className='text-amber-500 text-lg hover:text-gray-700 transition duration-300'
+          />
+          <FontAwesomeIcon
+            icon={faHeart}
+            className='text-amber-500 text-lg hover:text-gray-700 transition duration-300'
+          />
         </div>
       </div>
+    </div>
+  ))}
+  {placeholders.map((_, index) => (
+    <div
+      key={`placeholder-${index}`}
+      className='bg-white border border-white rounded-md shadow-md overflow-hidden shadow hover:shadow-2xl hover:shadow-gray-400 relative max-w-full sm:max-w-sm invisible'
+    >
+      <div className='w-full h-36 sm:h-44 md:h-52'></div>
+      <div className='p-3 sm:p-4'></div>
+    </div>
+  ))}
+</div>
+
+      </div>
+
+
       <div className='flex justify-center mt-4'>
         <button
           onClick={() => handlePageChange(page - 1)}
