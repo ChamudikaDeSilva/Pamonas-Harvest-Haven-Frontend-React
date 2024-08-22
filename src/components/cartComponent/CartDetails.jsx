@@ -7,6 +7,7 @@ import EmptyCartMessage from './EmptyCartMessage';
 import SignupModal from '../shopComponent/SignupModal';
 import SigninModal from '../shopComponent/SigninModal';
 import AuthContext from '../../contexts/AuthContext';
+import { motion } from 'framer-motion';
 
 const CartDetails = () => {
   const { cartItems, updateItemQuantity, removeItemFromCart } =
@@ -196,9 +197,39 @@ const CartDetails = () => {
                 Proceed to Checkout
               </button>
             </div>
+
+            <motion.div
+              className='mt-6 bg-amber-100 p-6 rounded-lg text-center shadow-lg'
+              initial={{ opacity: 0.8, scale: 1 }}
+              animate={{ opacity: [0.8, 1, 0.8], scale: [1, 1.05, 1] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: 'mirror',
+              }}
+            >
+              <h3 className='text-2xl font-bold mb-4 text-amber-800 flex items-center justify-center'>
+                <i className='fas fa-star text-amber-500 mr-2'></i>
+                Special Discounts!
+              </h3>
+              <p className='text-lg text-gray-800 mb-3'>
+                <i className='fas fa-gift text-red-600 mr-2'></i>
+                If this is your first order, enjoy a <span className='text-red-600 font-extrabold'>20% off</span>!
+              </p>
+              <p className='text-lg text-gray-800 mb-3'>
+                <i className='fas fa-calendar-alt text-red-600 mr-2'></i>
+                If it’s your 5th order or a multiple of 5, you get <span className='text-red-600 font-extrabold'>10% off</span>!
+              </p>
+              <p className='text-md text-gray-700 mt-4'>
+                <i className='fas fa-shopping-cart text-green-600 mr-2'></i>
+                Checkout to see whether you have the discounts!
+              </p>
+            </motion.div>
+
           </div>
         </div>
       </div>
+          
       <SignupModal
         isOpen={isSignupModalOpen}
         onClose={() => setIsSignupModalOpen(false)}
