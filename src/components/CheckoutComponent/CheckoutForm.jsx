@@ -10,18 +10,18 @@ import {
 } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { CartContext } from '../../contexts/CartContext';
-import AuthContext from '../../contexts/AuthContext'; 
+//import AuthContext from '../../contexts/AuthContext'; 
 import SuccessModal from './SuccessModal';
 
 const stripePromise = loadStripe(
   'pk_test_51PiCIrEwYbDgtEhczRVguhi5v83HYID2ovbzrsZmQbtzQYk7AJgLf0oo8UZmFksiFySG30Yx5jfU6LaeikzYTPXa00ygqCf60a'
 );
 
-const CheckoutForm = () => {
+const CheckoutForm = ({finalTotal,totalBeforeDiscount, totalDiscount}) => {
   const stripe = useStripe();
   const elements = useElements();
   const { cartItems, clearCart } = useContext(CartContext);
-  const { user } = useContext(AuthContext); 
+  //const { user } = useContext(AuthContext); 
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -50,14 +50,7 @@ const CheckoutForm = () => {
     setPaymentType(e.target.value);
   };
 
-  const calculateTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + parseFloat(item.unit_price) * (item.quantity || 1),
-      0
-    );
-  };
-
-  const totalAmount = calculateTotal();
+  const totalAmount = finalTotal;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,11 +71,11 @@ const CheckoutForm = () => {
     // Debug: Logging cartData
     //console.log('Cart Data:', cartData);
 
-    const orderData = {
+    /*const orderData = {
       formData,
       total_amount: totalAmount,
       payment_type: paymentType, 
-    };
+    };*/
 
     try {
       if (paymentType === 'card') {
@@ -421,9 +414,9 @@ const CheckoutForm = () => {
   );
 };
 
-const WrappedCheckoutForm = () => (
+const WrappedCheckoutForm = ({finalTotal, totalBeforeDiscount, totalDiscount}) => (
   <Elements stripe={stripePromise}>
-    <CheckoutForm />
+    <CheckoutForm finalTotal={finalTotal} totalBeforeDiscount={totalBeforeDiscount} totalDiscount={totalDiscount}/>
   </Elements>
 );
 

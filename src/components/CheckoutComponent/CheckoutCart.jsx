@@ -5,6 +5,7 @@ import CheckoutWrapper from './CheckoutForm';
 import CheckoutHeading from './CheckoutHeading';
 import axios from 'axios'; // or use your preferred method for API requests
 import { motion } from 'framer-motion';
+import WrappedCheckoutForm from './CheckoutForm';
 
 const CheckoutCart = () => {
   const { cartItems } = useContext(CartContext);
@@ -57,9 +58,15 @@ const CheckoutCart = () => {
     return discount;
   };
 
+  const hasItems = cartItems.length > 0;
+
+  const totalBeforeDiscount = calculateTotal() + (hasItems ? 1.99 : 0) + (hasItems ? 222.0 : 0);
+const totalDiscount = calculateDiscount();
+const finalTotal = totalBeforeDiscount - totalDiscount;
+
   
 
-  const hasItems = cartItems.length > 0;
+
 
   return (
     <div className='bg-gray-100 h-auto py-8'>
@@ -204,7 +211,7 @@ const CheckoutCart = () => {
       
           {/* Right side - Checkout Form */}
           <div className='md:w-2/3'>
-            <CheckoutWrapper />
+            <WrappedCheckoutForm  finalTotal={finalTotal} totalBeforeDiscount={totalBeforeDiscount} totalDiscount={totalDiscount}/>
           </div>
         </div>
       </div>
