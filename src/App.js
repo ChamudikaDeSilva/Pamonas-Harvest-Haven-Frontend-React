@@ -35,6 +35,7 @@ import AccountHero from './components/MyAccountComponent/AccountHero';
 import MyOrders from './components/MyAccountComponent/MyOrders';
 import PromoCards from './components/homeComponent/PromoCards';
 import DealsCombos from './components/homeComponent/DealsCombo';
+import OrderDetails from './components/MyAccountComponent/OrderDetails';
 
 function App() {
   return (
@@ -127,12 +128,16 @@ function App() {
               />
 
               <Route path='/my-account' element={
+                <ProtectedRoute element={
                 <>
                   <AccountHero />
                   <MyOrders />
                 </>
+                 }/>
               }
               />
+
+        <Route path='/view-my-orders/:orderId' element={<OrderDetails />} />      
             </Routes>
             <Footer />
           </CartProvider>
