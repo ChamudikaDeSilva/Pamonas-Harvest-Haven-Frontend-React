@@ -51,10 +51,11 @@ const CheckoutCart = () => {
 
     if (discounts.orderCount === 0) {
       discount += total * (discounts.firstOrderDiscount / 100);
-    } else if (discounts.orderCount % 5 === 0) {
+    } else if ((discounts.orderCount + 1) % 5 === 0) {
       discount += total * (discounts.fifthOrderDiscount / 100);
     }
-
+    
+  
     return discount;
   };
 

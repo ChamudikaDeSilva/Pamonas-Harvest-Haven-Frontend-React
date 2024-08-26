@@ -52,6 +52,11 @@ const CheckoutForm = ({finalTotal,totalBeforeDiscount, totalDiscount}) => {
 
   const totalAmount = finalTotal;
 
+  const totalwithoutDiscount=totalBeforeDiscount;
+
+  const finalDiscount=totalDiscount;
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -113,6 +118,8 @@ const CheckoutForm = ({finalTotal,totalBeforeDiscount, totalDiscount}) => {
             formData,
             cartData,
             payment_type: paymentType, 
+            total_without_Discount:totalwithoutDiscount,
+            final_Discount:finalDiscount,
           },
           {
             headers: {
@@ -158,6 +165,8 @@ const CheckoutForm = ({finalTotal,totalBeforeDiscount, totalDiscount}) => {
             formData,
             cartData,
             payment_type: paymentType, 
+            total_without_Discount:totalwithoutDiscount,
+            final_Discount:finalDiscount,
           },
           
           {
