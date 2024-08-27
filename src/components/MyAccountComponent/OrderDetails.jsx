@@ -55,7 +55,7 @@ const OrderDetails = () => {
                     <p className="text-lg"><strong>Email:</strong> {orderDetails.email}</p>
                 </div>
 
-                <h3 className="text-2xl font-semibold mb-4 text-gray-700">Items:</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-gray-700">Order Items:</h3>
                 <ul className="list-disc pl-6">
                     {orderDetails.items.map((item) => (
                         <li key={item.id} className="mb-4 p-4">
@@ -67,6 +67,23 @@ const OrderDetails = () => {
                         </li>
                     ))}
                 </ul>
+
+                {/* Display Discounts if Available */}
+                {orderDetails.discounts && orderDetails.discounts.length > 0 && (
+                    <div>
+                        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Order Discounts:</h3>
+                        <ul className="list-disc pl-6">
+                            {orderDetails.discounts.map((discount) => (
+                                <li key={discount.discount_id} className="mb-4 p-4">
+                                    <div className="text-lg text-gray-600"><strong>Discount ID:</strong> {discount.discount_id}</div>
+                                    <div className="text-lg text-gray-600"><strong>Total:</strong> Rs.{discount.previous_price}</div>
+                                    <div className="text-lg text-gray-600"><strong>Discount Amount:</strong> Rs.{discount.discount_amount}</div>  
+                                    <div className="text-lg text-gray-600"><strong>Discounted Total:</strong> Rs.{discount.current_price}</div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
         </div>
     );

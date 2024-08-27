@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IsLoading from '../commonComponent/IsLoading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faEye } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -13,9 +11,6 @@ const MyOrders = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
-    const navigate = useNavigate();
 
     // Fetch orders from the backend
     const fetchOrders = useCallback(async () => {
@@ -31,21 +26,6 @@ const MyOrders = () => {
             console.error('Error fetching orders:', error);
         }
     }, []);
-
-    const getStatusClass = (status) => {
-        switch (status) {
-            case 'pending':
-                return 'bg-yellow-200 text-yellow-800';
-            case 'completed':
-                return 'bg-blue-200 text-blue-800';
-            case 'processing':
-                return 'bg-green-200 text-green-800';
-            case 'cancelled':
-                return 'bg-red-200 text-red-800';
-            default:
-                return 'bg-gray-200 text-gray-800'; 
-        }
-    };
 
     useEffect(() => {
         fetchOrders();
@@ -71,24 +51,6 @@ const MyOrders = () => {
         setFilteredOrders(filtered);
         setIsLoading(false);
     }, [search, startDate, endDate, orders]);
-
-    // Calculate the paginated orders
-    const paginatedOrders = filteredOrders.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
-
-    // Calculate total pages
-    const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
-
-    // Handle page change
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
-
-    const handleViewOrder = (orderId) => {
-        navigate(`/view-my-orders/${orderId}`);
-    }
 
     return (
         <div className='flex flex-col w-full p-6 bg-white'>
@@ -140,43 +102,20 @@ const MyOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {paginatedOrders.map((order) => (
+                        {filteredOrders.map((order) => (
                             <tr key={order.id} className="hover:bg-gray-100">
                                 <td className="py-4 px-6 border-b font-light">{order.order_code}</td>
-                                <td className="py-4 px-6 border-b font-light">Rs.{order.total_amount}</td>
+                                <td className="py-4 px-6 border-b font-light">{order.total_amount}</td>
                                 <td className="py-4 px-6 border-b font-light">{order.date}</td>
-                                <td className="py-4 px-6 border-b">
-                                <div className={`inline-block py-1 px-3 rounded-md ${getStatusClass(order.status)}`}>
-                                    {order.status}
-                                </div>
-                                </td>
-                                <td className="py-4 px-6 border-b font-light space-x-4">
+                                <td className="py-4 px-6 border-b font-light">{order.status}</td>
+                                <td className="py-4 px-6 border-b font-light flex justify-center space-x-4">
                                     <FontAwesomeIcon icon={faPenToSquare} className="text-lime-500 cursor-pointer" />
-                                    <FontAwesomeIcon icon={faEye} className="text-lime-500 cursor-pointer" onClick={() => handleViewOrder(order.id)}/>
+                                    <FontAwesomeIcon icon={faEye} className="text-lime-500 cursor-pointer" />
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
-            <div className="flex justify-center mt-4 space-x-2">
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 rounded-full bg-gray-200 text-gray-700 disabled:opacity-50"
-                >
-                    Previous
-                </button>
-                <span className="px-4 py-2 rounded-full bg-lime-500 text-white">
-                    {currentPage}
-                </span>
-                <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 rounded-full bg-gray-200 text-gray-700 disabled:opacity-50"
-                >
-                    Next
-                </button>
             </div>
         </div>
     );

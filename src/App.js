@@ -36,6 +36,7 @@ import MyOrders from './components/MyAccountComponent/MyOrders';
 import PromoCards from './components/homeComponent/PromoCards';
 import DealsCombos from './components/homeComponent/DealsCombo';
 import OrderDetails from './components/MyAccountComponent/OrderDetails';
+import AboutImageGallery from './components/aboutUsComponent/AboutImageGallery';
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
                   <>
                     <AboutUsHero />
                     <HealthyFoodComponent />
+                    <AboutImageGallery />
                     <AboutImageContainer />
                     <ShopRedirect />
                     <Testimonials />
