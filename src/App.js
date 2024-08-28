@@ -37,6 +37,7 @@ import PromoCards from './components/homeComponent/PromoCards';
 import DealsCombos from './components/homeComponent/DealsCombo';
 import OrderDetails from './components/MyAccountComponent/OrderDetails';
 import AboutImageGallery from './components/aboutUsComponent/AboutImageGallery';
+import MyOrderDescription from './components/MyAccountComponent/MyOrderDescription';
 
 function App() {
   return (
@@ -133,6 +134,7 @@ function App() {
                 <ProtectedRoute element={
                 <>
                   <AccountHero />
+                  <MyOrderDescription />
                   <MyOrders />
                 </>
                  }/>

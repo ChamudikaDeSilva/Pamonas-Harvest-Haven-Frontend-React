@@ -33,7 +33,7 @@ const Testimonials = () => {
   return (
     <div 
       className="relative bg-fixed bg-cover bg-center py-10" 
-      style={{ backgroundImage: `url('Images/Pamonas/fruits & vegetables/testi-banner2.jpg')` }}
+      style={{ backgroundImage: `url('Images/Pamonas/fruits & vegetables/testi-banner3.jpg')` }}
     >
       <div className="bg-black bg-opacity-50 absolute inset-0"></div>
       <div className="container mx-auto mt-10 pb-10 relative z-10">
@@ -54,10 +54,10 @@ const Testimonials = () => {
                     className="rounded-full w-full h-full object-cover"
                   />
                 </div>
-                <h2 className="text-lime-500 font-semibold text-xl mb-1">{testimonial.name}</h2>
-                <p className="text-white text-lg mb-2">{testimonial.profession}</p>
+                <h2 className="text-lime-500 font-semibold text-xl mb-1 font-bold">{testimonial.name}</h2>
+                <p className="text-white text-lg mb-2 font-semibold">{testimonial.profession}</p>
                 <div className="w-full md:w-3/4 lg:w-1/2">
-                  <p className="text-white text-lg font-light break-words whitespace-pre-wrap">
+                  <p className="text-white text-lg font-semibold break-words whitespace-pre-wrap">
                     {testimonial.text}
                   </p>
                 </div>

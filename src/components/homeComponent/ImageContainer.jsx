@@ -4,8 +4,8 @@ import { useInView } from 'react-intersection-observer';
 
 const ImageContainer = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Trigger the animation only once
-    threshold: 0.2, // Trigger when 20% of the component is visible
+    triggerOnce: true, 
+    threshold: 0.2, 
   });
 
   const containerVariants = {
