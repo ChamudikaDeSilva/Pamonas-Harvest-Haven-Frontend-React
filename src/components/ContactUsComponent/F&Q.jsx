@@ -45,7 +45,7 @@ const FaqItem = ({ faq, index, openQuestion, toggleQuestion }) => {
             </button>
             {openQuestion === index && (
                 <div className="px-4 pb-5 sm:px-6 sm:pb-6">
-                    <p>{faq.answer}</p>
+                    <p className="text-green-700">{faq.answer}</p>
                 </div>
             )}
         </motion.div>
@@ -103,7 +103,7 @@ const FrequentlyAskQuestion = () => {
     ];
 
     return (
-        <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
+        <section className="py-10 bg-gradient-to-r from-green-300 via-amber-200 to-lime-100 -sm:py-16 lg:py-24">
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="max-w-2xl mx-auto text-center">
                     <h2 className="text-3xl font-bold leading-tight text-lime-600 sm:text-4xl lg:text-5xl">
@@ -124,7 +124,7 @@ const FrequentlyAskQuestion = () => {
                 <p className="text-center text-gray-600 text-base mt-9">
                     Still have questions?{" "}
                     <span className="cursor-pointer font-medium text-tertiary transition-all duration-200 hover:text-tertiary focus:text-tertiary hover:underline">
-                        Contact our support <span className="text-lime-500">pamonaorg@gmail.com</span>
+                        Contact our support <span className="text-lime-600">pamonaorg@gmail.com</span>
                     </span>
                 </p>
             </div>

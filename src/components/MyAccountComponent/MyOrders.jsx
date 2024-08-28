@@ -91,7 +91,7 @@ const MyOrders = () => {
     }
 
     return (
-        <div className='flex flex-col w-full p-6 bg-white'>
+        <div className='flex flex-col w-full p-6 bg-gray-50'>
             {isLoading && (
                 <div className='absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-50'>
                     <IsLoading />

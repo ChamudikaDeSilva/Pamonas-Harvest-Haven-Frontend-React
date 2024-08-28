@@ -13,37 +13,37 @@ const DealsCombos = () => {
   const productsData = [
     {
       image: 'Images/Pamonas/baskets/veg1.png',
-      price: '$20.00',
+      price: 'Rs.5500.00',
       name: 'Small Veg Combo',
     },
     {
       image: 'Images/Pamonas/baskets/veg2.png',
-      price: '$15.00',
+      price: 'Rs.7500.00',
       name: 'Large Veg Combo',
     },
     {
       image: 'Images/Pamonas/baskets/fruit1.png',
-      price: '$30.00',
+      price: 'Rs.10000.00',
       name: 'Large Fruit Combo',
     },
     {
       image: 'Images/Pamonas/baskets/fruit-basket.jpg',
-      price: '$25.00',
+      price: 'Rs.20000.00',
       name: 'Small Fruit Combo',
     },
     {
       image: 'Images/Pamonas/baskets/meat-1.png',
-      price: '$10.00',
+      price: 'Rs.25000.00',
       name: 'Meat Combo',
     },
     {
       image: 'Images/Pamonas/baskets/dairy1.png',
-      price: '$10.00',
+      price: 'Rs.24600.00',
       name: 'Dairy Combo',
     },
     {
       image: 'Images/Pamonas/baskets/mix1.png',
-      price: '$10.00',
+      price: 'Rs.27500.00',
       name: 'Mix Combo',
     },
   ];

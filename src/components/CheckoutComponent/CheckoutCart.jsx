@@ -121,54 +121,54 @@ const finalTotal = totalBeforeDiscount - totalDiscount;
               <EmptyCartMessage />
             )}
 
-<div className='mt-4 pt-4 bg-gray-50 rounded-lg shadow-xl p-6'>
-  <h2 className='text-lg font-semibold mb-4'>Your Order Summary</h2>
+        <div className='mt-4 pt-4 bg-gray-50 rounded-lg shadow-xl p-6'>
+          <h2 className='text-lg font-semibold mb-4'>Your Order Summary</h2>
 
-  <table className='w-full text-sm'>
-    <tbody>
-      {/* Subtotal */}
-      <tr className='border-b'>
-        <td className='py-2 text-left'>Subtotal</td>
-        <td className='py-2 text-right'>Rs.{calculateTotal().toFixed(2)}</td>
-      </tr>
-      
-      {/* Taxes */}
-      <tr className='border-b'>
-        <td className='py-2 text-left text-red-500'>+ Taxes</td>
-        <td className='py-2 text-right text-red-500'>Rs.{hasItems ? 1.99.toFixed(2) : 0.0}</td>
-      </tr>
+          <table className='w-full text-sm'>
+            <tbody>
+              {/* Subtotal */}
+              <tr className='border-b'>
+                <td className='py-2 text-left'>Subtotal</td>
+                <td className='py-2 text-right'>Rs.{calculateTotal().toFixed(2)}</td>
+              </tr>
+              
+              {/* Taxes */}
+              <tr className='border-b'>
+                <td className='py-2 text-left text-red-500'>+ Taxes</td>
+                <td className='py-2 text-right text-red-500'>Rs.{hasItems ? 1.99.toFixed(2) : 0.0}</td>
+              </tr>
 
-      {/* Delivery */}
-      <tr className='border-b'>
-        <td className='py-2 text-left text-red-500'>+ Delivery</td>
-        <td className='py-2 text-right text-red-500'>Rs.{hasItems ? 222.0.toFixed(2) : 0.0}</td>
-      </tr>
+              {/* Delivery */}
+              <tr className='border-b'>
+                <td className='py-2 text-left text-red-500'>+ Delivery</td>
+                <td className='py-2 text-right text-red-500'>Rs.{hasItems ? 222.0.toFixed(2) : 0.0}</td>
+              </tr>
 
-      {/* Intermediate Total */}
-      <tr className='border-b'>
-        <td className='py-2 text-left font-semibold'>Total Before Discount</td>
-        <td className='py-2 text-right font-semibold'>
-          Rs.{(calculateTotal() + (hasItems ? 1.99 : 0) + (hasItems ? 222.0 : 0)).toFixed(2)}
-        </td>
-      </tr>
+              {/* Intermediate Total */}
+              <tr className='border-b'>
+                <td className='py-2 text-left font-semibold'>Total Before Discount</td>
+                <td className='py-2 text-right font-semibold'>
+                  Rs.{(calculateTotal() + (hasItems ? 1.99 : 0) + (hasItems ? 222.0 : 0)).toFixed(2)}
+                </td>
+              </tr>
 
-      {/* Discount */}
-      {calculateDiscount() > 0 && (
-        <tr className='border-b'>
-          <td className='py-2 text-left text-green-700'>- Discount</td>
-          <td className='py-2 text-right text-green-700'>- Rs.{calculateDiscount().toFixed(2)}</td>
-        </tr>
-      )}
+              {/* Discount */}
+              {calculateDiscount() > 0 && (
+                <tr className='border-b'>
+                  <td className='py-2 text-left text-green-700'>- Discount</td>
+                  <td className='py-2 text-right text-green-700'>- Rs.{calculateDiscount().toFixed(2)}</td>
+                </tr>
+              )}
 
-      {/* Final Total */}
-      <tr>
-        <td className='py-2 text-left font-semibold text-lg'>Final Total</td>
-        <td className='py-2 text-right font-semibold text-lg'>
-          Rs.{(calculateTotal() + (hasItems ? 1.99 : 0) + (hasItems ? 222.0 : 0) - calculateDiscount()).toFixed(2)}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+              {/* Final Total */}
+              <tr>
+                <td className='py-2 text-left font-semibold text-lg'>Final Total</td>
+                <td className='py-2 text-right font-semibold text-lg'>
+                  Rs.{(calculateTotal() + (hasItems ? 1.99 : 0) + (hasItems ? 222.0 : 0) - calculateDiscount()).toFixed(2)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
         {/* Discount Applied Message */}
         {calculateDiscount() > 0 && (
@@ -196,7 +196,7 @@ const finalTotal = totalBeforeDiscount - totalDiscount;
               <span className='ml-1 text-green-600 font-bold'>
                 {discounts.orderCount === 0
                   ? "it's your first order!"
-                  : discounts.orderCount % 5 === 0
+                  : (discounts.orderCount + 1) % 5 === 0
                   ? "it's your 5th order or a multiple of 5!"
                   : "you don't qualify for any discount."}
               </span>
