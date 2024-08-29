@@ -72,7 +72,7 @@ const ContactUS = () => {
                 <div className="ml-6 grow">
                   <p className="mb-2 font-bold">Address</p>
                   <p className="text-sm text-neutral-500">
-                    100, Kandy Road, <br /> Colombo <br />
+                    100, Kandy Road, <br /> Colombo. <br />
                   </p>
                 </div>
               </div>
@@ -107,7 +107,7 @@ const ContactUS = () => {
                 </div>
                 <div className="ml-6 grow">
                   <p className="mb-2 font-bold">Office</p>
-                  <p className="text-neutral-500">N/A</p>
+                  <p className="text-neutral-500">+94 71 8899080</p>
                 </div>
               </div>
             </div>
