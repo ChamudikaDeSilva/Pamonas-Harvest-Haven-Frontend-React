@@ -12,7 +12,7 @@ const productsData = [
     category: 'vegetable',
     image: '/Images/Pamonas/fruits & vegetables/vegetables/tomato.jpg',
     description: 'Fresh and organic Tomatoes',
-    price: '$2.99/kg',
+    price: 'Rs.220/500g',
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const productsData = [
     category: 'vegetable',
     image: '/Images/Pamonas/fruits & vegetables/vegetables/broccoli1.jpg',
     description: 'Fresh and organic Broccoli',
-    price: '$2.99/kg',
+    price: 'Rs.285/250g',
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const productsData = [
     category: 'vegetable',
     image: '/Images/Pamonas/fruits & vegetables/vegetables/potato.jpg',
     description: 'Fresh and organic Potatoes',
-    price: '$2.99/kg',
+    price: 'Rs.150/500g',
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const productsData = [
     category: 'fruit',
     image: '/Images/Pamonas/fruits & vegetables/fruits/orange2.jpg',
     description: 'Juicy and delicious Oranges',
-    price: '$3.99/kg',
+    price: 'Rs.290/250g',
   },
   {
     id: 5,
@@ -44,7 +44,7 @@ const productsData = [
     category: 'fruit',
     image: '/Images/Pamonas/fruits & vegetables/fruits/raspberry.jpg',
     description: 'Juicy and delicious Raspberry',
-    price: '$3.99/kg',
+    price: 'Rs.440/250g',
   },
   {
     id: 6,
@@ -52,7 +52,7 @@ const productsData = [
     category: 'fruit',
     image: '/Images/Pamonas/fruits & vegetables/fruits/banana1.jpg',
     description: 'Juicy and delicious Banana',
-    price: '$3.99/kg',
+    price: 'Rs.100/500g',
   },
 ];
 

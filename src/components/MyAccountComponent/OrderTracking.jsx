@@ -7,6 +7,7 @@ import axios from 'axios';
 const OrderTracking = ({ closeModal, orderId }) => {
     const [order, setOrder] = useState(null);
     const [currentStage, setCurrentStage] = useState(0);
+    const[expectedArrival,setExpectedArrival]=useState(null);
 
     useEffect(() => {
         // Fetch order details from backend
@@ -14,6 +15,7 @@ const OrderTracking = ({ closeModal, orderId }) => {
             .then(response => {
                 setOrder(response.data.order);
                 setCurrentStage(response.data.currentStage);
+                setExpectedArrival(response.data.expectedArrival);
             })
             .catch(error => {
                 console.error("There was an error fetching the order details!", error);
@@ -22,6 +24,8 @@ const OrderTracking = ({ closeModal, orderId }) => {
 
     // Calculate the width of the filled portion of the progress bar based on the current stage
     const stageWidth = (currentStage / 4) * 100 + '%';
+    
+    const expected_Arrival=expectedArrival;
 
     if (!order) return null; // Show nothing until the order is loaded
 
@@ -37,7 +41,7 @@ const OrderTracking = ({ closeModal, orderId }) => {
 
                 <div className="tracking-progress">
                     <p className="text-lg">Invoice: #{order.order_code}</p>
-                    <p className="text-sm text-gray-500 mb-6">Expected Arrival: {order.expected_arrival}</p>
+                    <p className="text-sm text-gray-500 mb-6">Expected Arrival: {expected_Arrival}</p>
 
                     <div className="relative w-full">
                         {/* Progress Bar */}
