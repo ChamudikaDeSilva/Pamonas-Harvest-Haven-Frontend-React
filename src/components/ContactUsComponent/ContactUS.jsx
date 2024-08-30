@@ -1,43 +1,51 @@
-import React from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useEffect, useRef,useState } from 'react';
+import mapboxgl from 'mapbox-gl';
 
-const mapContainerStyle = {
-  width: '100%',
-  height: '400px',
-};
-
-const center = {
-  lat: 40.748817, // Replace with your latitude
-  lng: -73.985428, // Replace with your longitude
-};
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcG15cmlkZSIsImEiOiJjbGJidGxwbWwxaWI5M3Btcmt5aG1qM3QzIn0.a6HysriQllTrSISuxRgyXw'; // Replace with your actual Mapbox access token
 
 const ContactUS = () => {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(79.7718);
+  const [lat, setLat] = useState(6.8731);
+  const [zoom, setZoom] = useState(8);
+
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [lng, lat],
+      zoom: zoom
+    });
+
+    map.current.on('move', () => {
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+    });
+  });
+
   return (
     <div className="container mx-auto px-4 py-8 pt-16">
-
       <div className="flex items-center justify-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold mb-4 md:mb-6" style={{ 
-            textShadow: '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d' 
-            }}>
-            Contact Us
+        <h2
+          className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold mb-4 md:mb-6"
+          style={{
+            textShadow:
+              '1px 1px 0 #15803d, -1px -1px 0 #15803d, 1px -1px 0 #15803d, -1px 1px 0 #15803d',
+          }}
+        >
+          Contact Us
         </h2>
         <div className="h-px flex-1 bg-green-600"></div>
       </div>
 
       <div className="flex flex-wrap">
-        {/* Google Map Section */}
         <div className="w-full lg:w-5/12 mb-8 lg:mb-0">
-          <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={center}
-              zoom={12}
-            >
-              <Marker position={center} />
-            </GoogleMap>
-          </LoadScript>
+          <div id="map" ref={mapContainer} style={{ width: '100%', height: '400px' }}></div>
         </div>
-
+      
         {/* Contact Info Section */}
         <div className="w-full lg:w-7/12 lg:pl-8"> {/* Added lg:pl-8 for padding-left */}
           <div className="flex flex-wrap">
