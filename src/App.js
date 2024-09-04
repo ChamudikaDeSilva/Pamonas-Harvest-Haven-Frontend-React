@@ -68,6 +68,7 @@ function App() {
                   <>
                     <ShopHero />
                     <ShopPageContent />
+                    <DealsCombos />
                     <Testimonials />
                   </>
                 }
