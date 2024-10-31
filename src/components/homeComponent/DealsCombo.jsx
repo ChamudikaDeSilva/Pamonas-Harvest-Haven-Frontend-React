@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,43 +11,26 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const DealsCombos = () => {
-  const productsData = [
-    {
-      image: 'Images/Pamonas/baskets/veg1.png',
-      price: 'Rs.5500.00',
-      name: 'Small Veg Combo',
-    },
-    {
-      image: 'Images/Pamonas/baskets/veg2.png',
-      price: 'Rs.7500.00',
-      name: 'Large Veg Combo',
-    },
-    {
-      image: 'Images/Pamonas/baskets/fruit1.png',
-      price: 'Rs.10000.00',
-      name: 'Large Fruit Combo',
-    },
-    {
-      image: 'Images/Pamonas/baskets/fruit-basket.jpg',
-      price: 'Rs.20000.00',
-      name: 'Small Fruit Combo',
-    },
-    {
-      image: 'Images/Pamonas/baskets/meat-1.png',
-      price: 'Rs.25000.00',
-      name: 'Meat Combo',
-    },
-    {
-      image: 'Images/Pamonas/baskets/dairy1.png',
-      price: 'Rs.24600.00',
-      name: 'Dairy Combo',
-    },
-    {
-      image: 'Images/Pamonas/baskets/mix1.png',
-      price: 'Rs.27500.00',
-      name: 'Mix Combo',
-    },
-  ];
+  const [productsData, setProductsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchShopData = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8001/api/product/management/fetch/deals');
+        const { deals } = response.data;
+        setProductsData(deals);
+      } catch (error) {
+        console.error('Error fetching shop data:', error);
+        setError('Failed to load deals.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchShopData();
+  }, []);
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -78,44 +62,50 @@ const DealsCombos = () => {
         <div className="h-px flex-1 bg-green-600 pr-24"></div>
       </div>
       <div className="container mx-auto mt-10 pb-10 relative z-10">
-        <Swiper
-          modules={[Autoplay, Navigation]}
-          spaceBetween={20}
-          slidesPerView={1} // Default to 1 slide for small screens
-          breakpoints={{
-            640: { slidesPerView: 2, spaceBetween: 20 }, // 2 slides on small screens
-            768: { slidesPerView: 3, spaceBetween: 20 }, // 3 slides on medium screens
-            1024: { slidesPerView: 4, spaceBetween: 20 }, // 4 slides on large screens
-          }}
-          navigation={{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }}
-          autoplay={{ delay: 3000 }}
-          loop={true}
-        >
-          {productsData.map((product, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex flex-col items-center p-4 bg-white shadow-lg">
-                <div className="w-full h-40 mb-4">
-                  <img
-                    src={product.image}
-                    alt={`Product ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+        {isLoading ? (
+          <p className="text-center text-gray-600">Loading deals...</p>
+        ) : error ? (
+          <p className="text-center text-red-600">{error}</p>
+        ) : (
+          <Swiper
+            modules={[Autoplay, Navigation]}
+            spaceBetween={20}
+            slidesPerView={1} // Default to 1 slide for small screens
+            breakpoints={{
+              640: { slidesPerView: 2, spaceBetween: 20 }, // 2 slides on small screens
+              768: { slidesPerView: 3, spaceBetween: 20 }, // 3 slides on medium screens
+              1024: { slidesPerView: 4, spaceBetween: 20 }, // 4 slides on large screens
+            }}
+            navigation={{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }}
+            autoplay={{ delay: 3000 }}
+            loop={true}
+          >
+            {productsData.map((product, index) => (
+              <SwiperSlide key={index}>
+                <div className="flex flex-col items-center p-4 bg-white shadow-lg">
+                  <div className="w-full h-40 mb-4">
+                    <img
+                      src={`http://localhost:8001${product.image}`} // Adjust this path if needed
+                      alt={`Product ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h2 className="text-black font-bold text-xl mb-2">{product.name}</h2>
+                  <h2 className="text-gray-700 font-semibold text-sm sm:text-base mb-2">
+                    {product.unit_price ? `Rs.${product.unit_price}` : 'Price not available'}
+                  </h2>
+                  <div className="flex justify-center items-center space-x-4 mt-2">
+                    <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                    <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                    <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                  </div>
                 </div>
-                <h2 className="text-black font-bold text-xl mb-2">{product.name}</h2>
-                <h2 className="text-gray-700 font-semibold text-sm sm:text-base mb-2">
-                  {product.price}
-                </h2>
-                <div className="flex justify-center items-center space-x-4 mt-2">
-                  <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                  <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                  <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-          <div className="swiper-button-prev text-lime-500"></div>
-          <div className="swiper-button-next text-lime-500"></div>
-        </Swiper>
+              </SwiperSlide>
+            ))}
+            <div className="swiper-button-prev text-lime-500"></div>
+            <div className="swiper-button-next text-lime-500"></div>
+          </Swiper>
+        )}
       </div>
     </motion.div>
   );
