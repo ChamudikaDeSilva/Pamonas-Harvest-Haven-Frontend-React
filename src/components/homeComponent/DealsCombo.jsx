@@ -95,9 +95,9 @@ const DealsCombos = () => {
                     {product.unit_price ? `Rs.${product.unit_price}` : 'Price not available'}
                   </h2>
                   <div className="flex justify-center items-center space-x-4 mt-2">
-                    <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                    {/* <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
                     <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-                    <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
+                    <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" /> */}
                   </div>
                 </div>
               </SwiperSlide>

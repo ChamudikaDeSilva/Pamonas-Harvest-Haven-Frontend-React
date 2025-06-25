@@ -153,7 +153,7 @@ const MyOrders = () => {
                                 </div>
                                 </td>
                                 <td className="py-4 px-6 border-b font-light space-x-4">
-                                    <FontAwesomeIcon icon={faPenToSquare} className="text-green-700 cursor-pointer" />
+                                    {/* <FontAwesomeIcon icon={faPenToSquare} className="text-green-700 cursor-pointer" /> */}
                                     <FontAwesomeIcon icon={faEye} className="text-green-700 cursor-pointer" onClick={() => handleViewOrder(order.id)}/>
                                 </td>
                             </tr>

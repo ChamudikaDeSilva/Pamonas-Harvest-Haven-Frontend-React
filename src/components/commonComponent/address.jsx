@@ -20,7 +20,7 @@ const TopInfo = () => (
             <span className="text-white">/</span>
       <Link to="/terms-conditions" className="text-white text-sm hover:text-amber-500">Terms of Use</Link>
             <span className="text-white">/</span>
-      <a href=" " className="text-white text-sm hover:text-amber-500">Sales and Refunds</a>
+      <a href="/" className="text-white text-sm hover:text-amber-500">Sales and Refunds</a>
     </div>
   </div>
 );

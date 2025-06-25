@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import IsLoading from '../commonComponent/IsLoading';
 import OrderTracking from './OrderTracking';
-import { faCircleInfo, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-
 
 const OrderDetails = () => {
     const { orderId } = useParams();
@@ -41,92 +39,144 @@ const OrderDetails = () => {
         );
     }
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     return (
-        <div 
-    className="mx-auto py-8 pb-16 w-screen bg-gray-50 relative"
-    style={{ backgroundImage: 'url(/images/Pamonas/frame2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}
->
-        <div className="relative max-w-4xl mx-auto backdrop-blur-sm bg-white/50 rounded-lg shadow-lg p-8 mt-10">
-            
-        <div className="relative z-10">
-            <div className="flex justify-between items-center mb-6">
-                <h2 className="text-4xl font-bold text-black">Order Details</h2>
-                <div className="flex space-x-4">
-                    <Link to="/my-account">
-                        <FontAwesomeIcon icon={faCircleArrowLeft} className="text-black text-2xl cursor-pointer" />
-                    </Link>
-                    <FontAwesomeIcon icon={faCircleInfo} className="text-black text-2xl cursor-pointer" onClick={openModal} />
-                
-                </div>
-            </div>
-                
-                <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6 ">
-                    <div className="p-6  rounded-lg shadow-md backdrop-blur-sm bg-white/20">
-                        <p className="text-lg"><strong>Order Code:</strong> {orderDetails.order_code}</p>
-                        <p className="text-lg"><strong>Total Amount:</strong> Rs.{orderDetails.total_amount}</p>
-                        <p className="text-lg"><strong>Date:</strong> {orderDetails.date}</p>
-                        <p className="text-lg"><strong>Status:</strong> 
-                            <span className={`ml-2 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                                orderDetails.status === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                            }`}>
-                                {orderDetails.status === 'Completed' ? <FaCheckCircle className="mr-1"/> : <FaTimesCircle className="mr-1"/>}
-                                {orderDetails.status}
-                            </span>
-                        </p>
-                    </div> 
-                    <div className="p-6  rounded-lg shadow-md backdrop-blur-sm bg-white/20">
-                        <p className="text-lg"><strong>Shipping Address:</strong> {orderDetails.shipping_address}</p>
-                        <p className="text-lg"><strong>Country:</strong> {orderDetails.country}</p>
-                        <p className="text-lg"><strong>Payment Status:</strong> {orderDetails.payment_status}</p>
-                        <p className="text-lg"><strong>Phone Number:</strong> {orderDetails.phone}</p>
-                        <p className="text-lg"><strong>Email:</strong> {orderDetails.email}</p>
+        <div className="bg-gray-100 py-10 px-4">
+            <div className="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-8">
+                {/* Header */}
+                <div className="flex justify-between items-center border-b pb-6 mb-6">
+                    <img src="/images/1.png" alt="Logo" className="h-14 object-contain w-24 h-24"  />
+                    <div className="text-right space-y-2">
+                        <h2 className="text-3xl font-bold text-gray-900">
+                            {orderDetails.payment_status === 'paid' ? 'Invoice' : 'Order'}
+                        </h2>
+
+                        <p className="text-sm text-gray-600">Order ID: <span className="font-semibold">{orderDetails.order_code}</span></p>
+                        <p className="text-sm text-gray-600">Date: {orderDetails.date}</p>
                     </div>
                 </div>
 
-                <h3 className="text-3xl font-semibold mb-4 text-black">Order Items</h3>
-                <div className="space-y-4">
-                    {orderDetails.items.map((item) => (
-                        <div key={item.id} className="p-6 backdrop-blur-sm bg-white/20 rounded-lg shadow-md flex justify-between items-center">
-                            <div>
-                                <h4 className="text-xl font-medium text-gray-800">{item.product_name}</h4>
-                                <p className="text-gray-600 font-light"><strong>Quantity:</strong> {item.quantity}</p>
-                                <p className="text-gray-600 font-light"><strong>Selling Unit:</strong> {item.product.unit}</p>
-                                <p className="text-gray-600 font-light"><strong>Unit Price:</strong> Rs.{item.unit_price}</p>
-                            </div>
-                            <div>
-                                <p className="text-lg text-gray-900"><strong>Discounted Price:</strong> Rs.{item.current_price}</p>
-                            </div>
-                        </div>
-                    ))}
+                {/* Customer & Shipping Info */}
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 className="text-lg font-semibold mb-2 text-gray-800">Billing Info</h3>
+                        <p><strong>Name:</strong> {orderDetails.first_name || 'N/A'}</p>
+                        <p><strong>Email:</strong> {orderDetails.email}</p>
+                        <p><strong>Phone:</strong> {orderDetails.phone}</p>
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-semibold mb-2 text-gray-800">Shipping Info</h3>
+                        <p><strong>Address:</strong> {orderDetails.shipping_address}</p>
+                        <p><strong>Country:</strong> {orderDetails.country}</p>
+                        <p><strong>Payment Status:</strong> {orderDetails.payment_status}</p>
+                    </div>
                 </div>
 
-                {/* Display Discounts if Available */}
-                {orderDetails.discounts && orderDetails.discounts.length > 0 && (
-                    <div className="mt-8">
-                        <h3 className="text-3xl font-semibold mb-4 text-black">Order Discounts</h3>
-                        <div className="space-y-4">
-                            {orderDetails.discounts.map((discount) => (
-                                <div key={discount.discount_id} className="p-6 rounded-lg shadow-md backdrop-blur-sm bg-white/20">
-                                    <p className="text-lg text-gray-600 font-light"><strong>Discount ID:</strong> {discount.discount_id}</p>
-                                    <p className="text-lg text-gray-600 font-light"><strong>Total:</strong> Rs.{discount.previous_price}</p>
-                                    <p className="text-lg text-gray-600 font-light"><strong>Discount Amount:</strong> Rs.{discount.discount_amount}</p>  
-                                    <p className="text-lg text-gray-900 font-light"><strong>Discounted Total:</strong> Rs.{discount.current_price}</p>
-                                </div>
-                            ))}
-                        </div>
+                {/* Order Items */}
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Order Items</h3>
+                <div className="overflow-x-auto">
+                    <table className="w-full table-auto border-collapse mb-6">
+                        <thead>
+                            <tr className="bg-gray-200 text-gray-700">
+                                <th className="py-3 px-4 text-left">Product</th>
+                                <th className="py-3 px-4 text-left">Unit</th>
+                                <th className="py-3 px-4 text-center">Quantity</th>
+                                <th className="py-3 px-4 text-right">Unit Price</th>
+                                <th className="py-3 px-4 text-right">Discount</th>
+                                <th className="py-3 px-4 text-right">Line Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orderDetails.items.map(item => {
+                                let displayQuantity = item.quantity;
+                                    displayQuantity = item.quantity/item.product.unit
+
+                                return (
+                                    <tr key={item.id} className="border-b text-gray-700">
+                                        <td className="py-2 px-4">{item.product_name}</td>
+                                        <td className="py-2 px-4">{item.product.unit}g</td>
+                                        <td className="py-2 px-4 text-center">{displayQuantity}</td>
+                                        <td className="py-2 px-4 text-right">Rs.{item.unit_price}</td>
+                                        <td className="py-2 px-4 text-right">
+                                            {item.unit_price > item.current_price ? `Rs.${(item.unit_price - item.current_price) * displayQuantity}` : 'Rs.0'}
+                                        </td>
+                                        <td className="py-2 px-4 text-right font-semibold">Rs.{item.current_price * displayQuantity}.00</td>
+                                    </tr>
+                                );
+                            })}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                {/* Discount Section */}
+                {orderDetails.discounts?.length > 0 && (
+                    <div className="mb-6">
+                        <h3 className="text-xl font-bold mb-4 text-gray-900">Discount Summary</h3>
+                        {orderDetails.discounts.map(discount => (
+                            <div key={discount.discount_id} className="p-4 bg-blue-50 rounded-md mb-4">
+                                <p><strong>Discount ID:</strong> {discount.discount_id}</p>
+                                <p><strong>Original Total:</strong> Rs.{discount.previous_price}</p>
+                                <p><strong>Discount:</strong> Rs.{discount.discount_amount}</p>
+                                <p className="font-semibold"><strong>Final Price:</strong> Rs.{discount.current_price}</p>
+                            </div>
+                        ))}
                     </div>
                 )}
+
+               {/* Status and Total */}
+                <div className="flex justify-between items-center mt-8 border-t pt-6">
+                    <div className="flex flex-col items-start gap-2">
+                        <div className="flex items-center gap-2">
+                            <p className="text-lg font-semibold">Order Status:</p>
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                                orderDetails.status === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                                {orderDetails.status === 'Completed' ? <FaCheckCircle className="mr-1" /> : <FaTimesCircle className="mr-1" />}
+                                {orderDetails.status}
+                            </span>
+                        </div>
+
+                        {/* Delivery Charges */}
+                        {(() => {
+                            let totalItemAmount = 0;
+
+                            orderDetails.items.forEach(item => {
+                                const calculatedQty = item.quantity / item.product.unit;
+                                totalItemAmount += item.current_price * calculatedQty;
+                            });
+
+                            const deliveryCharge = orderDetails.total_amount - totalItemAmount;
+
+                            return (
+                                <p className="text-md font-semibold text-gray-700">
+                                    Delivery Charges: Rs.{deliveryCharge.toFixed(2)}
+                                </p>
+                            );
+                        })()}
+                    </div>
+
+                    <p className="text-xl font-bold text-gray-900">Total Paid: Rs.{orderDetails.total_amount}</p>
+                </div>
+
+
+                {/* Action Buttons */}
+                <div className="flex justify-end mt-6 gap-4">
+                    <Link to="/my-account" className="text-blue-600 hover:underline flex items-center gap-1">
+                        <FontAwesomeIcon icon={faCircleArrowLeft} />
+                        Back to My Account
+                    </Link>
+                    <button onClick={openModal} className="text-blue-600 hover:underline flex items-center gap-1">
+                        <FontAwesomeIcon icon={faCircleInfo} />
+                        Track Order
+                    </button>
+                </div>
             </div>
-        </div>
-        {isModalOpen && <OrderTracking closeModal={closeModal} orderId={orderId}/>} {/* Modal component */}
+
+            {/* Modal */}
+            {isModalOpen && <OrderTracking closeModal={closeModal} orderId={orderId} />}
         </div>
     );
 };

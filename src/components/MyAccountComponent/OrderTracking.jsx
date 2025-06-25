@@ -25,7 +25,18 @@ const OrderTracking = ({ closeModal, orderId }) => {
     // Calculate the width of the filled portion of the progress bar based on the current stage
     const stageWidth = (currentStage / 4) * 100 + '%';
     
-    const expected_Arrival=expectedArrival;
+    // Calculate expected arrival (today + 7 days)
+    const today = new Date();
+    const expectedDate = new Date(today);
+    expectedDate.setDate(today.getDate() + 7);
+
+    // Format as YYYY-MM-DD or a more readable format
+    const expected_Arrival = expectedDate.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
 
     if (!order) return null; // Show nothing until the order is loaded
 

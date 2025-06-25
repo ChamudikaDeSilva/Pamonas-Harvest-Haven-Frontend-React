@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 // Sample data for products
 const productsData = [
@@ -135,10 +136,16 @@ const ProductCard = ({ product }) => {
         <p className="text-gray-600 text-sm sm:text-base mb-1 line-clamp-2">{product.description}</p>
         <p className="text-gray-800 font-semibold text-sm sm:text-base mb-1">{product.price}</p>
         <div className="flex justify-center items-center space-x-4 mt-2">
-          <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-          <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-          <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300" />
-        </div>
+        <Link to="/shop">
+          <FontAwesomeIcon icon={faCartShopping} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300 cursor-pointer" />
+        </Link>
+        <Link to="/shop">
+          <FontAwesomeIcon icon={faEye} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300 cursor-pointer" />
+        </Link>
+        <Link to="/shop">
+          <FontAwesomeIcon icon={faHeart} className="text-amber-500 text-lg hover:text-gray-700 transition duration-300 cursor-pointer" />
+        </Link>
+      </div>
       </div>
     </motion.div>
   );
