@@ -18,7 +18,7 @@ const OrderDetails = () => {
     useEffect(() => {
         const fetchOrderDetails = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/user/orders/${orderId}`, {
+                const response = await axios.get(`https://laravel-backend-production-dde3.up.railway.app/api/user/orders/${orderId}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

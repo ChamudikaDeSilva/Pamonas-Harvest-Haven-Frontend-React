@@ -95,7 +95,7 @@ const CartDetails = () => {
                           <div className='flex flex-col md:flex-row items-center'>
                             <img
                               className='h-16 w-16 mb-2 md:mb-0 md:mr-4'
-                              src={`http://localhost:8000${item.image}`}
+                              src={`https://laravel-backend-production-dde3.up.railway.app/${item.image}`}
                               alt={item.name || 'Product image'}
                             />
                             <span className='font-semibold text-center md:text-left'>
