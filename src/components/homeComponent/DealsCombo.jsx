@@ -18,7 +18,7 @@ const DealsCombos = () => {
   useEffect(() => {
     const fetchShopData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8001/api/product/management/fetch/deals');
+        const response = await axios.get('https://laravel-backend-production-dde3.up.railway.app/api/product/management/fetch/deals');
         const { deals } = response.data;
         setProductsData(deals);
       } catch (error) {
@@ -85,7 +85,7 @@ const DealsCombos = () => {
                 <div className="flex flex-col items-center p-4 bg-white shadow-lg">
                   <div className="w-full h-40 mb-4">
                     <img
-                      src={`http://localhost:8001${product.image}`} // Adjust this path if needed
+                      src={`https://laravel-backend-production-dde3.up.railway.app${product.image}`} // Adjust this path if needed
                       alt={`Product ${index + 1}`}
                       className="w-full h-full object-cover"
                     />

@@ -25,7 +25,7 @@ const ShopCategory = () => {
     const fetchShopData = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:8001/api/shop/data/fetch'
+          'https://laravel-backend-production-dde3.up.railway.app/api/shop/data/fetch'
         );
         const { categories, priceRange, discountTypes } = response.data;
         setCategories(categories);
@@ -62,7 +62,7 @@ const ShopCategory = () => {
       }
 
       const response = await axios.get(
-        'http://127.0.0.1:8001/api/shop/product/fetch',
+        'https://laravel-backend-production-dde3.up.railway.app/api/shop/product/fetch',
         {
           params: params,
         }
@@ -208,7 +208,7 @@ const ShopCategory = () => {
     >
       <div className='w-full h-36 sm:h-44 md:h-52 overflow-hidden'>
         <img
-          src={`http://localhost:8001${product.image}`}
+          src={`https://laravel-backend-production-dde3.up.railway.app${product.image}`}
           alt={product.name}
           className='w-full h-full object-cover transition duration-300 transform hover:scale-105'
         />
