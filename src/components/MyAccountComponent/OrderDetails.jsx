@@ -47,7 +47,7 @@ const OrderDetails = () => {
             <div className="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-8">
                 {/* Header */}
                 <div className="flex justify-between items-center border-b pb-6 mb-6">
-                    <img src="/images/1.png" alt="Logo" className="h-14 object-contain w-24 h-24"  />
+                    <img src="/Images/1.png" alt="Logo" className="h-14 object-contain w-24 h-24"  />
                     <div className="text-right space-y-2">
                         <h2 className="text-3xl font-bold text-gray-900">
                             {orderDetails.payment_status === 'paid' ? 'Invoice' : 'Order'}
