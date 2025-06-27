@@ -4,6 +4,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -32,11 +33,13 @@ const Hero = () => {
               <p className="text-lg text-black mb-8 italic">
                 Indulge in the freshest, 100% organic produce, meticulously sourced and delivered straight to your doorstep.
               </p>
-              <button 
-                className="bg-lime-500 text-white font-bold py-2 px-4 md:px-6 rounded-full shadow-md hover:bg-lime-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full md:w-auto"
-              >
-                Shop Now
-              </button>
+              <Link to ="/shop">
+                <button 
+                  className="bg-lime-500 text-white font-bold py-2 px-4 md:px-6 rounded-full shadow-md hover:bg-lime-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full md:w-auto"
+                >
+                  Shop Now
+                </button>
+              </Link>
             </div>
           </div>
         </SwiperSlide>
@@ -57,11 +60,13 @@ const Hero = () => {
               <p className="text-lg text-black mb-8 italic">
                 Indulge in the freshest, 100% organic produce, meticulously sourced and delivered straight <br></br>to your doorstep.
               </p>
-              <button
-                className="bg-lime-500 text-white font-bold py-2 px-4 md:px-6 rounded-full shadow-md hover:bg-lime-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full md:w-auto"
-              >
-                Shop Now
-              </button>
+              <Link to ="/shop">
+                <button
+                  className="bg-lime-500 text-white font-bold py-2 px-4 md:px-6 rounded-full shadow-md hover:bg-lime-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full md:w-auto"
+                >
+                  Shop Now
+                </button>
+              </Link>
             </div>
           </div>
         </SwiperSlide>
@@ -82,11 +87,13 @@ const Hero = () => {
               <p className="text-lg text-black mb-8 italic">
                 Indulge in the freshest, 100% organic produce, meticulously sourced and delivered straight<br></br> to your doorstep.
               </p>
-              <button 
-                className="bg-lime-500 text-white font-bold py-2 px-4 md:px-6 rounded-full shadow-md hover:bg-lime-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full md:w-auto"
-              >
-                Shop Now
-              </button>
+              <Link to ="/shop">
+                <button 
+                  className="bg-lime-500 text-white font-bold py-2 px-4 md:px-6 rounded-full shadow-md hover:bg-lime-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full md:w-auto"
+                >
+                  Shop Now
+                </button>
+              </Link>
             </div>
           </div>
         </SwiperSlide>
