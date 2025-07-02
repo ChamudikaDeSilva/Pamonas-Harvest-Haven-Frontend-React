@@ -208,7 +208,7 @@ const ShopCategory = () => {
     >
       <div className='w-full h-36 sm:h-44 md:h-52 overflow-hidden'>
         <img
-          src={`https://laravel-backend-production-45c7.up.railway.app/${product.image_url}`}
+          src={`https://laravel-backend-production-45c7.up.railway.app/${product.image}`}
           alt={product.name}
           className='w-full h-full object-cover transition duration-300 transform hover:scale-105'
         />
