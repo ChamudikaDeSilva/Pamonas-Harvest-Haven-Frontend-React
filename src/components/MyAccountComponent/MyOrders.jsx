@@ -20,7 +20,7 @@ const MyOrders = () => {
     // Fetch orders from the backend
     const fetchOrders = useCallback(async () => {
         try {
-            const response = await axios.get('https://laravel-backend-production-dde3.up.railway.app/api/user/orders', {
+            const response = await axios.get('https://laravel-backend-production-45c7.up.railway.app/api/user/orders', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

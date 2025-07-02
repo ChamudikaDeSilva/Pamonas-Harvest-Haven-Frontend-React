@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (name, email, password, confirmPassword) => {
         try {
-            const response = await axios.post('https://laravel-backend-production-dde3.up.railway.app/api/auth/register', {
+            const response = await axios.post('https://laravel-backend-production-45c7.up.railway.app/api/auth/register', {
                 name,
                 email,
                 password,
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await axios.post('https://laravel-backend-production-dde3.up.railway.app/api/auth/login', { email, password });
+            const response = await axios.post('https://laravel-backend-production-45c7.up.railway.app/api/auth/login', { email, password });
             setUser(response.data.user);
             localStorage.setItem('token', response.data.authorisation.token);
             setIsAuthenticated(true);
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
             //console.log('Token found:', token); // Debugging
 
             if (token) {
-                const response = await axios.get('https://laravel-backend-production-dde3.up.railway.app/api/auth/user', {
+                const response = await axios.get('https://laravel-backend-production-45c7.up.railway.app/api/auth/user', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 //console.log('User data:', response.data); // Debugging

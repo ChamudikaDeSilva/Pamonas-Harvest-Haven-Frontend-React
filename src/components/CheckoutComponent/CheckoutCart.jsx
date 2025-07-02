@@ -18,7 +18,7 @@ const CheckoutCart = () => {
   const fetchDiscounts = async () => {
     try {
       const token = localStorage.getItem('token'); // Adjust this according to where you store your token
-      const response = await axios.get('https://laravel-backend-production-dde3.up.railway.app/api/user/order-count', {
+      const response = await axios.get('https://laravel-backend-production-45c7.up.railway.app/api/user/order-count', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -94,7 +94,7 @@ const finalTotal = totalBeforeDiscount - totalDiscount;
                           <div className='flex flex-col items-center md:items-start'>
                             <img
                               className='h-16 w-16 object-cover mb-2'
-                              src={`https://laravel-backend-production-dde3.up.railway.app/${item.image}`}
+                              src={`https://laravel-backend-production-45c7.up.railway.app/${item.image}`}
                               alt={item.name || 'Product image'}
                             />
                             <span className='font-semibold text-center md:text-left text-sm'>
