@@ -111,7 +111,7 @@ const CheckoutForm = ({finalTotal,totalBeforeDiscount, totalDiscount}) => {
         //console.log('Payment Method Created:', paymentMethod);
 
         const response = await axios.post(
-          'https://laravel-backend-production-45c7.up.railway.app/api/create-payment-intent',
+          'https://laravel-backend-production-b92c.up.railway.app/api/create-payment-intent',
           {
             total_amount: totalAmount,
             payment_method_id: paymentMethod.id,
@@ -158,7 +158,7 @@ const CheckoutForm = ({finalTotal,totalBeforeDiscount, totalDiscount}) => {
         clearCart();
       } else {
         const response = await axios.post(
-          'https://laravel-backend-production-45c7.up.railway.app/api/place-order',
+          'https://laravel-backend-production-b92c.up.railway.app/api/place-order',
           {
             total_amount: totalAmount,
 

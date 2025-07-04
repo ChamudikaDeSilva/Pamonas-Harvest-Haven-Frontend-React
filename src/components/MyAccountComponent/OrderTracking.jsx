@@ -11,7 +11,7 @@ const OrderTracking = ({ closeModal, orderId }) => {
 
     useEffect(() => {
         // Fetch order details from backend
-        axios.get(`https://laravel-backend-production-45c7.up.railway.app/api/order-details/${orderId}`)
+        axios.get(`https://laravel-backend-production-b92c.up.railway.app/api/order-details/${orderId}`)
             .then(response => {
                 setOrder(response.data.order);
                 setCurrentStage(response.data.currentStage);

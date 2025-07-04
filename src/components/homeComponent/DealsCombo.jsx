@@ -85,7 +85,7 @@ const DealsCombos = () => {
                 <div className="flex flex-col items-center p-4 bg-white shadow-lg">
                   <div className="w-full h-40 mb-4">
                     <img
-                      src={`https://laravel-backend-production-45c7.up.railway.app/${product.image}`} // Adjust this path if needed
+                      src={`https://laravel-backend-production-b92c.up.railway.app/${product.image}`} // Adjust this path if needed
                       alt={`Product ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
