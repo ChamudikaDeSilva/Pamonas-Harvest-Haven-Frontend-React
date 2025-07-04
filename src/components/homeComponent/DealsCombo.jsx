@@ -18,7 +18,7 @@ const DealsCombos = () => {
   useEffect(() => {
     const fetchShopData = async () => {
       try {
-        const response = await axios.get('https://laravel-backend-production-45c7.up.railway.app/api/product/management/fetch/deals');
+        const response = await axios.get('https://laravel-backend-production-b92c.up.railway.app/api/product/management/fetch/deals');
         const { deals } = response.data;
         setProductsData(deals);
       } catch (error) {
